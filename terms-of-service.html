@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms of Service | Simora Paper Trader</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    colors: {
+                        bg: '#0B0C0E',
+                        surface: '#141518',
+                        primary: '#EDEDEF',
+                        secondary: '#8A8F98',
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0B0C0E; }
+        ::-webkit-scrollbar-thumb { background: #2A2C32; border-radius: 4px; }
+        body { font-family: 'Inter', sans-serif; background-color: #0B0C0E; color: #EDEDEF; }
+        .glass { background: rgba(26, 27, 30, 0.6); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.05); }
+        .content-section { margin-bottom: 2rem; }
+        .content-section h2 { font-size: 1.5rem; font-weight: 600; margin-bottom: 1rem; color: #EDEDEF; }
+        .content-section h3 { font-size: 1.25rem; font-weight: 600; margin-top: 1.5rem; margin-bottom: 0.75rem; color: #EDEDEF; }
+        .content-section p, .content-section ul { color: #8A8F98; line-height: 1.7; margin-bottom: 1rem; }
+        .content-section ul { list-style: disc; padding-left: 1.5rem; }
+    </style>
+</head>
+<body class="bg-bg text-primary antialiased">
+    <nav class="fixed top-0 w-full z-50 border-b border-white/5 glass">
+        <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+            <a href="./generated-page.html" class="flex items-center gap-3">
+                <img src="./Assets/simora-logo.png" alt="Simora" class="w-8 h-8">
+                <span class="text-[18px] font-medium text-[#e5e7eb] uppercase tracking-[0.18em]">Simora</span>
+            </a>
+            <a href="./generated-page.html" class="text-sm text-secondary hover:text-primary transition-colors">← Back to Home</a>
+        </div>
+    </nav>
+    <main class="pt-32 pb-24 min-h-screen">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="text-center mb-12">
+                <h1 class="text-4xl md:text-5xl font-semibold tracking-tight mb-4">Terms of Service</h1>
+            </div>
+            <div class="glass rounded-xl p-8 md:p-12">
+                <div class="content-section">
+                    <p class="text-sm text-secondary/60 mb-8">Last updated: January 2025</p>
+                    <p>By accessing or using Simora, you agree to these Terms of Service.</p>
+                </div>
+
+                <div class="content-section">
+                    <h2>1. Service Description</h2>
+                    <p>Simora is a browser extension that provides a paper trading overlay for supported third-party trading terminals. Simora does not execute real trades, hold funds, or provide brokerage services.</p>
+                </div>
+
+                <div class="content-section">
+                    <h2>2. No Financial Advice</h2>
+                    <p>Simora is provided for educational and practice purposes only. Nothing on Simora should be considered financial advice, investment advice, or a recommendation to trade any asset.</p>
+                </div>
+
+                <div class="content-section">
+                    <h2>3. No Custody and No Real Trading</h2>
+                    <p>Simora does not connect to wallets, does not access private keys, and does not move or store any assets. All activity within Simora is simulated.</p>
+                </div>
+
+                <div class="content-section">
+                    <h2>4. User Responsibility</h2>
+                    <p>You are solely responsible for how you use Simora and for any trading decisions you make outside of Simora.</p>
+                </div>
+
+                <div class="content-section">
+                    <h2>5. Limitation of Liability</h2>
+                    <p>Simora is provided "as is" without warranties of any kind. We are not responsible for any losses, damages, or decisions arising from the use of Simora.</p>
+                </div>
+
+                <div class="content-section">
+                    <h2>6. Service Availability</h2>
+                    <p>We may modify, suspend, or discontinue any part of Simora at any time without notice.</p>
+                </div>
+
+                <div class="content-section">
+                    <h2>7. Third-Party Platforms</h2>
+                    <p>Simora operates on third-party websites. We are not affiliated with or responsible for their content, functionality, or services.</p>
+                </div>
+
+                <div class="content-section">
+                    <h2>8. Contact</h2>
+                    <p>For questions regarding these terms, contact: <a href="mailto:simoralabs@gmail.com" class="text-blue-400 hover:text-blue-300 transition-colors">simoralabs@gmail.com</a></p>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer class="border-t border-white/5 bg-[#0F1012] py-8">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <p class="text-xs text-secondary/60">© 2025 Simora. All rights reserved.</p>
+        </div>
+    </footer>
+    <script>lucide.createIcons();</script>
+</body>
+</html>

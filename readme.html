@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>README | Simora Paper Trader</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    colors: {
+                        bg: '#0B0C0E',
+                        surface: '#141518',
+                        primary: '#EDEDEF',
+                        secondary: '#8A8F98',
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0B0C0E; }
+        ::-webkit-scrollbar-thumb { background: #2A2C32; border-radius: 4px; }
+        body { font-family: 'Inter', sans-serif; background-color: #0B0C0E; color: #EDEDEF; }
+        .glass { background: rgba(26, 27, 30, 0.6); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.05); }
+        .content-section { margin-bottom: 2rem; }
+        .content-section h2 { font-size: 1.5rem; font-weight: 600; margin-bottom: 1rem; color: #EDEDEF; }
+        .content-section h3 { font-size: 1.25rem; font-weight: 600; margin-top: 1.5rem; margin-bottom: 0.75rem; color: #EDEDEF; }
+        .content-section p, .content-section ul { color: #8A8F98; line-height: 1.7; margin-bottom: 1rem; }
+        .content-section ul { list-style: disc; padding-left: 1.5rem; }
+    </style>
+</head>
+<body class="bg-bg text-primary antialiased">
+    <nav class="fixed top-0 w-full z-50 border-b border-white/5 glass">
+        <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+            <a href="./generated-page.html" class="flex items-center gap-3">
+                <img src="./Assets/simora-logo.png" alt="Simora" class="w-8 h-8">
+                <span class="text-[18px] font-medium text-[#e5e7eb] uppercase tracking-[0.18em]">Simora</span>
+            </a>
+            <a href="./generated-page.html" class="text-sm text-secondary hover:text-primary transition-colors">← Back to Home</a>
+        </div>
+    </nav>
+    <main class="pt-32 pb-24 min-h-screen">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="text-center mb-12">
+                <h1 class="text-4xl md:text-5xl font-semibold tracking-tight mb-4">README</h1>
+            </div>
+            <div class="glass rounded-xl p-8 md:p-12">
+                <div class="content-section">
+                    <p class="text-lg text-secondary mb-8">Advanced paper trading extension for meme coin terminals. Practice trading without financial risk on GMGN, Axiom, and other supported platforms.</p>
+                </div>
+
+                <div class="content-section">
+                    <h2>How to Get Access</h2>
+                    <p>This extension is <strong>free</strong> but requires an activation code. To get your code:</p>
+                    <ol style="list-style: decimal; padding-left: 1.5rem; color: #8A8F98; line-height: 1.7; margin-bottom: 1rem;">
+                        <li><strong>Sign up</strong> using our referral link: <a href="https://docs.google.com/forms/d/e/1FAIpQLSequw4m7eLWomzv1kdSpwbAKDNox8cj1ZznaRWvqZa4dANn5A/viewform?usp=dialog" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:text-blue-300 transition-colors">Get Access Here</a></li>
+                        <li><strong>Fill out</strong> the Google Form that will be provided after signup</li>
+                        <li><strong>Receive</strong> your unique activation code via email</li>
+                        <li><strong>Install</strong> the extension and enter your code</li>
+                    </ol>
+                    <p class="text-sm text-secondary/80">This helps us track usage and provide better support to our community.</p>
+                </div>
+
+                <div class="content-section">
+                    <h2>Features</h2>
+                    <ul>
+                        <li><strong>Multi-Platform Support</strong>: Works on GMGN.ai, Axiom.trade, and more</li>
+                        <li><strong>Real-Time Price Tracking</strong>: WebSocket integration for live price updates</li>
+                        <li><strong>Position Management</strong>: Track multiple positions across SOL and BNB chains</li>
+                        <li><strong>Performance Analytics</strong>: Detailed P&L tracking with calendar view</li>
+                        <li><strong>Quick Buy Buttons</strong>: Fast trading directly from token listings</li>
+                        <li><strong>Chart Integration</strong>: Entry/exit lines on TradingView charts</li>
+                        <li><strong>Export & Share</strong>: Share your trading performance</li>
+                    </ul>
+                </div>
+
+                <div class="content-section">
+                    <h2>Installation</h2>
+                    <ol style="list-style: decimal; padding-left: 1.5rem; color: #8A8F98; line-height: 1.7;">
+                        <li><strong>Get your activation code</strong> (see "How to Get Access" above)</li>
+                        <li>Download the extension files</li>
+                        <li>Open Chrome and go to <code style="background: rgba(255,255,255,0.05); padding: 2px 6px; border-radius: 4px; font-family: monospace;">chrome://extensions/</code></li>
+                        <li>Enable "Developer mode"</li>
+                        <li>Click "Load unpacked" and select the extension folder</li>
+                        <li>Visit supported platforms and <strong>enter your activation code</strong></li>
+                        <li>Start paper trading!</li>
+                    </ol>
+                </div>
+
+                <div class="content-section">
+                    <h2>Supported Platforms</h2>
+                    <ul>
+                        <li><strong>GMGN.ai</strong> - SOL and BNB meme coins</li>
+                        <li><strong>Axiom.trade</strong> - SOL and BNB trading terminal</li>
+                        <li><strong>Padre.gg</strong> - Coming soon</li>
+                    </ul>
+                </div>
+
+                <div class="content-section">
+                    <h2>Usage</h2>
+                    <ol style="list-style: decimal; padding-left: 1.5rem; color: #8A8F98; line-height: 1.7;">
+                        <li>Navigate to a supported platform</li>
+                        <li>The paper trading panel will appear automatically</li>
+                        <li>Set your virtual balance and start trading</li>
+                        <li>Track your performance in real-time</li>
+                        <li>Use the calendar view to analyze daily P&L</li>
+                    </ol>
+                </div>
+
+                <div class="content-section">
+                    <h2>Privacy & Security</h2>
+                    <ul>
+                        <li>All data is stored locally in your browser</li>
+                        <li>No personal information is collected beyond signup</li>
+                        <li>No external tracking or analytics</li>
+                        <li>Activation codes are used only for access control</li>
+                    </ul>
+                </div>
+
+                <div class="content-section">
+                    <h2>Support</h2>
+                    <p>For support and updates, visit <a href="https://simoralabs.com" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:text-blue-300 transition-colors">simoralabs.com</a></p>
+                </div>
+
+                <div class="mt-8 p-4 rounded-lg bg-white/5 border border-white/10">
+                    <p class="text-sm text-secondary/80"><strong>Disclaimer</strong>: This is a paper trading tool for educational purposes only. No real money is involved.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer class="border-t border-white/5 bg-[#0F1012] py-8">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <p class="text-xs text-secondary/60">© 2025 Simora. All rights reserved.</p>
+        </div>
+    </footer>
+    <script>lucide.createIcons();</script>
+</body>
+</html>
