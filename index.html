@@ -163,6 +163,26 @@
             from { transform: rotate(0deg); }
             to { transform: rotate(360deg); }
         }
+
+        /* Responsive Trade Panel Scaling */
+        .trade-panel-responsive {
+            transform: translate(-50%, -50%) scale(0.5) !important;
+        }
+        @media (min-width: 640px) {
+            .trade-panel-responsive {
+                transform: translate(-50%, -50%) scale(0.65) !important;
+            }
+        }
+        @media (min-width: 768px) {
+            .trade-panel-responsive {
+                transform: translate(-50%, -50%) scale(0.75) !important;
+            }
+        }
+        @media (min-width: 1024px) {
+            .trade-panel-responsive {
+                transform: translate(-50%, -50%) scale(0.85) !important;
+            }
+        }
     </style>
 </head>
 <body class="bg-bg text-primary font-sans antialiased selection:bg-accent/30 selection:text-white overflow-x-hidden flex flex-col min-h-screen">
@@ -212,62 +232,62 @@
     </nav>
 
     <!-- Hero Section -->
-    <section class="relative pt-24 md:pt-32 pb-20 overflow-hidden min-h-screen flex flex-col justify-center">
+    <section class="relative pt-24 md:pt-32 pb-20 overflow-hidden min-h-[600px] md:min-h-screen flex flex-col justify-center">
         <!-- Animated Background - Fixed Position Blobs (Like generated-page (1).html) -->
         <div class="absolute inset-0 bg-grid opacity-[0.05] pointer-events-none"></div>
 
-        <div class="max-w-7xl mx-auto px-6 text-center relative z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 text-center relative z-10">
             
-            <h1 class="reveal text-4xl md:text-6xl font-semibold tracking-tight leading-[1.1] mb-6">
-                Paper trade memecoins on real charts <br>
+            <h1 class="reveal text-3xl sm:text-4xl md:text-6xl font-semibold tracking-tight leading-[1.2] mb-6">
+                Paper trade memecoins on real charts <br class="hidden sm:block">
                 <span class="text-gradient">Without real money risk</span>
             </h1>
             
-            <p class="reveal text-lg md:text-xl text-secondary max-w-2xl mx-auto mb-10 leading-relaxed">
+            <p class="reveal text-base sm:text-lg md:text-xl text-secondary max-w-2xl mx-auto mb-8 md:mb-10 leading-relaxed px-2">
                 Simora adds a clean paper trading overlay to GMGN, Axiom & Padre so you can practice entries, exits
                 and position sizing with zero real financial exposure. 
             </p>
             
-            <div class="reveal flex flex-col sm:flex-row items-center justify-center gap-4 mb-12 w-full sm:w-auto">
-                <a href="https://chromewebstore.google.com/detail/chjhmhbpnnohcdafkdjklconpielhcld" target="_blank" rel="noopener noreferrer" class="chrome-gradient-btn w-full sm:w-auto px-6 py-4 rounded-full text-white text-sm font-medium transition-all flex items-center justify-center gap-2 backdrop-blur-sm relative group">
-                    <i data-lucide="chrome" class="w-4 h-4"></i>
-                    Add to Chrome (Web Store)
+            <div class="reveal flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 mb-8 md:mb-12 px-4 sm:px-0">
+                <a href="https://chromewebstore.google.com/detail/chjhmhbpnnohcdafkdjklconpielhcld" target="_blank" rel="noopener noreferrer" class="chrome-gradient-btn min-w-0 px-5 py-3.5 rounded-full text-white text-sm font-medium transition-all flex items-center justify-center gap-2 backdrop-blur-sm relative group whitespace-nowrap">
+                    <i data-lucide="chrome" class="w-4 h-4 flex-shrink-0"></i>
+                    <span class="truncate">Add to Chrome (Web Store)</span>
                 </a>
-                <a href="https://youtu.be/_uO6xuvdd40" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto px-6 py-4 rounded-full border border-white/10 bg-white/5 hover:bg-white/10 text-primary text-sm font-medium transition-all flex items-center justify-center gap-2 backdrop-blur-sm hover:border-white/20">
-                    <i data-lucide="play-circle" class="w-4 h-4"></i>
-                    Watch Demo
+                <a href="https://youtu.be/_uO6xuvdd40" target="_blank" rel="noopener noreferrer" class="min-w-0 px-5 py-3.5 rounded-full border border-white/10 bg-white/5 hover:bg-white/10 text-primary text-sm font-medium transition-all flex items-center justify-center gap-2 backdrop-blur-sm hover:border-white/20 whitespace-nowrap">
+                    <i data-lucide="play-circle" class="w-4 h-4 flex-shrink-0"></i>
+                    <span class="truncate">Watch Demo</span>
                 </a>
             </div>
 
             <!-- Enhanced Browser Mockup with Stronger Glow (30% Larger) -->
-            <div class="reveal relative w-full mx-auto rounded-xl border border-white/10 bg-[#0F1012] shadow-2xl overflow-hidden group hover:border-white/20 transition-colors duration-500" style="max-width: 70rem;">
+            <div class="reveal relative w-full mx-auto rounded-lg md:rounded-xl border border-white/10 bg-[#0F1012] shadow-2xl overflow-hidden group hover:border-white/20 transition-colors duration-500" style="max-width: 70rem;">
                 <!-- Animated Glow Behind Mockup (Enhanced from generated-page (1).html) -->
                 <div class="absolute -inset-4 bg-gradient-to-r from-[#667eea] to-[#764ba2] rounded-xl blur-2xl opacity-20 -z-10 animate-pulse"></div>
                 <!-- Browser Header -->
-                <div class="h-12 bg-[#141518] border-b border-white/5 flex items-center px-5 gap-2">
-                    <div class="flex gap-1.5 opacity-50 hover:opacity-100 transition-opacity">
-                        <div class="w-3.5 h-3.5 rounded-full bg-[#ff5f57]"></div>
-                        <div class="w-3.5 h-3.5 rounded-full bg-[#febc2e]"></div>
-                        <div class="w-3.5 h-3.5 rounded-full bg-[#28c840]"></div>
+                <div class="h-8 sm:h-10 md:h-12 bg-[#141518] border-b border-white/5 flex items-center px-3 sm:px-5 gap-2">
+                    <div class="flex gap-1 sm:gap-1.5 opacity-50 hover:opacity-100 transition-opacity">
+                        <div class="w-2 h-2 sm:w-3 sm:h-3 md:w-3.5 md:h-3.5 rounded-full bg-[#ff5f57]"></div>
+                        <div class="w-2 h-2 sm:w-3 sm:h-3 md:w-3.5 md:h-3.5 rounded-full bg-[#febc2e]"></div>
+                        <div class="w-2 h-2 sm:w-3 sm:h-3 md:w-3.5 md:h-3.5 rounded-full bg-[#28c840]"></div>
                     </div>
                     <div class="flex-1 flex justify-center">
-                        <div class="w-[600px] bg-[#0A0B0D] rounded-md text-center text-xs text-secondary/70 py-1.5 px-4 border border-white/5 flex items-center justify-center gap-2 font-mono">
-                            <i data-lucide="lock" class="w-3 h-3 text-secondary/50"></i>
-                            gmgn.ai/sol/token/simora...
+                        <div class="max-w-[200px] sm:max-w-[400px] md:max-w-[600px] w-full bg-[#0A0B0D] rounded-md text-center text-[10px] sm:text-xs text-secondary/70 py-1 sm:py-1.5 px-2 sm:px-4 border border-white/5 flex items-center justify-center gap-1 sm:gap-2 font-mono">
+                            <i data-lucide="lock" class="w-2.5 h-2.5 sm:w-3 sm:h-3 text-secondary/50 flex-shrink-0"></i>
+                            <span class="truncate">gmgn.ai/sol/token/simora...</span>
                         </div>
                     </div>
-                    <div class="w-[60px]"></div>
+                    <div class="w-[30px] sm:w-[60px]"></div>
                 </div>
                 
                 <!-- Trading Interface Placeholder -->
-                <div class="aspect-[16/9] md:aspect-[18/9] bg-[#0A0B0D] relative overflow-hidden">
+                <div class="aspect-[4/3] sm:aspect-[16/9] md:aspect-[18/9] bg-[#0A0B0D] relative overflow-hidden">
                     <!-- Terminal Preview Background - Full Bleed -->
                     <img src="./assets/terminal-preview.webp" alt="" class="absolute inset-0 w-full h-full object-cover" />
                     <!-- Dark Overlay for Contrast -->
                     <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-black/50"></div>
                     
-                    <!-- Dynamic PnL Bar (Right Side, Top) - Hidden on Mobile -->
-                    <div class="hidden lg:block absolute top-[115px] right-[240px] z-20" style="pointer-events: none;">
+                    <!-- Dynamic PnL Bar (Right Side, Top) - Hidden on Mobile & Tablet -->
+                    <div class="hidden xl:block absolute top-[95px] right-[240px] z-20" style="pointer-events: none;">
                         <div style="position: relative; min-width: 200px; padding: 10px 18px 12px; border-radius: 22px; background: radial-gradient(circle at 10% 0%, rgba(51, 53, 61, 0.45), rgba(21, 21, 24, 0.96) 40%, rgba(13, 14, 15, 0.96) 100%); box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35); backdrop-filter: blur(10px); border: 1px solid rgba(67, 73, 82, 0.8);">
                             <div style="display: flex; align-items: center; justify-content: space-around; gap: 4px;">
                                 <!-- Balance Column -->
@@ -310,8 +330,8 @@
                         </div>
                     </div>
                     
-                    <!-- Simora Trade Panel - REAL TRADING INTERFACE (Shifted Left 12%) -->
-                    <div class="absolute top-1/2 z-20" style="left: 30%; transform: translate(-50%, -50%) scale(0.85); transform-origin: center; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; width: 300px; background: #1a1b1e; border: 1px solid #2d2f36; border-radius: 8px; box-shadow: 0 4px 24px rgba(0,0,0,0.6); overflow: hidden;">
+                    <!-- Simora Trade Panel - REAL TRADING INTERFACE (Responsive positioning) -->
+                    <div class="trade-panel-responsive absolute top-1/2 left-1/2 sm:left-[35%] md:left-[30%] z-20" style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; width: 300px; background: #1a1b1e; border: 1px solid #2d2f36; border-radius: 8px; box-shadow: 0 4px 24px rgba(0,0,0,0.6); overflow: hidden;">
                             <!-- Header -->
                             <div class="flex items-center justify-between px-[16px] py-[12px] bg-[#1f2023] border-b border-[#2d2f36]">
                                 <div class="flex items-center gap-[8px]">
