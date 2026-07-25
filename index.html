@@ -95,6 +95,7 @@
 
         .text-gradient {
             background: linear-gradient(135deg, #7F9CF5 0%, #C4B5FD 100%);
+            background-clip: text;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -239,6 +240,7 @@
             </a>
             <div class="hidden md:flex items-center gap-8 text-sm text-secondary font-medium">
                 <a href="#features" class="hover:text-primary transition-colors">Features</a>
+                <a href="#social" class="hover:text-primary transition-colors">Social</a>
                 <a href="#platforms" class="hover:text-primary transition-colors">Platforms</a>
                 <a href="#stats" class="hover:text-primary transition-colors">Community</a>
             </div>
@@ -258,9 +260,9 @@
                         </div>
                     </div>
                 </div>
-                <!-- Add to Chrome Button -->
-                <a href="https://chromewebstore.google.com/detail/chjhmhbpnnohcdafkdjklconpielhcld" target="_blank" rel="noopener noreferrer" class="hidden sm:flex items-center gap-2 text-sm font-medium bg-white/5 hover:bg-white/10 border border-white/10 px-4 py-2 rounded-full transition-all group hover:border-accent/50">
-                    <span>Add to Chrome</span>
+                <!-- Get Simora Button -->
+                <a href="https://chromewebstore.google.com/detail/chjhmhbpnnohcdafkdjklconpielhcld" target="_blank" rel="noopener noreferrer" class="hidden sm:flex items-center justify-center gap-2 text-sm font-medium bg-white/5 hover:bg-white/10 border border-white/10 px-4 py-2 rounded-full transition-all group hover:border-accent/50">
+                    <span>Get Simora - $19.99</span>
                     <i data-lucide="chrome" class="w-4 h-4 text-secondary group-hover:text-white transition-colors"></i>
                 </a>
             </div>
@@ -275,19 +277,29 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 text-center relative z-10">
             
             <h1 class="reveal text-3xl sm:text-4xl md:text-6xl font-semibold tracking-tight leading-[1.2] mb-6">
-                Paper trade memecoins on real charts <br class="hidden sm:block">
-                <span class="text-gradient">Without real money risk</span>
+                Practice Trading Like a Pro. <br class="hidden sm:block">
+                <span class="text-gradient">Share Your Performance With Friends.</span>
             </h1>
             
             <p class="reveal text-base sm:text-lg md:text-xl text-secondary max-w-2xl mx-auto mb-8 md:mb-10 leading-relaxed px-2">
-                Simora adds a clean paper trading overlay to GMGN, Axiom & Padre so you can practice entries, exits
-                and position sizing with zero real financial exposure. 
+                Simora turns GMGN, Axiom & Padre into risk-free training grounds with live paper trading, social tracking, and performance analytics all without touching real money.
             </p>
+            
+            <!-- Chain Support & Social Tracking Badge -->
+            <div class="reveal flex items-center justify-center gap-2 mb-8">
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-accent/10 to-[#8B5CF6]/10 border border-accent/20 backdrop-blur-sm">
+                    <i data-lucide="link" class="w-4 h-4 text-accent"></i>
+                    <span class="text-sm font-semibold text-white">SOL • BNB • HOOD</span>
+                    <span class="text-secondary/50">|</span>
+                    <i data-lucide="users" class="w-4 h-4 text-[#8B5CF6]"></i>
+                    <span class="text-sm font-semibold text-white">Social Tracking</span>
+                </div>
+            </div>
             
             <div class="reveal flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 mb-8 md:mb-12 px-4 sm:px-0">
                 <a href="https://chromewebstore.google.com/detail/chjhmhbpnnohcdafkdjklconpielhcld" target="_blank" rel="noopener noreferrer" class="chrome-gradient-btn min-w-0 px-5 py-3.5 rounded-full text-white text-sm font-medium transition-all flex items-center justify-center gap-2 backdrop-blur-sm relative group whitespace-nowrap">
                     <i data-lucide="chrome" class="w-4 h-4 flex-shrink-0"></i>
-                    <span class="truncate">Add to Chrome (Web Store)</span>
+                    <span class="truncate">Get Simora - $19.99</span>
                 </a>
                 <a href="https://youtu.be/_uO6xuvdd40" target="_blank" rel="noopener noreferrer" class="min-w-0 px-5 py-3.5 rounded-full border border-white/10 bg-white/5 hover:bg-white/10 text-primary text-sm font-medium transition-all flex items-center justify-center gap-2 backdrop-blur-sm hover:border-white/20 whitespace-nowrap">
                     <i data-lucide="play-circle" class="w-4 h-4 flex-shrink-0"></i>
@@ -346,7 +358,7 @@
                                 </div>
                                 <!-- PnL Column -->
                                 <div style="display: flex; flex-direction: column; align-items: center; min-width: 110px;">
-                                    <div style="font-size: 13px; font-weight: 500; color: #34d399; display: flex; align-items: center; gap: 2px;">
+                                    <div style="font-size: 13px; font-weight: 500; color: #37d6bd; display: flex; align-items: center; gap: 2px;">
                                         <span style="display: inline-flex; align-items: center;">
                                             <svg width="20" height="20" viewBox="0 0 397.7 311.7" style="vertical-align:middle;">
                                                 <linearGradient id="sol-landing-pnl" x1="360" y1="351" x2="141" y2="-69" gradientUnits="userSpaceOnUse">
@@ -367,9 +379,9 @@
                     </div>
                     
                     <!-- Simora Trade Panel - REAL TRADING INTERFACE (Responsive positioning) -->
-                    <div class="trade-panel-responsive absolute top-1/2 left-1/2 sm:left-[35%] md:left-[30%] z-20" style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; width: 300px; background: #1a1b1e; border: 1px solid #2d2f36; border-radius: 8px; box-shadow: 0 4px 24px rgba(0,0,0,0.6); overflow: hidden;">
+                    <div class="trade-panel-responsive absolute top-1/2 left-1/2 sm:left-[35%] md:left-[30%] z-20" style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; width: 300px; background: rgb(25, 26, 36); border: 1px solid #2d2f36; border-radius: 8px; box-shadow: 0 4px 24px rgba(0,0,0,0.6); overflow: hidden;">
                             <!-- Header -->
-                            <div class="flex items-center justify-between px-[16px] py-[12px] bg-[#1f2023] border-b border-[#2d2f36]">
+                            <div class="flex items-center justify-between px-[16px] py-[12px] bg-[#1c1d27] border-b border-[#2d2f36]">
                                 <div class="flex items-center gap-[8px]">
                                     <span class="text-[13px] font-medium text-[#e5e7eb] uppercase tracking-[0.18em]">Simora</span>
                                 </div>
@@ -399,16 +411,16 @@
                                 <div class="p-[12px]">
                                     <div class="text-[11px] text-[#d4d4d4] mb-[8px] font-semibold text-left">Buy (SOL)</div>
                                     <div class="grid grid-cols-4 gap-[6px] mb-[12px]">
-                                        <button class="bg-[#1a1b1e] border border-[#79EA86] text-[#79EA86] rounded-[22px] py-[4px] px-[4px] text-[14px] font-semibold pointer-events-none">0.1</button>
-                                        <button class="bg-[#1a1b1e] border border-[#79EA86] text-[#79EA86] rounded-[22px] py-[4px] px-[4px] text-[14px] font-semibold pointer-events-none">0.2</button>
-                                        <button class="bg-[#1a1b1e] border border-[#79EA86] text-[#79EA86] rounded-[22px] py-[4px] px-[4px] text-[14px] font-semibold pointer-events-none">0.5</button>
-                                        <button class="bg-[#1a1b1e] border border-[#79EA86] text-[#79EA86] rounded-[22px] py-[4px] px-[4px] text-[14px] font-semibold pointer-events-none">1</button>
+                                        <button style="border: 1px solid rgba(55, 214, 189, 0.5);" class="bg-[#191a24] text-[#37d6bd] rounded-[22px] py-[4px] px-[4px] text-[14px] font-semibold pointer-events-none">0.1</button>
+                                        <button style="border: 1px solid rgba(55, 214, 189, 0.5);" class="bg-[#191a24] text-[#37d6bd] rounded-[22px] py-[4px] px-[4px] text-[14px] font-semibold pointer-events-none">0.2</button>
+                                        <button style="border: 1px solid rgba(55, 214, 189, 0.5);" class="bg-[#191a24] text-[#37d6bd] rounded-[22px] py-[4px] px-[4px] text-[14px] font-semibold pointer-events-none">0.5</button>
+                                        <button style="border: 1px solid rgba(55, 214, 189, 0.5);" class="bg-[#191a24] text-[#37d6bd] rounded-[22px] py-[4px] px-[4px] text-[14px] font-semibold pointer-events-none">1</button>
                                     </div>
                                     <div class="grid grid-cols-4 gap-[6px] mb-[12px]">
-                                        <button class="bg-[#1a1b1e] border border-[#79EA86] text-[#79EA86] rounded-[22px] py-[4px] px-[4px] text-[14px] font-semibold pointer-events-none">2</button>
-                                        <button class="bg-[#1a1b1e] border border-[#79EA86] text-[#79EA86] rounded-[22px] py-[4px] px-[4px] text-[14px] font-semibold pointer-events-none">3</button>
-                                        <button class="bg-[#1a1b1e] border border-[#79EA86] text-[#79EA86] rounded-[22px] py-[4px] px-[4px] text-[14px] font-semibold pointer-events-none">5</button>
-                                        <button class="bg-[#1a1b1e] border border-[#79EA86] text-[#79EA86] rounded-[22px] py-[4px] px-[4px] text-[14px] font-semibold pointer-events-none">10</button>
+                                        <button style="border: 1px solid rgba(55, 214, 189, 0.5);" class="bg-[#191a24] text-[#37d6bd] rounded-[22px] py-[4px] px-[4px] text-[14px] font-semibold pointer-events-none">2</button>
+                                        <button style="border: 1px solid rgba(55, 214, 189, 0.5);" class="bg-[#191a24] text-[#37d6bd] rounded-[22px] py-[4px] px-[4px] text-[14px] font-semibold pointer-events-none">3</button>
+                                        <button style="border: 1px solid rgba(55, 214, 189, 0.5);" class="bg-[#191a24] text-[#37d6bd] rounded-[22px] py-[4px] px-[4px] text-[14px] font-semibold pointer-events-none">5</button>
+                                        <button style="border: 1px solid rgba(55, 214, 189, 0.5);" class="bg-[#191a24] text-[#37d6bd] rounded-[22px] py-[4px] px-[4px] text-[14px] font-semibold pointer-events-none">10</button>
                                     </div>
                                     <div class="flex items-center justify-between text-[12px] text-[#9ca3af] opacity-70 pt-[3px]">
                                         <div class="flex items-center gap-[8px]">
@@ -435,16 +447,16 @@
                                 <div class="p-[12px]">
                                     <div class="text-[11px] text-[#d4d4d4] mb-[8px] font-semibold text-left">Sell (%)</div>
                                     <div class="grid grid-cols-4 gap-[6px] mb-[12px]">
-                                        <button class="bg-[#1a1b1e] border border-[#dc2626] text-[#dc2626] rounded-[22px] py-[4px] px-[4px] text-[13px] font-bold pointer-events-none">10%</button>
-                                        <button class="bg-[#1a1b1e] border border-[#dc2626] text-[#dc2626] rounded-[22px] py-[4px] px-[4px] text-[13px] font-bold pointer-events-none">25%</button>
-                                        <button class="bg-[#1a1b1e] border border-[#dc2626] text-[#dc2626] rounded-[22px] py-[4px] px-[4px] text-[13px] font-bold pointer-events-none">50%</button>
-                                        <button class="bg-[#1a1b1e] border border-[#dc2626] text-[#dc2626] rounded-[22px] py-[4px] px-[4px] text-[13px] font-bold pointer-events-none">100%</button>
+                                        <button style="border: 1px solid rgba(240, 75, 146, 0.5);" class="bg-[#191a24] text-[#f04b92] rounded-[22px] py-[4px] px-[4px] text-[13px] font-bold pointer-events-none">10%</button>
+                                        <button style="border: 1px solid rgba(240, 75, 146, 0.5);" class="bg-[#191a24] text-[#f04b92] rounded-[22px] py-[4px] px-[4px] text-[13px] font-bold pointer-events-none">25%</button>
+                                        <button style="border: 1px solid rgba(240, 75, 146, 0.5);" class="bg-[#191a24] text-[#f04b92] rounded-[22px] py-[4px] px-[4px] text-[13px] font-bold pointer-events-none">50%</button>
+                                        <button style="border: 1px solid rgba(240, 75, 146, 0.5);" class="bg-[#191a24] text-[#f04b92] rounded-[22px] py-[4px] px-[4px] text-[13px] font-bold pointer-events-none">100%</button>
                                     </div>
                                     <div class="grid grid-cols-4 gap-[6px] mb-[12px]">
-                                        <button class="bg-[#1a1b1e] border border-[#dc2626] text-[#dc2626] rounded-[22px] py-[4px] px-[4px] text-[13px] font-bold pointer-events-none">5%</button>
-                                        <button class="bg-[#1a1b1e] border border-[#dc2626] text-[#dc2626] rounded-[22px] py-[4px] px-[4px] text-[13px] font-bold pointer-events-none">15%</button>
-                                        <button class="bg-[#1a1b1e] border border-[#dc2626] text-[#dc2626] rounded-[22px] py-[4px] px-[4px] text-[13px] font-bold pointer-events-none">35%</button>
-                                        <button class="bg-[#1a1b1e] border border-[#dc2626] text-[#dc2626] rounded-[22px] py-[4px] px-[4px] text-[13px] font-bold pointer-events-none">75%</button>
+                                        <button style="border: 1px solid rgba(240, 75, 146, 0.5);" class="bg-[#191a24] text-[#f04b92] rounded-[22px] py-[4px] px-[4px] text-[13px] font-bold pointer-events-none">5%</button>
+                                        <button style="border: 1px solid rgba(240, 75, 146, 0.5);" class="bg-[#191a24] text-[#f04b92] rounded-[22px] py-[4px] px-[4px] text-[13px] font-bold pointer-events-none">15%</button>
+                                        <button style="border: 1px solid rgba(240, 75, 146, 0.5);" class="bg-[#191a24] text-[#f04b92] rounded-[22px] py-[4px] px-[4px] text-[13px] font-bold pointer-events-none">35%</button>
+                                        <button style="border: 1px solid rgba(240, 75, 146, 0.5);" class="bg-[#191a24] text-[#f04b92] rounded-[22px] py-[4px] px-[4px] text-[13px] font-bold pointer-events-none">75%</button>
                                     </div>
                                     <div class="flex items-center justify-between text-[12px] text-[#9ca3af] opacity-70 pt-[3px]">
                                         <div class="flex items-center gap-[8px]">
@@ -468,8 +480,8 @@
                                 </div>
                                 
                                 <!-- Stats -->
-                                <div class="grid py-[6px] bg-[#1f2023] border-t border-[#2d2f36]" style="grid-template-columns: 1fr 1fr 1fr 1.6fr;">
-                                    <div class="flex items-center justify-center gap-[3px] text-[12px] font-semibold text-[#79EA86] border-r border-white/[0.08]">
+                                <div class="grid py-[6px] bg-[#1c1d27] border-t border-[#2d2f36]" style="grid-template-columns: 1fr 1fr 1fr 1.6fr;">
+                                    <div class="flex items-center justify-center gap-[3px] text-[12px] font-semibold text-[#37d6bd] border-r border-white/[0.08]">
                                         <svg width="10" height="10" viewBox="0 0 397.7 311.7" style="vertical-align:middle;">
                                             <defs>
                                                 <linearGradient id="sol-gradient-1" x1="360" y1="351" x2="141" y2="-69" gradientUnits="userSpaceOnUse">
@@ -483,7 +495,7 @@
                                         </svg>
                                         <span>0</span>
                                     </div>
-                                    <div class="flex items-center justify-center gap-[3px] text-[12px] font-semibold text-[#E75757] border-r border-white/[0.08]">
+                                    <div class="flex items-center justify-center gap-[3px] text-[12px] font-semibold text-[#f04b92] border-r border-white/[0.08]">
                                         <svg width="10" height="10" viewBox="0 0 397.7 311.7" style="vertical-align:middle;">
                                             <defs>
                                                 <linearGradient id="sol-gradient-2" x1="360" y1="351" x2="141" y2="-69" gradientUnits="userSpaceOnUse">
@@ -511,7 +523,7 @@
                                         </svg>
                                         <span>0</span>
                                     </div>
-                                    <div class="flex items-center justify-center gap-[3px] text-[12px] font-semibold text-[#79EA86]">
+                                    <div class="flex items-center justify-center gap-[3px] text-[12px] font-semibold text-[#37d6bd]">
                                         <svg width="10" height="10" viewBox="0 0 397.7 311.7" style="vertical-align:middle;">
                                             <defs>
                                                 <linearGradient id="sol-gradient-4" x1="360" y1="351" x2="141" y2="-69" gradientUnits="userSpaceOnUse">
@@ -582,6 +594,101 @@
         </div>
     </section>
 
+    <!-- Simora Social Section -->
+    <section id="social" class="py-24 relative overflow-hidden bg-surface/10">
+        <div class="absolute inset-0 bg-grid opacity-[0.03] pointer-events-none"></div>
+        
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <div class="text-center mb-16">
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/10 border border-accent/20 mb-6">
+                    <span class="relative flex h-2 w-2">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-2 w-2 bg-accent"></span>
+                    </span>
+                    <span class="text-xs font-semibold text-accent uppercase tracking-wider">NEW FEATURE</span>
+                </div>
+                
+                <!-- Prominent Simora Social Title -->
+                <h2 class="text-5xl md:text-6xl font-bold tracking-tight mb-6 bg-gradient-to-r from-accent via-purple-500 to-accent bg-clip-text text-transparent">
+                    Simora Social
+                </h2>
+                
+                <h3 class="text-2xl md:text-3xl font-semibold tracking-tight mb-4 text-white/90">Trade Together. Learn Faster.</h3>
+                <p class="text-secondary text-lg max-w-2xl mx-auto">Share your paper trades with friends. Follow top performers. See live buy/sell notifications and chart markers, all without revealing real positions.</p>
+            </div>
+
+            <!-- Features Grid -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+                <div class="reveal glass-card p-6 rounded-xl hover:border-white/10 transition-all group">
+                    <div class="w-12 h-12 rounded-lg bg-accent/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                        <i data-lucide="users" class="w-6 h-6 text-accent"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">Follow Friends' Trades</h3>
+                    <p class="text-sm text-secondary leading-relaxed">Track your friends' paper trading activity in real-time. See what they're buying and selling as it happens.</p>
+                </div>
+
+                <div class="reveal glass-card p-6 rounded-xl hover:border-white/10 transition-all group">
+                    <div class="w-12 h-12 rounded-lg bg-success/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                        <i data-lucide="bell" class="w-6 h-6 text-success"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">Live Notifications</h3>
+                    <p class="text-sm text-secondary leading-relaxed">Get instant popup alerts when traders you follow make moves. Never miss an important trade again.</p>
+                </div>
+
+                <div class="reveal glass-card p-6 rounded-xl hover:border-white/10 transition-all group">
+                    <div class="w-12 h-12 rounded-lg bg-[#FCD34D]/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                        <i data-lucide="map-pin" class="w-6 h-6 text-[#FCD34D]"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">Chart Markers</h3>
+                    <p class="text-sm text-secondary leading-relaxed">See friends' buy/sell markers directly on the chart with their profile pictures. Visual trade history at a glance.</p>
+                </div>
+            </div>
+
+            <!-- Main Demo Area - YouTube Video -->
+            <div class="reveal relative rounded-2xl overflow-hidden border border-white/10 bg-surface/50 backdrop-blur-sm group">
+                <div class="aspect-video bg-gradient-to-br from-surface via-surface to-bg relative">
+                    <!-- YouTube Embed -->
+                    <iframe 
+                        class="absolute inset-0 w-full h-full"
+                        src="https://www.youtube-nocookie.com/embed/xjMeLexaMz0?rel=0&modestbranding=1"
+                        title="Simora Social Demo - Track Friends' Trades & Share Your Progress"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerpolicy="strict-origin-when-cross-origin"
+                        allowfullscreen>
+                    </iframe>
+                </div>
+            </div>
+
+            <!-- Bottom Features -->
+            <div class="mt-12 grid md:grid-cols-2 gap-8">
+                <div class="reveal flex gap-4 p-6 rounded-xl bg-white/[0.02] border border-white/5 hover:border-white/10 transition-all">
+                    <div class="flex-shrink-0">
+                        <div class="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center">
+                            <i data-lucide="shield-check" class="w-5 h-5 text-accent"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold mb-2">Private by Default</h4>
+                        <p class="text-sm text-secondary leading-relaxed">Your trades stay private unless you choose to share your code. No public leaderboards. No forced exposure.</p>
+                    </div>
+                </div>
+
+                <div class="reveal flex gap-4 p-6 rounded-xl bg-white/[0.02] border border-white/5 hover:border-white/10 transition-all">
+                    <div class="flex-shrink-0">
+                        <div class="w-10 h-10 rounded-lg bg-success/10 flex items-center justify-center">
+                            <i data-lucide="share-2" class="w-5 h-5 text-success"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold mb-2">Share Your Code</h4>
+                        <p class="text-sm text-secondary leading-relaxed">Generate a unique tracking code in seconds. Share it with friends or mentors who want to follow your progress.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Platform Support Section -->
     <section id="platforms" class="py-24 relative overflow-hidden">
         <div class="max-w-7xl mx-auto px-6">
@@ -595,21 +702,35 @@
                 <a href="https://gmgn.ai/r/simora" target="_blank" rel="noopener noreferrer" class="reveal group p-8 rounded-2xl bg-surface border border-white/5 hover:border-[#FCD34D]/30 transition-all duration-300 hover:bg-[#FCD34D]/5 cursor-pointer">
                     <img src="./assets/logo_gmgn.svg" alt="GMGN" class="w-16 h-16 object-contain mb-6 group-hover:scale-110 transition-transform">
                     <h3 class="text-xl font-semibold mb-2 group-hover:text-[#FCD34D] transition-colors">GMGN</h3>
-                    <p class="text-secondary text-sm">The #1 Solana meme coin terminal. Practice sniping new pairs instantly.</p>
+                    <p class="text-secondary text-sm mb-4">The #1 Solana meme coin terminal. Practice sniping new pairs instantly.</p>
+                    <div class="flex items-center gap-2 flex-wrap">
+                        <span class="text-xs px-2 py-1 rounded-full bg-white/5 border border-white/10 text-secondary">SOL</span>
+                        <span class="text-xs px-2 py-1 rounded-full bg-white/5 border border-white/10 text-secondary">BNB</span>
+                        <span class="text-xs px-2 py-1 rounded-full bg-white/5 border border-white/10 text-secondary">ETH</span>
+                    </div>
                 </a>
 
                 <!-- Axiom -->
                 <a href="https://axiom.trade/@simora" target="_blank" rel="noopener noreferrer" class="reveal group p-8 rounded-2xl bg-surface border border-white/5 hover:border-[#8B5CF6]/30 transition-all duration-300 hover:bg-[#8B5CF6]/5 transition-delay-100 cursor-pointer">
                     <img src="./assets/platform-axiom.svg" alt="Axiom" class="w-16 h-16 object-contain mb-6 group-hover:scale-110 transition-transform">
                     <h3 class="text-xl font-semibold mb-2 group-hover:text-[#8B5CF6] transition-colors">Axiom</h3>
-                    <p class="text-secondary text-sm">Powerful multi-chain trading platform. Test strategies across chains.</p>
+                    <p class="text-secondary text-sm mb-4">Powerful multi-chain trading platform. Test strategies across chains.</p>
+                    <div class="flex items-center gap-2 flex-wrap">
+                        <span class="text-xs px-2 py-1 rounded-full bg-white/5 border border-white/10 text-secondary">SOL</span>
+                        <span class="text-xs px-2 py-1 rounded-full bg-white/5 border border-white/10 text-secondary">BNB</span>
+                        <span class="text-xs px-2 py-1 rounded-full bg-white/5 border border-white/10 text-secondary">ETH</span>
+                    </div>
                 </a>
 
                 <!-- Padre -->
                 <a href="https://trade.padre.gg/rk/simora" target="_blank" rel="noopener noreferrer" class="reveal group p-8 rounded-2xl bg-surface border border-white/5 hover:border-[#86EFAC]/30 transition-all duration-300 hover:bg-[#86EFAC]/5 transition-delay-200 cursor-pointer">
                     <img src="./assets/logo-padre.svg" alt="Padre" class="w-16 h-16 object-contain mb-6 group-hover:scale-110 transition-transform">
                     <h3 class="text-xl font-semibold mb-2 group-hover:text-[#86EFAC] transition-colors">Padre</h3>
-                    <p class="text-secondary text-sm">Community-driven trading tools. Perfect your entry and exit points.</p>
+                    <p class="text-secondary text-sm mb-4">Community-driven trading tools. Perfect your entry and exit points.</p>
+                    <div class="flex items-center gap-2 flex-wrap">
+                        <span class="text-xs px-2 py-1 rounded-full bg-white/5 border border-white/10 text-secondary">SOL</span>
+                        <span class="text-xs px-2 py-1 rounded-full bg-white/5 border border-white/10 text-secondary">BNB</span>
+                    </div>
                 </a>
             </div>
         </div>
@@ -625,53 +746,131 @@
                 <p class="text-secondary text-lg max-w-2xl mx-auto">A familiar trading UI for training execution, discipline, and consistency before going live.</p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <!-- Feature 1 -->
-                <div class="group glass-card rounded-2xl p-8 hover:border-[#667eea]/50 transition-all duration-300 reveal overflow-hidden">
-                    <div class="mb-8 overflow-hidden rounded-lg border border-white/5 aspect-video bg-[#141518]">
-                        <video autoplay loop muted playsinline class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
-                            <source src="./assets/videos/trade-paneli.mp4" type="video/mp4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Feature 1: Trading Panel -->
+                <div class="group glass-card rounded-2xl p-6 hover:border-[#667eea]/50 transition-all duration-300 reveal overflow-hidden">
+                    <div class="mb-6 overflow-hidden rounded-lg border border-white/5 aspect-video bg-[#141518]">
+                        <video autoplay loop muted playsinline class="w-full h-full object-contain">
+                            <source src="./assets/videos/trade-panel.mp4" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
                     </div>
-                    <h3 class="text-xl font-semibold text-[#EDEDEF] mb-3">Trading Panel Overlay</h3>
-                    <p class="text-[#8A8F98] leading-relaxed">Place and manage paper trades directly on your chart with a clean overlay panel.</p>
+                    <h3 class="text-xl font-semibold text-[#EDEDEF] mb-3">Trading Panel</h3>
+                    <p class="text-[#8A8F98] leading-relaxed">Clean overlay panel for executing paper trades directly on your chart</p>
                 </div>
 
-                <!-- Feature 2 -->
-                <div class="group glass-card rounded-2xl p-8 hover:border-[#10b981]/50 transition-all duration-300 reveal" style="transition-delay: 100ms;">
-                    <div class="mb-8 overflow-hidden rounded-lg border border-white/5 aspect-video bg-[#141518]">
-                        <video autoplay loop muted playsinline class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+                <!-- Feature 2: Dynamic PnL Bar -->
+                <div class="group glass-card rounded-2xl p-6 hover:border-[#10b981]/50 transition-all duration-300 reveal" style="transition-delay: 50ms;">
+                    <div class="mb-6 overflow-hidden rounded-lg border border-white/5 aspect-video bg-[#141518]">
+                        <video autoplay loop muted playsinline class="w-full h-full object-contain">
                             <source src="./assets/videos/pnl-bar.mp4" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
                     </div>
                     <h3 class="text-xl font-semibold text-[#EDEDEF] mb-3">Dynamic PnL Bar</h3>
-                    <p class="text-[#8A8F98] leading-relaxed">Always visible balance and PnL based on your paper trading account. Expand it to view open positions across pages and instantly share closed trade results.</p>
+                    <p class="text-[#8A8F98] leading-relaxed">Always-visible balance and PnL. Expand to view open positions and share trades</p>
                 </div>
 
-                <!-- Feature 3 -->
-                <div class="group glass-card rounded-2xl p-8 hover:border-[#eab308]/50 transition-all duration-300 reveal" style="transition-delay: 200ms;">
-                    <div class="mb-8 overflow-hidden rounded-lg border border-white/5 aspect-video bg-[#141518]">
-                        <video autoplay loop muted playsinline class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+                <!-- Feature 3: Quick Buy Integration -->
+                <div class="group glass-card rounded-2xl p-6 hover:border-[#eab308]/50 transition-all duration-300 reveal" style="transition-delay: 100ms;">
+                    <div class="mb-6 overflow-hidden rounded-lg border border-white/5 aspect-video bg-[#141518]">
+                        <video autoplay loop muted playsinline class="w-full h-full object-contain">
                             <source src="./assets/videos/quickbuy.mp4" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
                     </div>
-                    <h3 class="text-xl font-semibold text-[#EDEDEF] mb-3">Quick Buy Presets</h3>
-                    <p class="text-[#8A8F98] leading-relaxed">Set small, medium, and large preset sizes to execute entries instantly.</p>
+                    <div class="flex items-center gap-2 mb-3">
+                        <h3 class="text-xl font-semibold text-[#EDEDEF]">Quick Buy Integration</h3>
+                        <span class="text-xs px-2 py-0.5 rounded-full bg-accent/20 text-accent border border-accent/30">UPDATED</span>
+                    </div>
+                    <p class="text-[#8A8F98] leading-relaxed">Use platform's native QuickBuy buttons seamlessly for instant paper trades</p>
                 </div>
 
-                <!-- Feature 4 -->
-                <div class="group glass-card rounded-2xl p-8 hover:border-[#667eea]/50 transition-all duration-300 reveal" style="transition-delay: 300ms;">
-                    <div class="mb-8 overflow-hidden rounded-lg border border-white/5 aspect-video bg-[#141518]">
-                        <video autoplay loop muted playsinline class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+                <!-- Feature 4: Limit Buy/Sell Orders -->
+                <div class="group glass-card rounded-2xl p-6 hover:border-[#8b5cf6]/50 transition-all duration-300 reveal" style="transition-delay: 150ms;">
+                    <div class="mb-6 overflow-hidden rounded-lg border border-white/5 aspect-video bg-[#141518]">
+                        <video autoplay loop muted playsinline class="w-full h-full object-contain">
+                            <source src="./assets/videos/limit-buy-sell-orders.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                    <div class="flex items-center gap-2 mb-3">
+                        <h3 class="text-xl font-semibold text-[#EDEDEF]">Limit Buy/Sell Orders</h3>
+                        <span class="text-xs px-2 py-0.5 rounded-full bg-success/20 text-success border border-success/30">NEW</span>
+                    </div>
+                    <p class="text-[#8A8F98] leading-relaxed">Set entry & exit targets. Plan your trades with limit orders before execution</p>
+                </div>
+
+                <!-- Feature 5: Buy/Sell Markers -->
+                <div class="group glass-card rounded-2xl p-6 hover:border-[#f59e0b]/50 transition-all duration-300 reveal" style="transition-delay: 200ms;">
+                    <div class="mb-6 overflow-hidden rounded-lg border border-white/5 aspect-video bg-[#141518]">
+                        <video autoplay loop muted playsinline class="w-full h-full object-contain">
+                            <source src="./assets/videos/chart-markers.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                    <div class="flex items-center gap-2 mb-3">
+                        <h3 class="text-xl font-semibold text-[#EDEDEF]">Chart Markers</h3>
+                        <span class="text-xs px-2 py-0.5 rounded-full bg-success/20 text-success border border-success/30">NEW</span>
+                    </div>
+                    <p class="text-[#8A8F98] leading-relaxed">Visual trade history with buy & sell markers directly on the chart</p>
+                </div>
+
+                <!-- Feature 6: Audio Feedback -->
+                <div class="group glass-card rounded-2xl p-6 hover:border-[#06b6d4]/50 transition-all duration-300 reveal" style="transition-delay: 250ms;">
+                    <div class="mb-6 overflow-hidden rounded-lg border border-white/5 aspect-video bg-[#141518]">
+                        <video autoplay loop muted playsinline class="w-full h-full object-contain">
+                            <source src="./assets/videos/audio-feedback.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                    <div class="flex items-center gap-2 mb-3">
+                        <h3 class="text-xl font-semibold text-[#EDEDEF]">Audio Feedback</h3>
+                        <span class="text-xs px-2 py-0.5 rounded-full bg-success/20 text-success border border-success/30">NEW</span>
+                    </div>
+                    <p class="text-[#8A8F98] leading-relaxed">Customizable sound effects for buy and sell confirmations</p>
+                </div>
+
+                <!-- Feature 7: Auto Translate -->
+                <div class="group glass-card rounded-2xl p-6 hover:border-[#ec4899]/50 transition-all duration-300 reveal" style="transition-delay: 300ms;">
+                    <div class="mb-6 overflow-hidden rounded-lg border border-white/5 aspect-video bg-[#141518]">
+                        <video autoplay loop muted playsinline class="w-full h-full object-contain">
+                            <source src="./assets/videos/auto-translate.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                    <div class="flex items-center gap-2 mb-3">
+                        <h3 class="text-xl font-semibold text-[#EDEDEF]">Auto Translate</h3>
+                        <span class="text-xs px-2 py-0.5 rounded-full bg-success/20 text-success border border-success/30">NEW</span>
+                    </div>
+                    <p class="text-[#8A8F98] leading-relaxed">Trade in your language with automatic translation for tokens and platform UI</p>
+                </div>
+
+                <!-- Feature 8: Multi-Chain Support -->
+                <div class="group glass-card rounded-2xl p-6 hover:border-[#14b8a6]/50 transition-all duration-300 reveal" style="transition-delay: 350ms;">
+                    <div class="mb-6 overflow-hidden rounded-lg border border-white/5 aspect-video bg-[#141518]">
+                        <video autoplay loop muted playsinline class="w-full h-full object-contain">
+                            <source src="./assets/videos/multi-chain.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                    <div class="flex items-center gap-2 mb-3">
+                        <h3 class="text-xl font-semibold text-[#EDEDEF]">Multi-Chain Support</h3>
+                        <span class="text-xs px-2 py-0.5 rounded-full bg-success/20 text-success border border-success/30">NEW</span>
+                    </div>
+                    <p class="text-[#8A8F98] leading-relaxed">Practice on SOL, BNB, and Robinhood (ETH) within the same extension</p>
+                </div>
+
+                <!-- Feature 9: PnL Calendar -->
+                <div class="group glass-card rounded-2xl p-6 hover:border-[#667eea]/50 transition-all duration-300 reveal" style="transition-delay: 400ms;">
+                    <div class="mb-6 overflow-hidden rounded-lg border border-white/5 aspect-video bg-[#141518]">
+                        <video autoplay loop muted playsinline class="w-full h-full object-contain">
                             <source src="./assets/videos/pnl-calendar.mp4" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
                     </div>
-                    <h3 class="text-xl font-semibold text-[#EDEDEF] mb-3">Performance History</h3>
-                    <p class="text-[#8A8F98] leading-relaxed">Review your sessions and performance over time with a clean calendar view.</p>
+                    <h3 class="text-xl font-semibold text-[#EDEDEF] mb-3">Performance Analytics</h3>
+                    <p class="text-[#8A8F98] leading-relaxed">Review your sessions and track performance over time with calendar view</p>
                 </div>
             </div>
         </div>
@@ -682,7 +881,7 @@
         <div class="max-w-7xl mx-auto px-6">
             <div class="text-center mb-20">
                 <h2 class="text-3xl font-semibold tracking-tight mb-4">Start Paper Trading in Under a Minute</h2>
-                <p class="text-secondary">Access via referral key. No deposits.</p>
+                <p class="text-secondary">One-time purchase. Lifetime access.</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-12 relative">
@@ -694,8 +893,8 @@
                     <div class="w-16 h-16 rounded-full bg-[#141518] border border-white/10 shadow-lg flex items-center justify-center mb-6 relative z-10 group-hover:border-accent transition-colors">
                         <span class="text-xl font-bold text-white">1</span>
                     </div>
-                    <h3 class="text-lg font-semibold mb-2">Install Extension</h3>
-                    <p class="text-sm text-secondary px-4">Add Simora to Chrome from the official Web Store.</p>
+                    <h3 class="text-lg font-semibold mb-2">Purchase License</h3>
+                    <p class="text-sm text-secondary px-4">Get Simora for $19.99 one-time payment from the Chrome Web Store.</p>
                 </div>
 
                 <!-- Step 2 -->
@@ -703,8 +902,8 @@
                     <div class="w-16 h-16 rounded-full bg-[#141518] border border-white/10 shadow-lg flex items-center justify-center mb-6 relative z-10 group-hover:border-accent transition-colors">
                         <span class="text-xl font-bold text-white">2</span>
                     </div>
-                    <h3 class="text-lg font-semibold mb-2">Request Access Key</h3>
-                    <p class="text-sm text-secondary px-4">Sign up through the referral page to request your access key.</p>
+                    <h3 class="text-lg font-semibold mb-2">Install Extension</h3>
+                    <p class="text-sm text-secondary px-4">Add Simora to Chrome, Brave, or Edge browser instantly.</p>
                 </div>
 
                 <!-- Step 3 -->
@@ -712,8 +911,8 @@
                     <div class="w-16 h-16 rounded-full bg-[#141518] border border-white/10 shadow-lg flex items-center justify-center mb-6 relative z-10 group-hover:border-accent transition-colors">
                         <span class="text-xl font-bold text-white">3</span>
                     </div>
-                    <h3 class="text-lg font-semibold mb-2">Start Paper Trading</h3>
-                    <p class="text-sm text-secondary px-4">Enter your key, open a supported terminal, and Simora activates automatically.</p>
+                    <h3 class="text-lg font-semibold mb-2">Start Trading</h3>
+                    <p class="text-sm text-secondary px-4">Open GMGN, Axiom, or Padre, Simora activates automatically.</p>
                 </div>
             </div>
         </div>
@@ -730,16 +929,10 @@
             <div class="reveal flex flex-col items-center gap-8 w-full">
                 <a href="https://chromewebstore.google.com/detail/chjhmhbpnnohcdafkdjklconpielhcld" target="_blank" rel="noopener noreferrer" class="chrome-gradient-btn w-full sm:w-auto px-12 py-4 rounded-full text-white text-lg font-medium transition-all flex items-center justify-center gap-2 backdrop-blur-sm relative group">
                     <i data-lucide="chrome" class="w-5 h-5"></i>
-                    Add to Chrome - It's Free
+                    Get Simora - $19.99
                 </a>
                 
-                <p class="text-xs text-secondary/60 -mt-4 mb-2">Access is provided via referral key.</p>
-                
-                <div class="flex flex-wrap justify-center gap-4 text-sm">
-                    <a href="https://axiom.trade/@simora" target="_blank" rel="noopener noreferrer" class="text-secondary hover:text-white transition-colors group">Sign up with AXIOM <span class="group-hover:translate-x-0.5 inline-block transition-transform">→</span></a>
-                    <span class="text-secondary/30">•</span>
-                    <a href="https://gmgn.ai/r/simora" target="_blank" rel="noopener noreferrer" class="text-secondary hover:text-white transition-colors group">Sign up with GMGN <span class="group-hover:translate-x-0.5 inline-block transition-transform">→</span></a>
-                </div>
+                <p class="text-xs text-secondary/60 -mt-4 mb-2">One-time payment. Lifetime access. No subscriptions.</p>
 
                 <p class="text-xs text-secondary/60">Compatible with Chrome, Brave, and Edge browsers.</p>
             </div>
@@ -754,7 +947,7 @@
                 <div class="flex items-center gap-3 mb-4">
                     <img src="./assets/simora-logo.png" alt="Simora" class="w-6 h-6 rounded">
                     <span class="text-[18px] font-medium text-[#e5e7eb] uppercase tracking-[0.18em]">Simora</span>
-                    <span class="text-[10px] bg-white/5 border border-white/10 px-1.5 py-0.5 rounded text-secondary/80">v1.2</span>
+                    <span class="text-[10px] bg-white/5 border border-white/10 px-1.5 py-0.5 rounded text-secondary/80">v1.3</span>
                 </div>
                 <p class="text-sm text-secondary leading-relaxed">
                     A clean paper trading overlay for Solana memecoin terminals. Built for practice and discipline.
@@ -766,9 +959,9 @@
                 <h4 class="text-sm font-semibold text-white mb-4">Product</h4>
                 <ul class="space-y-3 text-sm text-secondary">
                     <li><a href="#features" class="hover:text-primary transition-colors">Features</a></li>
+                    <li><a href="#social" class="hover:text-primary transition-colors">Simora Social</a></li>
                     <li><a href="#platforms" class="hover:text-primary transition-colors">Platforms</a></li>
                     <li><a href="#how-it-works" class="hover:text-primary transition-colors">How It Works</a></li>
-                    <li><a href="#" class="hover:text-primary transition-colors">Download</a></li>
                 </ul>
             </div>
             
