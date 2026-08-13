@@ -203,21 +203,477 @@
 
         /* Responsive Trade Panel Scaling */
         .trade-panel-responsive {
-            transform: translate(-50%, -50%) scale(0.5) !important;
+            transform: translate(-50%, -50%) scale(0.5);
         }
         @media (min-width: 640px) {
             .trade-panel-responsive {
-                transform: translate(-50%, -50%) scale(0.65) !important;
+                transform: translate(-50%, -50%) scale(0.65);
             }
         }
         @media (min-width: 768px) {
             .trade-panel-responsive {
-                transform: translate(-50%, -50%) scale(0.75) !important;
+                transform: translate(-50%, -50%) scale(0.75);
             }
         }
         @media (min-width: 1024px) {
             .trade-panel-responsive {
-                transform: translate(-50%, -50%) scale(0.85) !important;
+                transform: translate(-50%, -50%) scale(0.85);
+            }
+        }
+        
+        /* Interactive Demo - Dynamic Button Layout */
+        
+        /* Main body container - no padding */
+        #trade-panel-demo > div.p-0 {
+            padding: 0 !important;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* Buy and Sell sections - ONLY these should grow */
+        #trade-panel-demo .p-0 > div {
+            padding: 8px !important;
+            display: flex;
+            flex: 1 1 auto;
+            min-height: 0;
+            flex-direction: column;
+        }
+        
+        /* Section titles - fixed size */
+        #trade-panel-demo .text-\\[px\\] {
+            font-size: 11px !important;
+            color: #d4d4d4 !important;
+            margin-bottom: 8px !important;
+            font-weight: 600 !important;
+            flex-shrink: 0;
+        }
+        
+        /* Button grids - these grow with flex */
+        #trade-panel-demo .grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 6px;
+            margin-bottom: 12px;
+            min-height: 28px;
+            flex: 1 1 28px;
+            position: relative;
+        }
+        
+        #trade-panel-demo .grid button {
+            width: 100%;
+            height: 100%;
+            min-height: 28px;
+            box-sizing: border-box;
+            /* Border radius is dynamically set by JS */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            line-height: 1;
+        }
+        
+        /* Trade info (slippage, gas) - fixed size, no flex grow */
+        #trade-panel-demo .pt-\\[px\\] {
+            padding-top: 3px !important;
+            position: relative;
+            z-index: 1;
+            flex-shrink: 0;
+            min-height: auto;
+        }
+        
+        /* Second row - hidden initially */
+        #trade-panel-demo .grid + .grid {
+            min-height: 0;
+            max-height: 0;
+            flex: 0 0 0;
+            margin-bottom: 0;
+            overflow: hidden;
+            opacity: 0;
+            pointer-events: none;
+            transform: scale(0.97);
+            transition:
+                max-height 0.4s cubic-bezier(0.23, 1, 0.32, 1),
+                min-height 0.4s cubic-bezier(0.23, 1, 0.32, 1),
+                flex-basis 0.4s cubic-bezier(0.23, 1, 0.32, 1),
+                margin-bottom 0.4s cubic-bezier(0.23, 1, 0.32, 1),
+                opacity 0.4s cubic-bezier(0.23, 1, 0.32, 1),
+                transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        
+        /* Two-row mode - second row becomes visible */
+        #trade-panel-demo.pt-two-row .grid + .grid {
+            min-height: 28px;
+            max-height: 160px;
+            flex: 1 1 28px;
+            margin-bottom: 12px;
+            opacity: 1;
+            pointer-events: auto;
+            transform: scale(1);
+        }
+        
+        /* Stats bar - FIXED HEIGHT, no flex grow */
+        #trade-panel-demo .grid[style*="grid-template-columns: 1.05fr 0.9fr 0.92fr 1.73fr"] {
+            display: grid !important;
+            padding: 6px 0 !important;
+            margin: 0 !important;
+            min-height: auto !important;
+            flex: 0 0 auto !important;
+            flex-shrink: 0 !important;
+            border-top: 1px solid #2d2f36 !important;
+            background: #1c1d27 !important;
+        }
+        
+        /* Header - FIXED HEIGHT */
+        #trade-panel-demo > div:first-child {
+            flex-shrink: 0 !important;
+            min-height: auto !important;
+        }
+        
+        /* Drag state - panel scales up 3% */
+        .pt-dragging {
+            opacity: 0.9;
+            cursor: grabbing !important;
+            transform: scale(1.03) !important;
+            transition: transform 0.2s ease, opacity 0.2s ease;
+        }
+        
+        .pt-resizing {
+            cursor: nwse-resize !important;
+        }
+        
+        /* Interactive Demo - Button Hover States - NO TRANSFORM on buttons */
+        #trade-panel-demo button[data-action="buy"]:hover {
+            background: rgba(55, 214, 189, 0.15) !important;
+            transition: background 0.2s ease;
+        }
+        
+        #trade-panel-demo button[data-action="buy"]:active {
+            background: rgba(55, 214, 189, 0.25) !important;
+        }
+        
+        #trade-panel-demo button[data-action="sell"]:hover {
+            background: rgba(240, 75, 146, 0.15) !important;
+            transition: background 0.2s ease;
+        }
+        
+        #trade-panel-demo button[data-action="sell"]:active {
+            background: rgba(240, 75, 146, 0.25) !important;
+        }
+        
+        /* PnL Bar Expand Button Styles */
+        #pnl-bar-demo:hover .pnl-expand-btn {
+            opacity: 1 !important;
+        }
+        
+        .pnl-expand-btn:hover {
+            background: rgba(67, 73, 82, 0.8) !important;
+        }
+        
+        .pnl-expand-btn.expanded svg {
+            transform: rotate(180deg);
+        }
+        
+        .pnl-positions-area {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
+                        padding-top 0.25s ease-out, 
+                        margin-top 0.25s ease-out, 
+                        border-color 0.25s ease-out;
+            margin-top: 0;
+            border-top: 1px solid transparent;
+            padding-top: 0;
+        }
+        
+        .pnl-positions-area.expanded {
+            max-height: 300px !important;
+            margin-top: 8px !important;
+            border-top: 1px solid rgba(67, 73, 82, 0.3) !important;
+            padding-top: 12px !important;
+            transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
+                        padding-top 0.25s ease-out, 
+                        margin-top 0.25s ease-out, 
+                        border-color 0.25s ease-out;
+        }
+        
+        /* PnL Bar Header Icons */
+        #pnl-bar-demo:hover .pnl-header-icons {
+            opacity: 1 !important;
+        }
+        
+        .pnl-icon-btn:hover {
+            background: rgba(55, 65, 81, 0.8) !important;
+            color: #f9fafb !important;
+        }
+        
+        /* Demo Glow Effect */
+        @keyframes demo-glow-pulse {
+            0%, 100% {
+                box-shadow: 0 0 5px rgba(55, 214, 189, 0.3), 0 0 10px rgba(55, 214, 189, 0.2), 0 0 15px rgba(55, 214, 189, 0.1);
+                border-color: rgba(55, 214, 189, 0.6);
+            }
+            50% {
+                box-shadow: 0 0 10px rgba(55, 214, 189, 0.5), 0 0 20px rgba(55, 214, 189, 0.3), 0 0 30px rgba(55, 214, 189, 0.2);
+                border-color: rgba(55, 214, 189, 0.9);
+            }
+        }
+        
+        @keyframes demo-spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        button[data-action="buy"].demo-glow {
+            animation: demo-glow-pulse 2s ease-in-out infinite;
+        }
+
+        /* ========================================
+           FEATURE SHOWCASE STYLES
+           ======================================== */
+        
+        /* Main Container - Desktop Two Column, Mobile Stack */
+        .feature-showcase {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        @media (min-width: 768px) {
+            .feature-showcase {
+                display: grid;
+                grid-template-columns: 32% 68%;
+                gap: 2.5rem;
+                align-items: start;
+            }
+        }
+
+        /* Feature Selector Wrapper */
+        .feature-selector-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        /* Category Tabs */
+        .feature-category-tabs {
+            display: flex;
+            gap: 0.5rem;
+            padding: 0.25rem;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 0.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .feature-category-tab {
+            flex: 1;
+            padding: 0.5rem 1rem;
+            border: none;
+            background: transparent;
+            color: #8A8F98;
+            font-size: 0.875rem;
+            font-weight: 500;
+            border-radius: 0.375rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .feature-category-tab:hover {
+            background: rgba(255, 255, 255, 0.05);
+            color: #d1d5db;
+        }
+
+        .feature-category-tab.active {
+            background: rgba(102, 126, 234, 0.15);
+            color: #e5e7eb;
+            font-weight: 600;
+        }
+
+        /* Feature Selector - Compact List */
+        .feature-selector {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        /* Feature Item - Compact: Icon + Name Only - TALLER */
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 0.875rem;
+            padding: 1.125rem 1rem;
+            border-radius: 0.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            background: transparent;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            min-height: 75px;
+        }
+
+        .feature-item:hover {
+            background: rgba(255, 255, 255, 0.03);
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Active State */
+        .feature-item.active {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.15);
+            border-left-width: 2px;
+            border-left-color: #667eea;
+            padding-left: calc(1rem - 1px);
+        }
+
+        .feature-item.active .feature-item-name {
+            color: #e5e7eb;
+            font-weight: 600;
+        }
+
+        .feature-item.active .feature-item-icon {
+            opacity: 1;
+        }
+
+        /* Icon - Slightly Larger */
+        .feature-item-icon {
+            width: 2.25rem;
+            height: 2.25rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            opacity: 0.8;
+            transition: opacity 0.2s ease;
+        }
+
+        .feature-item-icon i {
+            width: 1.25rem;
+            height: 1.25rem;
+        }
+
+        /* Name Only - Slightly Larger */
+        .feature-item-name {
+            font-size: 0.9375rem;
+            font-weight: 500;
+            color: #d1d5db;
+            line-height: 1.4;
+            transition: all 0.2s ease;
+        }
+
+        /* Feature Media Container - UNIFIED CARD */
+        .feature-media {
+            position: relative;
+            width: 100%;
+            border-radius: 0.875rem;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(10px);
+        }
+
+        .feature-media-container {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            background: #141518;
+        }
+
+        /* Video Player - Fixed Container */
+        #feature-video-player {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            transition: opacity 0.15s ease;
+        }
+
+        /* Description Overlay - Inside Video */
+        .feature-description-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 1.5rem 1.75rem 1.25rem;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0.35) 50%, rgba(0, 0, 0, 0) 100%);
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        .feature-overlay-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #ffffff;
+            line-height: 1.3;
+            margin: 0 0 0.375rem 0;
+            text-shadow: 
+                0 2px 12px rgba(0, 0, 0, 0.9),
+                0 0 8px rgba(0, 0, 0, 0.8),
+                0 0 4px rgba(0, 0, 0, 1),
+                1px 1px 2px rgba(0, 0, 0, 1),
+                -1px -1px 2px rgba(0, 0, 0, 1),
+                1px -1px 2px rgba(0, 0, 0, 1),
+                -1px 1px 2px rgba(0, 0, 0, 1);
+        }
+
+        .feature-overlay-description {
+            font-size: 0.875rem;
+            color: rgba(255, 255, 255, 0.95);
+            line-height: 1.5;
+            margin: 0;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-shadow: 
+                0 1px 8px rgba(0, 0, 0, 0.9),
+                0 0 6px rgba(0, 0, 0, 0.8),
+                0 0 3px rgba(0, 0, 0, 1),
+                1px 1px 2px rgba(0, 0, 0, 1),
+                -1px -1px 2px rgba(0, 0, 0, 1),
+                1px -1px 2px rgba(0, 0, 0, 1),
+                -1px 1px 2px rgba(0, 0, 0, 1);
+        }
+
+        /* Mobile: Video + Description at top, Selector below */
+        @media (max-width: 767px) {
+            .feature-showcase {
+                flex-direction: column-reverse;
+            }
+
+            .feature-media {
+                order: -1;
+            }
+
+            .feature-description-overlay {
+                padding: 1.25rem 1.5rem 1rem;
+            }
+
+            .feature-overlay-title {
+                font-size: 1.125rem;
+            }
+
+            .feature-overlay-description {
+                font-size: 0.8125rem;
+                -webkit-line-clamp: 2;
+            }
+
+            .feature-item {
+                min-height: 52px;
+                padding: 0.75rem 0.875rem;
+            }
+
+            .feature-item-icon {
+                width: 2rem;
+                height: 2rem;
+            }
+
+            .feature-item-icon i {
+                width: 1.125rem;
+                height: 1.125rem;
+            }
+
+            .feature-item-name {
+                font-size: 0.875rem;
             }
         }
     </style>
@@ -238,14 +694,16 @@
                 <img src="./assets/simora-logo.png" alt="Simora" class="w-8 h-8">
                 <span class="text-[18px] font-medium text-[#e5e7eb] uppercase tracking-[0.18em]">Simora</span>
             </a>
-            <div class="hidden md:flex items-center gap-8 text-sm text-secondary font-medium">
+            
+            <!-- Centered Navigation Links -->
+            <div class="absolute left-1/2 transform -translate-x-1/2 hidden md:flex items-center gap-8 text-sm text-secondary font-medium">
                 <a href="#" class="hover:text-primary transition-colors">Home</a>
                 <a href="#stats" class="hover:text-primary transition-colors">Community</a>
                 <a href="#social" class="hover:text-primary transition-colors">Social</a>
                 <a href="#platforms" class="hover:text-primary transition-colors">Platforms</a>
                 <a href="#features" class="hover:text-primary transition-colors">Features</a>
-                <a href="pro.html" class="font-semibold transition-colors" style="background: linear-gradient(135deg, #5EBBFF 0%, #B794F6 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Simora Pro</a>
             </div>
+            
             <div class="flex items-center gap-20">
                 <!-- Social Icons -->
                 <div class="hidden sm:flex items-center gap-5 text-secondary/60">
@@ -265,7 +723,7 @@
                 <!-- Get Simora Button -->
                 <a href="https://chromewebstore.google.com/detail/chjhmhbpnnohcdafkdjklconpielhcld" target="_blank" rel="noopener noreferrer" class="hidden sm:flex items-center gap-2 text-sm font-medium bg-white/5 hover:bg-white/10 border border-white/10 px-5 py-2 rounded-full transition-all group hover:border-accent/50">
                     <i data-lucide="chrome" class="w-4 h-4 text-secondary group-hover:text-white transition-colors"></i>
-                    <span>Get Simora Free&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <span>Add to Chrome&nbsp;&nbsp;&nbsp;&nbsp;</span>
                 </a>
             </div>
         </div>
@@ -284,7 +742,7 @@
             </h1>
             
             <p class="reveal text-base sm:text-lg md:text-xl text-secondary max-w-2xl mx-auto mb-8 md:mb-10 leading-relaxed px-2">
-                Simora turns GMGN, Axiom & Padre into risk-free training grounds with live paper trading, social tracking, and performance analytics all without touching real money.
+                Practice meme coin trading directly on Axiom, Gmgn & Padre with live paper trading, social tracking and performance analytics. No real funds required.
             </p>
             
             <!-- Chain Support & Social Tracking Badge -->
@@ -301,7 +759,7 @@
             <div class="reveal flex flex-col sm:flex-row items-center justify-center gap-3 mb-8 md:mb-12 px-4 sm:px-0">
                 <a href="https://chromewebstore.google.com/detail/chjhmhbpnnohcdafkdjklconpielhcld" target="_blank" rel="noopener noreferrer" class="chrome-gradient-btn px-6 py-3.5 rounded-full text-white text-sm font-medium transition-all backdrop-blur-sm relative group whitespace-nowrap flex items-center gap-2">
                     <i data-lucide="chrome" class="w-4 h-4"></i>
-                    <span>Start Free&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <span>Add to Chrome&nbsp;&nbsp;&nbsp;&nbsp;</span>
                 </a>
                 <a href="https://youtu.be/_uO6xuvdd40" target="_blank" rel="noopener noreferrer" class="px-6 py-3.5 rounded-full border border-white/10 bg-white/5 hover:bg-white/10 text-primary text-sm font-medium transition-all backdrop-blur-sm hover:border-white/20 whitespace-nowrap flex items-center gap-2">
                     <i data-lucide="play-circle" class="w-4 h-4"></i>
@@ -330,21 +788,44 @@
                 </div>
                 
                 <!-- Trading Interface Placeholder -->
-                <div class="aspect-[4/3] sm:aspect-[16/9] md:aspect-[18/9] bg-[#0A0B0D] relative overflow-hidden">
+                <div class="aspect-[4/3] sm:aspect-[16/9] md:aspect-[18/9] bg-[#0A0B0D] relative overflow-hidden browser-mockup-container">
                     <!-- Terminal Preview Background - Full Bleed -->
                     <img src="./assets/terminal-preview.webp" alt="" class="absolute inset-0 w-full h-full object-cover" />
                     <!-- Dark Overlay for Contrast -->
                     <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-black/50"></div>
                     
+                    <!-- Browser Mockup Viewport - Interactive Demo Area -->
+                    <div class="browser-mockup-viewport absolute inset-0">
+                    
                     <!-- Dynamic PnL Bar (Right Side, Top) - Hidden on Mobile & Tablet -->
-                    <div class="hidden xl:block absolute top-[95px] right-[240px] z-20" style="pointer-events: none;">
-                        <div style="position: relative; min-width: 200px; padding: 10px 18px 12px; border-radius: 22px; background: radial-gradient(circle at 10% 0%, rgba(51, 53, 61, 0.45), rgba(21, 21, 24, 0.96) 40%, rgba(13, 14, 15, 0.96) 100%); box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35); backdrop-filter: blur(10px); border: 1px solid rgba(67, 73, 82, 0.8);">
-                            <div style="display: flex; align-items: center; justify-content: space-around; gap: 4px;">
+                    <div id="pnl-bar-demo" class="hidden xl:block absolute right-[240px] z-20" style="pointer-events: auto; top: 23.5%;">
+                        <div class="pnl-bar-inner" style="position: relative; width: 280px; min-width: 200px; padding: calc(10px * var(--sgs-ui-scale)) calc(18px * var(--sgs-ui-scale)) calc(12px * var(--sgs-ui-scale)); border-radius: 22px; background: radial-gradient(circle at 10% 0%, rgba(51, 53, 61, 0.45), rgba(21, 21, 24, 0.96) 40%, rgba(13, 14, 15, 0.96) 100%); box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35); backdrop-filter: blur(10px); border: 1px solid rgba(67, 73, 82, 0.8); --sgs-ui-scale: 1; --sgs-primary-value-size: 20px; --sgs-row-height: 70px;">
+                            <!-- Header Icons Left -->
+                            <div class="pnl-header-icons pnl-header-left" style="position: absolute; top: 4px; left: 6px; display: flex; gap: calc(5px * var(--sgs-ui-scale)); opacity: 0; transition: opacity 0.15s ease; z-index: 10;">
+                                <button class="pnl-icon-btn" title="Settings" style="background: transparent; border: none; color: #9ca3af; width: calc(24px * var(--sgs-ui-scale)); height: calc(24px * var(--sgs-ui-scale)); font-size: calc(14px * var(--sgs-ui-scale)); border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; cursor: pointer; padding: calc(4px * var(--sgs-ui-scale));">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: calc(16px * var(--sgs-ui-scale)); height: calc(16px * var(--sgs-ui-scale));">
+                                        <path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 0 0-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 0 0-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 0 0-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 0 0-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 0 0 1.066-2.573c-.94-1.543.826-3.31 2.37-2.37c1 .608 2.296.07 2.572-1.065z"/>
+                                        <path d="M9 12a3 3 0 1 0 6 0a3 3 0 0 0-6 0"/>
+                                    </svg>
+                                </button>
+                            </div>
+                            <!-- Header Icons Right -->
+                            <div class="pnl-header-icons pnl-header-right" style="position: absolute; top: 4px; right: 6px; display: flex; gap: calc(5px * var(--sgs-ui-scale)); opacity: 0; transition: opacity 0.15s ease; z-index: 10;">
+                                <button class="pnl-icon-btn pnl-chain-toggle" title="Toggle Chain" style="background: transparent; border: none; color: #9ca3af; width: calc(24px * var(--sgs-ui-scale)); height: calc(24px * var(--sgs-ui-scale)); font-size: calc(14px * var(--sgs-ui-scale)); border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; cursor: pointer;">⇄</button>
+                                <button class="pnl-icon-btn pnl-refresh-btn" title="Refresh" style="background: transparent; border: none; color: #9ca3af; width: calc(24px * var(--sgs-ui-scale)); height: calc(24px * var(--sgs-ui-scale)); font-size: calc(14px * var(--sgs-ui-scale)); border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; cursor: pointer; padding: calc(4px * var(--sgs-ui-scale));">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: calc(16px * var(--sgs-ui-scale)); height: calc(16px * var(--sgs-ui-scale));">
+                                        <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
+                                        <path d="M3 3v5h5"/>
+                                    </svg>
+                                </button>
+                                <button class="pnl-icon-btn pnl-close-btn" title="Close" style="background: transparent; border: none; color: #9ca3af; width: calc(24px * var(--sgs-ui-scale)); height: calc(24px * var(--sgs-ui-scale)); font-size: calc(14px * var(--sgs-ui-scale)); border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; cursor: pointer;">✕</button>
+                            </div>
+                            <div style="display: flex; align-items: center; justify-content: space-around; gap: calc(4px * var(--sgs-ui-scale)); height: var(--sgs-row-height);">
                                 <!-- Balance Column -->
-                                <div style="display: flex; flex-direction: column; align-items: center; min-width: 110px;">
-                                    <div style="font-size: 13px; font-weight: 500; color: #e5e7eb; display: flex; align-items: center; gap: 4px;">
+                                <div style="display: flex; flex-direction: column; align-items: center; min-width: calc(110px * var(--sgs-ui-scale));">
+                                    <div style="font-size: calc(13px * var(--sgs-ui-scale)); font-weight: 500; color: #e5e7eb; display: flex; align-items: center; gap: calc(4px * var(--sgs-ui-scale));">
                                         <span style="display: inline-flex; align-items: center;">
-                                            <svg width="20" height="20" viewBox="0 0 397.7 311.7" style="vertical-align:middle;">
+                                            <svg viewBox="0 0 397.7 311.7" style="vertical-align:middle; width: var(--sgs-primary-value-size); height: var(--sgs-primary-value-size);">
                                                 <linearGradient id="sol-landing-balance" x1="360" y1="351" x2="141" y2="-69" gradientUnits="userSpaceOnUse">
                                                     <stop offset="0" stop-color="#00ffa3"/>
                                                     <stop offset="1" stop-color="#dc1fff"/>
@@ -354,15 +835,15 @@
                                                 <path fill="url(#sol-landing-balance)" d="M333.1,120.1c-2.4-2.4-5.7-3.8-9.2-3.8H6.5c-5.8,0-8.7,7-4.6,11.1l62.7,62.7c2.4,2.4,5.7,3.8,9.2,3.8h317.4c5.8,0,8.7-7,4.6-11.1L333.1,120.1z"/>
                                             </svg>
                                         </span>
-                                        <span style="font-size: 20px; font-weight: 600;">5.0</span>
+                                        <span style="font-size: var(--sgs-primary-value-size); font-weight: 600;" class="sgs-balance-number">5.0</span>
                                     </div>
-                                    <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; color: #9ca3af; margin-top: 2px;">Balance</div>
+                                    <div style="font-size: calc(11px * var(--sgs-ui-scale)); text-transform: uppercase; letter-spacing: 0.06em; color: #9ca3af; margin-top: calc(2px * var(--sgs-ui-scale));">Balance</div>
                                 </div>
                                 <!-- PnL Column -->
-                                <div style="display: flex; flex-direction: column; align-items: center; min-width: 110px;">
-                                    <div style="font-size: 13px; font-weight: 500; color: #37d6bd; display: flex; align-items: center; gap: 2px;">
+                                <div style="display: flex; flex-direction: column; align-items: center; min-width: calc(110px * var(--sgs-ui-scale));">
+                                    <div class="sgs-pnl-value" style="font-size: calc(13px * var(--sgs-ui-scale)); font-weight: 500; color: #37d6bd; display: flex; align-items: center; gap: calc(2px * var(--sgs-ui-scale));">
                                         <span style="display: inline-flex; align-items: center;">
-                                            <svg width="20" height="20" viewBox="0 0 397.7 311.7" style="vertical-align:middle;">
+                                            <svg viewBox="0 0 397.7 311.7" style="vertical-align:middle; width: var(--sgs-primary-value-size); height: var(--sgs-primary-value-size);">
                                                 <linearGradient id="sol-landing-pnl" x1="360" y1="351" x2="141" y2="-69" gradientUnits="userSpaceOnUse">
                                                     <stop offset="0" stop-color="#00ffa3"/>
                                                     <stop offset="1" stop-color="#dc1fff"/>
@@ -372,18 +853,35 @@
                                                 <path fill="url(#sol-landing-pnl)" d="M333.1,120.1c-2.4-2.4-5.7-3.8-9.2-3.8H6.5c-5.8,0-8.7,7-4.6,11.1l62.7,62.7c2.4,2.4,5.7,3.8,9.2,3.8h317.4c5.8,0,8.7-7,4.6-11.1L333.1,120.1z"/>
                                             </svg>
                                         </span>
-                                        <span style="font-size: 20px; font-weight: 600;">2.0</span>
+                                        <span style="font-size: var(--sgs-primary-value-size); font-weight: 600;" class="sgs-pnl-number">2.0</span>
                                     </div>
-                                    <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; color: #9ca3af; margin-top: 2px;">PNL</div>
+                                    <div style="font-size: calc(11px * var(--sgs-ui-scale)); text-transform: uppercase; letter-spacing: 0.06em; color: #9ca3af; margin-top: calc(2px * var(--sgs-ui-scale));">PNL</div>
                                 </div>
                             </div>
+                            
+                            <!-- Expandable Positions Area - Inside inner div -->
+                            <div class="pnl-positions-area" style="max-height: 0; overflow: hidden; transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1), padding-top 0.25s ease-out, margin-top 0.25s ease-out, border-color 0.25s ease-out; margin-top: 0; border-top: 1px solid transparent; padding-top: 0;">
+                                <div style="text-align: center; padding: 20px; color: #6b7280; font-size: 14px;">
+                                    No open positions
+                                </div>
+                            </div>
+                            
+                            <!-- Expand Toggle Button -->
+                            <button class="pnl-expand-btn" style="position: absolute; bottom: calc(-11px * var(--sgs-ui-scale)); left: 50%; transform: translateX(-50%); background: rgba(31, 32, 35, 0.9); backdrop-filter: blur(8px); border: 1px solid rgba(67, 73, 82, 0.6); border-radius: 999px; width: calc(28px * var(--sgs-ui-scale)); height: calc(28px * var(--sgs-ui-scale)); display: flex; align-items: center; justify-content: center; cursor: pointer; opacity: 0; transition: opacity 0.15s ease, background 0.15s ease; z-index: 100; pointer-events: auto;" title="Show/Hide Open Positions">
+                                <svg viewBox="0 0 24 24" fill="currentColor" style="width: calc(14px * var(--sgs-ui-scale)); height: calc(14px * var(--sgs-ui-scale)); fill: #9ca3af; transition: transform 0.3s ease; pointer-events: none;">
+                                    <path d="M7 10l5 5 5-5z"/>
+                                </svg>
+                            </button>
+                            
+                            <!-- Resize Handle for PnL Bar -->
+                            <div class="pnl-bar-resize-handle" style="position: absolute; bottom: 0; right: 0; width: calc(12px * var(--sgs-ui-scale)); height: calc(12px * var(--sgs-ui-scale)); cursor: nwse-resize;"></div>
                         </div>
                     </div>
                     
-                    <!-- Simora Trade Panel - REAL TRADING INTERFACE (Responsive positioning) -->
-                    <div class="trade-panel-responsive absolute top-1/2 left-1/2 sm:left-[35%] md:left-[30%] z-20" style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; width: 300px; background: rgb(25, 26, 36); border: 1px solid #2d2f36; border-radius: 8px; box-shadow: 0 4px 24px rgba(0,0,0,0.6); overflow: hidden;">
+                    <!-- Simora Trade Panel - REAL TRADING INTERFACE (Interactive Demo) -->
+                    <div id="trade-panel-demo" class="absolute z-20" style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; width: 290px; min-width: 290px; height: auto; left: 20%; top: 50%; transform: translateY(-50%); background: rgb(25, 26, 36); border: 1px solid #2d2f36; border-radius: 4px; box-shadow: 0 4px 24px rgba(0,0,0,0.6); overflow: hidden;">
                             <!-- Header -->
-                            <div class="flex items-center justify-between px-[16px] py-[12px] bg-[#1c1d27] border-b border-[#2d2f36]">
+                            <div class="flex items-center justify-between px-[14px] py-[8px] bg-[#1c1d27] border-b border-[#2d2f36]">
                                 <div class="flex items-center gap-[8px]">
                                     <span class="text-[13px] font-medium text-[#e5e7eb] uppercase tracking-[0.18em]">Simora</span>
                                 </div>
@@ -399,7 +897,7 @@
                                         <path fill="url(#sol-gradient-header)" d="M64.6,3.8C67.1,1.4,70.4,0,73.8,0h317.4c5.8,0,8.7,7,4.6,11.1l-62.7,62.7c-2.4,2.4-5.7,3.8-9.2,3.8H6.5c-5.8,0-8.7-7-4.6-11.1L64.6,3.8z"/>
                                         <path fill="url(#sol-gradient-header)" d="M333.1,120.1c-2.4-2.4-5.7-3.8-9.2-3.8H6.5c-5.8,0,8.7,7-4.6,11.1l62.7,62.7c2.4,2.4,5.7,3.8,9.2,3.8h317.4c5.8,0,8.7-7,4.6-11.1L333.1,120.1z"/>
                                     </svg>
-                                    <span>5.0</span>
+                                    <span class="demo-header-balance">5.0</span>
                                 </div>
                                 <div class="flex items-center gap-[6px]">
                                     <button class="text-[#a0a0a0] hover:text-white text-[16px] w-[24px] h-[24px] flex items-center justify-center pointer-events-none">⚙</button>
@@ -413,16 +911,16 @@
                                 <div class="p-[12px]">
                                     <div class="text-[11px] text-[#d4d4d4] mb-[8px] font-semibold text-left">Buy (SOL)</div>
                                     <div class="grid grid-cols-4 gap-[6px] mb-[12px]">
-                                        <button style="border: 1px solid rgba(55, 214, 189, 0.5);" class="bg-[#191a24] text-[#37d6bd] rounded-[22px] py-[4px] px-[4px] text-[14px] font-semibold pointer-events-none">0.1</button>
-                                        <button style="border: 1px solid rgba(55, 214, 189, 0.5);" class="bg-[#191a24] text-[#37d6bd] rounded-[22px] py-[4px] px-[4px] text-[14px] font-semibold pointer-events-none">0.2</button>
-                                        <button style="border: 1px solid rgba(55, 214, 189, 0.5);" class="bg-[#191a24] text-[#37d6bd] rounded-[22px] py-[4px] px-[4px] text-[14px] font-semibold pointer-events-none">0.5</button>
-                                        <button style="border: 1px solid rgba(55, 214, 189, 0.5);" class="bg-[#191a24] text-[#37d6bd] rounded-[22px] py-[4px] px-[4px] text-[14px] font-semibold pointer-events-none">1</button>
+                                        <button style="border: 1px solid rgba(55, 214, 189, 0.5);" class="bg-[#191a24] text-[#37d6bd] py-[4px] px-[4px] text-[14px] font-semibold flex items-center justify-center" data-action="buy" data-amount="0.1">0.1</button>
+                                        <button style="border: 1px solid rgba(55, 214, 189, 0.5);" class="bg-[#191a24] text-[#37d6bd] py-[4px] px-[4px] text-[14px] font-semibold flex items-center justify-center" data-action="buy" data-amount="0.2">0.2</button>
+                                        <button style="border: 1px solid rgba(55, 214, 189, 0.5);" class="bg-[#191a24] text-[#37d6bd] py-[4px] px-[4px] text-[14px] font-semibold flex items-center justify-center" data-action="buy" data-amount="0.5">0.5</button>
+                                        <button style="border: 1px solid rgba(55, 214, 189, 0.5);" class="bg-[#191a24] text-[#37d6bd] py-[4px] px-[4px] text-[14px] font-semibold flex items-center justify-center" data-action="buy" data-amount="1">1</button>
                                     </div>
                                     <div class="grid grid-cols-4 gap-[6px] mb-[12px]">
-                                        <button style="border: 1px solid rgba(55, 214, 189, 0.5);" class="bg-[#191a24] text-[#37d6bd] rounded-[22px] py-[4px] px-[4px] text-[14px] font-semibold pointer-events-none">2</button>
-                                        <button style="border: 1px solid rgba(55, 214, 189, 0.5);" class="bg-[#191a24] text-[#37d6bd] rounded-[22px] py-[4px] px-[4px] text-[14px] font-semibold pointer-events-none">3</button>
-                                        <button style="border: 1px solid rgba(55, 214, 189, 0.5);" class="bg-[#191a24] text-[#37d6bd] rounded-[22px] py-[4px] px-[4px] text-[14px] font-semibold pointer-events-none">5</button>
-                                        <button style="border: 1px solid rgba(55, 214, 189, 0.5);" class="bg-[#191a24] text-[#37d6bd] rounded-[22px] py-[4px] px-[4px] text-[14px] font-semibold pointer-events-none">10</button>
+                                        <button style="border: 1px solid rgba(55, 214, 189, 0.5);" class="bg-[#191a24] text-[#37d6bd] py-[4px] px-[4px] text-[14px] font-semibold flex items-center justify-center" data-action="buy" data-amount="2">2</button>
+                                        <button style="border: 1px solid rgba(55, 214, 189, 0.5);" class="bg-[#191a24] text-[#37d6bd] py-[4px] px-[4px] text-[14px] font-semibold flex items-center justify-center" data-action="buy" data-amount="3">3</button>
+                                        <button style="border: 1px solid rgba(55, 214, 189, 0.5);" class="bg-[#191a24] text-[#37d6bd] py-[4px] px-[4px] text-[14px] font-semibold flex items-center justify-center" data-action="buy" data-amount="5">5</button>
+                                        <button style="border: 1px solid rgba(55, 214, 189, 0.5);" class="bg-[#191a24] text-[#37d6bd] py-[4px] px-[4px] text-[14px] font-semibold flex items-center justify-center" data-action="buy" data-amount="10">10</button>
                                     </div>
                                     <div class="flex items-center justify-between text-[12px] text-[#9ca3af] opacity-70 pt-[3px]">
                                         <div class="flex items-center gap-[8px]">
@@ -441,7 +939,7 @@
                                                 <span>0.002</span>
                                             </div>
                                         </div>
-                                        <span class="text-[11px]">Entry MC: $--</span>
+                                        <span class="text-[11px]" id="demo-entry-mc">Entry MC: --</span>
                                     </div>
                                 </div>
                                 
@@ -449,16 +947,16 @@
                                 <div class="p-[12px]">
                                     <div class="text-[11px] text-[#d4d4d4] mb-[8px] font-semibold text-left">Sell (%)</div>
                                     <div class="grid grid-cols-4 gap-[6px] mb-[12px]">
-                                        <button style="border: 1px solid rgba(240, 75, 146, 0.5);" class="bg-[#191a24] text-[#f04b92] rounded-[22px] py-[4px] px-[4px] text-[13px] font-bold pointer-events-none">10%</button>
-                                        <button style="border: 1px solid rgba(240, 75, 146, 0.5);" class="bg-[#191a24] text-[#f04b92] rounded-[22px] py-[4px] px-[4px] text-[13px] font-bold pointer-events-none">25%</button>
-                                        <button style="border: 1px solid rgba(240, 75, 146, 0.5);" class="bg-[#191a24] text-[#f04b92] rounded-[22px] py-[4px] px-[4px] text-[13px] font-bold pointer-events-none">50%</button>
-                                        <button style="border: 1px solid rgba(240, 75, 146, 0.5);" class="bg-[#191a24] text-[#f04b92] rounded-[22px] py-[4px] px-[4px] text-[13px] font-bold pointer-events-none">100%</button>
+                                        <button style="border: 1px solid rgba(240, 75, 146, 0.5);" class="bg-[#191a24] text-[#f04b92] py-[4px] px-[4px] text-[13px] font-bold" data-action="sell" data-percentage="10">10%</button>
+                                        <button style="border: 1px solid rgba(240, 75, 146, 0.5);" class="bg-[#191a24] text-[#f04b92] py-[4px] px-[4px] text-[13px] font-bold" data-action="sell" data-percentage="25">25%</button>
+                                        <button style="border: 1px solid rgba(240, 75, 146, 0.5);" class="bg-[#191a24] text-[#f04b92] py-[4px] px-[4px] text-[13px] font-bold" data-action="sell" data-percentage="50">50%</button>
+                                        <button style="border: 1px solid rgba(240, 75, 146, 0.5);" class="bg-[#191a24] text-[#f04b92] py-[4px] px-[4px] text-[13px] font-bold" data-action="sell" data-percentage="100">100%</button>
                                     </div>
                                     <div class="grid grid-cols-4 gap-[6px] mb-[12px]">
-                                        <button style="border: 1px solid rgba(240, 75, 146, 0.5);" class="bg-[#191a24] text-[#f04b92] rounded-[22px] py-[4px] px-[4px] text-[13px] font-bold pointer-events-none">5%</button>
-                                        <button style="border: 1px solid rgba(240, 75, 146, 0.5);" class="bg-[#191a24] text-[#f04b92] rounded-[22px] py-[4px] px-[4px] text-[13px] font-bold pointer-events-none">15%</button>
-                                        <button style="border: 1px solid rgba(240, 75, 146, 0.5);" class="bg-[#191a24] text-[#f04b92] rounded-[22px] py-[4px] px-[4px] text-[13px] font-bold pointer-events-none">35%</button>
-                                        <button style="border: 1px solid rgba(240, 75, 146, 0.5);" class="bg-[#191a24] text-[#f04b92] rounded-[22px] py-[4px] px-[4px] text-[13px] font-bold pointer-events-none">75%</button>
+                                        <button style="border: 1px solid rgba(240, 75, 146, 0.5);" class="bg-[#191a24] text-[#f04b92] py-[4px] px-[4px] text-[13px] font-bold" data-action="sell" data-percentage="5">5%</button>
+                                        <button style="border: 1px solid rgba(240, 75, 146, 0.5);" class="bg-[#191a24] text-[#f04b92] py-[4px] px-[4px] text-[13px] font-bold" data-action="sell" data-percentage="15">15%</button>
+                                        <button style="border: 1px solid rgba(240, 75, 146, 0.5);" class="bg-[#191a24] text-[#f04b92] py-[4px] px-[4px] text-[13px] font-bold" data-action="sell" data-percentage="35">35%</button>
+                                        <button style="border: 1px solid rgba(240, 75, 146, 0.5);" class="bg-[#191a24] text-[#f04b92] py-[4px] px-[4px] text-[13px] font-bold" data-action="sell" data-percentage="75">75%</button>
                                     </div>
                                     <div class="flex items-center justify-between text-[12px] text-[#9ca3af] opacity-70 pt-[3px]">
                                         <div class="flex items-center gap-[8px]">
@@ -477,12 +975,23 @@
                                                 <span>0.002</span>
                                             </div>
                                         </div>
-                                        <span class="text-[11px]">Exit MC: $--</span>
+                                        <span class="text-[11px]" id="demo-current-mc">Current MC: --</span>
+                                        <span class="text-[11px]" id="demo-position-size" style="display: none;">Position: --</span>
                                     </div>
                                 </div>
                                 
-                                <!-- Stats -->
-                                <div class="grid py-[6px] bg-[#1c1d27] border-t border-[#2d2f36]" style="grid-template-columns: 1fr 1fr 1fr 1.6fr;">
+                                <!-- Stats Bar - Column Widths Customizable -->
+                                <!-- 
+                                    Current grid: "1fr 1fr 1fr 1.6fr"
+                                    - Column 1 (Bought): 1fr
+                                    - Column 2 (Sold): 1fr  
+                                    - Column 3 (Position Value): 1fr
+                                    - Column 4 (PnL): 1.6fr (wider for percentage display)
+                                    
+                                    To adjust widths, modify the grid-template-columns value below:
+                                    Example: "1.2fr 1fr 1fr 1.8fr" would make Bought wider and PnL even wider
+                                -->
+                                <div class="grid py-[6px] bg-[#1c1d27] border-t border-[#2d2f36]" style="grid-template-columns: 1.05fr 0.9fr 0.92fr 1.73fr;">
                                     <div class="flex items-center justify-center gap-[3px] text-[12px] font-semibold text-[#37d6bd] border-r border-white/[0.08]">
                                         <svg width="10" height="10" viewBox="0 0 397.7 311.7" style="vertical-align:middle;">
                                             <defs>
@@ -495,7 +1004,7 @@
                                             <path fill="url(#sol-gradient-1)" d="M64.6,3.8C67.1,1.4,70.4,0,73.8,0h317.4c5.8,0,8.7,7,4.6,11.1l-62.7,62.7c-2.4,2.4-5.7,3.8-9.2,3.8H6.5c-5.8,0-8.7-7-4.6-11.1L64.6,3.8z"/>
                                             <path fill="url(#sol-gradient-1)" d="M333.1,120.1c-2.4-2.4-5.7-3.8-9.2-3.8H6.5c-5.8,0-8.7,7-4.6,11.1l62.7,62.7c2.4,2.4,5.7,3.8,9.2,3.8h317.4c5.8,0,8.7-7,4.6-11.1L333.1,120.1z"/>
                                         </svg>
-                                        <span>0</span>
+                                        <span class="demo-stat-1">0</span>
                                     </div>
                                     <div class="flex items-center justify-center gap-[3px] text-[12px] font-semibold text-[#f04b92] border-r border-white/[0.08]">
                                         <svg width="10" height="10" viewBox="0 0 397.7 311.7" style="vertical-align:middle;">
@@ -509,7 +1018,7 @@
                                             <path fill="url(#sol-gradient-2)" d="M64.6,3.8C67.1,1.4,70.4,0,73.8,0h317.4c5.8,0,8.7,7,4.6,11.1l-62.7,62.7c-2.4,2.4-5.7,3.8-9.2,3.8H6.5c-5.8,0-8.7-7-4.6-11.1L64.6,3.8z"/>
                                             <path fill="url(#sol-gradient-2)" d="M333.1,120.1c-2.4-2.4-5.7-3.8-9.2-3.8H6.5c-5.8,0-8.7,7-4.6,11.1l62.7,62.7c2.4,2.4,5.7,3.8,9.2,3.8h317.4c5.8,0,8.7-7,4.6-11.1L333.1,120.1z"/>
                                         </svg>
-                                        <span>0</span>
+                                        <span class="demo-stat-2">0</span>
                                     </div>
                                     <div class="flex items-center justify-center gap-[3px] text-[12px] font-semibold text-[#9ca3af] border-r border-white/[0.08]">
                                         <svg width="10" height="10" viewBox="0 0 397.7 311.7" style="vertical-align:middle;">
@@ -523,7 +1032,7 @@
                                             <path fill="url(#sol-gradient-3)" d="M64.6,3.8C67.1,1.4,70.4,0,73.8,0h317.4c5.8,0,8.7,7,4.6,11.1l-62.7,62.7c-2.4,2.4-5.7,3.8-9.2,3.8H6.5c-5.8,0-8.7-7-4.6-11.1L64.6,3.8z"/>
                                             <path fill="url(#sol-gradient-3)" d="M333.1,120.1c-2.4-2.4-5.7-3.8-9.2-3.8H6.5c-5.8,0-8.7,7-4.6,11.1l62.7,62.7c2.4,2.4,5.7,3.8,9.2,3.8h317.4c5.8,0,8.7-7,4.6-11.1L333.1,120.1z"/>
                                         </svg>
-                                        <span>0</span>
+                                        <span class="demo-stat-3">0</span>
                                     </div>
                                     <div class="flex items-center justify-center gap-[3px] text-[12px] font-semibold text-[#37d6bd]">
                                         <svg width="10" height="10" viewBox="0 0 397.7 311.7" style="vertical-align:middle;">
@@ -537,12 +1046,82 @@
                                             <path fill="url(#sol-gradient-4)" d="M64.6,3.8C67.1,1.4,70.4,0,73.8,0h317.4c5.8,0,8.7,7,4.6,11.1l-62.7,62.7c-2.4,2.4-5.7,3.8-9.2,3.8H6.5c-5.8,0-8.7-7-4.6-11.1L64.6,3.8z"/>
                                             <path fill="url(#sol-gradient-4)" d="M333.1,120.1c-2.4-2.4-5.7-3.8-9.2-3.8H6.5c-5.8,0-8.7,7-4.6,11.1l62.7,62.7c2.4,2.4,5.7,3.8,9.2,3.8h317.4c5.8,0,8.7-7,4.6-11.1L333.1,120.1z"/>
                                         </svg>
-                                        <span>+0(+0%)</span>
+                                        <span class="demo-stat-4">0 (+0.0%)</span>
                                     </div>
                                 </div>
                             </div>
+                            <!-- Resize Handle for Trade Panel -->
+                            <div class="trade-panel-resize-handle" style="position: absolute; bottom: 0; right: 0; width: 12px; height: 12px; cursor: nwse-resize;"></div>
                         </div>
-                    </div>
+                    
+                    </div><!-- End of browser-mockup-viewport -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section (from Pro page) -->
+    <section class="py-12 border-y border-white/5">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <div class="text-center">
+                    <div class="text-4xl md:text-5xl font-bold mb-2" style="background: linear-gradient(135deg, #5EBBFF 0%, #B794F6 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">250+</div>
+                    <div class="text-sm md:text-base text-[#EDEDEF] font-medium">Users</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-4xl md:text-5xl font-bold text-[#EDEDEF] mb-2">120,000+</div>
+                    <div class="text-sm md:text-base text-[#8A8F98]">Paper Trades</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-4xl md:text-5xl font-bold text-[#EDEDEF] mb-2">500+</div>
+                    <div class="text-sm md:text-base text-[#8A8F98]">PnL Cards Shared</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-4xl md:text-5xl font-bold text-[#EDEDEF] mb-2">42</div>
+                    <div class="text-sm md:text-base text-[#8A8F98]">Countries</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Capability Strip -->
+    <section class="py-8 bg-surface/10">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="flex flex-wrap items-center justify-center gap-3">
+                <!-- Quick Buy -->
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-accent/10 to-[#8B5CF6]/10 border border-accent/20 backdrop-blur-sm">
+                    <i data-lucide="zap" class="w-4 h-4 text-[#5EBBFF]"></i>
+                    <span class="text-sm font-semibold text-white whitespace-nowrap">Quick Buy Integration</span>
+                </div>
+                
+                <!-- Chart Markers -->
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-accent/10 to-[#8B5CF6]/10 border border-accent/20 backdrop-blur-sm">
+                    <i data-lucide="map-pin" class="w-4 h-4 text-[#5EBBFF]"></i>
+                    <span class="text-sm font-semibold text-white whitespace-nowrap">Trade Markers & Lines</span>
+                </div>
+                
+                <!-- Limit Orders -->
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-accent/10 to-[#8B5CF6]/10 border border-accent/20 backdrop-blur-sm">
+                    <i data-lucide="target" class="w-4 h-4 text-[#5EBBFF]"></i>
+                    <span class="text-sm font-semibold text-white whitespace-nowrap">Limit Orders</span>
+                </div>
+                
+                <!-- Auto Translate -->
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-accent/10 to-[#8B5CF6]/10 border border-accent/20 backdrop-blur-sm">
+                    <i data-lucide="languages" class="w-4 h-4 text-[#5EBBFF]"></i>
+                    <span class="text-sm font-semibold text-white whitespace-nowrap">Auto Translate</span>
+                </div>
+                
+                <!-- Audio Feedback -->
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-accent/10 to-[#8B5CF6]/10 border border-accent/20 backdrop-blur-sm">
+                    <i data-lucide="volume-2" class="w-4 h-4 text-[#5EBBFF]"></i>
+                    <span class="text-sm font-semibold text-white whitespace-nowrap">Audio Feedback</span>
+                </div>
+                
+                <!-- Simora Social -->
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-accent/10 to-[#8B5CF6]/10 border border-accent/20 backdrop-blur-sm">
+                    <i data-lucide="users" class="w-4 h-4 text-[#8B5CF6]"></i>
+                    <span class="text-sm font-semibold text-white whitespace-nowrap">Simora Social</span>
                 </div>
             </div>
         </div>
@@ -602,13 +1181,6 @@
         
         <div class="max-w-7xl mx-auto px-6 relative z-10">
             <div class="text-center mb-16">
-                <div class="flex items-center justify-center mb-6">
-                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border" style="background: linear-gradient(135deg, rgba(94, 187, 255, 0.1) 0%, rgba(183, 148, 246, 0.1) 100%); border-color: rgba(94, 187, 255, 0.3);">
-                        <i data-lucide="crown" class="w-4 h-4" style="color: #5EBBFF;"></i>
-                        <span class="text-xs font-semibold uppercase tracking-wider" style="background: linear-gradient(135deg, #5EBBFF 0%, #B794F6 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">NEW IN SIMORA PRO</span>
-                    </div>
-                </div>
-                
                 <!-- Prominent Simora Social Title -->
                 <h2 class="text-5xl md:text-6xl font-bold tracking-tight mb-6 bg-gradient-to-r from-accent via-purple-500 to-accent bg-clip-text text-transparent">
                     Simora Social
@@ -744,7 +1316,8 @@
         </div>
     </section>
 
-    <!-- Enhanced Features Section -->
+
+    <!-- Features Section - Redesigned Showcase -->
     <section id="features" class="py-24 relative bg-surface/30">
         <div class="absolute inset-0 bg-grid opacity-[0.03] pointer-events-none"></div>
         
@@ -754,53 +1327,37 @@
                 <p class="text-secondary text-lg max-w-2xl mx-auto">A familiar trading UI for training execution, discipline, and consistency before going live.</p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-                <!-- Feature 1: Trading Panel -->
-                <div class="group glass-card rounded-2xl p-6 hover:border-[#667eea]/50 transition-all duration-300 reveal overflow-hidden">
-                    <div class="mb-6 overflow-hidden rounded-lg border border-white/5 aspect-video bg-[#141518]">
-                        <video autoplay loop muted playsinline class="w-full h-full object-contain">
-                            <source src="./assets/videos/trade-panel.mp4" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
+            <!-- Feature Showcase Container -->
+            <div class="feature-showcase">
+                <!-- Feature Selector (Left Side on Desktop, Mobile Accordion) -->
+                <div class="feature-selector-wrapper">
+                    <!-- Category Tabs -->
+                    <div class="feature-category-tabs">
+                        <!-- Rendered by JavaScript -->
                     </div>
-                    <h3 class="text-xl font-semibold text-[#EDEDEF] mb-3">Trading Panel</h3>
-                    <p class="text-[#8A8F98] leading-relaxed">Clean overlay panel for executing paper trades directly on your chart</p>
+                    <!-- Feature List -->
+                    <div class="feature-selector">
+                        <!-- Features will be rendered here by JavaScript -->
+                    </div>
                 </div>
 
-                <!-- Feature 2: Dynamic PnL Bar -->
-                <div class="group glass-card rounded-2xl p-6 hover:border-[#10b981]/50 transition-all duration-300 reveal" style="transition-delay: 50ms;">
-                    <div class="mb-6 overflow-hidden rounded-lg border border-white/5 aspect-video bg-[#141518]">
-                        <video autoplay loop muted playsinline class="w-full h-full object-contain">
-                            <source src="./assets/videos/pnl-bar.mp4" type="video/mp4">
-                            Your browser does not support the video tag.
+                <!-- Feature Media (Right Side on Desktop, Inline on Mobile) -->
+                <div class="feature-media">
+                    <div class="feature-media-container">
+                        <video 
+                            id="feature-video-player" 
+                            loop 
+                            muted 
+                            playsinline 
+                            preload="metadata"
+                            class="w-full h-full object-contain">
                         </video>
+                        <!-- Feature Description Overlay - Inside Video -->
+                        <div class="feature-description-overlay">
+                            <h3 id="feature-current-title" class="feature-overlay-title">Trading Panel</h3>
+                            <p id="feature-current-description" class="feature-overlay-description">Clean overlay panel for executing paper trades directly on your chart</p>
+                        </div>
                     </div>
-                    <h3 class="text-xl font-semibold text-[#EDEDEF] mb-3">Dynamic PnL Bar</h3>
-                    <p class="text-[#8A8F98] leading-relaxed">Always-visible balance and PnL. Expand to view open positions and share trades</p>
-                </div>
-
-                <!-- Feature 3: Multi-Chain Support -->
-                <div class="group glass-card rounded-2xl p-6 hover:border-[#14b8a6]/50 transition-all duration-300 reveal" style="transition-delay: 100ms;">
-                    <div class="mb-6 overflow-hidden rounded-lg border border-white/5 aspect-video bg-[#141518]">
-                        <video autoplay loop muted playsinline class="w-full h-full object-contain">
-                            <source src="./assets/videos/multi-chain.mp4" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
-                    </div>
-                    <h3 class="text-xl font-semibold text-[#EDEDEF] mb-3">Multi-Chain Support</h3>
-                    <p class="text-[#8A8F98] leading-relaxed">Practice on SOL, BNB, and Robinhood (ETH) within the same extension</p>
-                </div>
-
-                <!-- Feature 4: Performance Analytics -->
-                <div class="group glass-card rounded-2xl p-6 hover:border-[#667eea]/50 transition-all duration-300 reveal" style="transition-delay: 150ms;">
-                    <div class="mb-6 overflow-hidden rounded-lg border border-white/5 aspect-video bg-[#141518]">
-                        <video autoplay loop muted playsinline class="w-full h-full object-contain">
-                            <source src="./assets/videos/pnl-calendar.mp4" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
-                    </div>
-                    <h3 class="text-xl font-semibold text-[#EDEDEF] mb-3">Performance Analytics</h3>
-                    <p class="text-[#8A8F98] leading-relaxed">Review your sessions and track performance over time with calendar view</p>
                 </div>
             </div>
         </div>
@@ -811,35 +1368,26 @@
         <div class="max-w-7xl mx-auto px-6">
             <div class="text-center mb-20">
                 <h2 class="text-3xl font-semibold tracking-tight mb-4">Start Paper Trading in Under a Minute</h2>
-                <p class="text-secondary">One-time purchase. Lifetime access.</p>
+                <p class="text-secondary">100% Free. No registration required.</p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 relative">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-4xl mx-auto relative">
                 <!-- Connector Line (Desktop) -->
-                <div class="hidden md:block absolute top-8 left-[16%] right-[16%] h-px bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
+                <div class="hidden md:block absolute top-8 left-[25%] right-[25%] h-px bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
 
-                <!-- Step 1 -->
+                <!-- Step 1: Install Extension -->
                 <div class="reveal relative flex flex-col items-center text-center group">
                     <div class="w-16 h-16 rounded-full bg-[#141518] border border-white/10 shadow-lg flex items-center justify-center mb-6 relative z-10 group-hover:border-accent transition-colors">
                         <span class="text-xl font-bold text-white">1</span>
-                    </div>
-                    <h3 class="text-lg font-semibold mb-2">Purchase License</h3>
-                    <p class="text-sm text-secondary px-4">Get Simora Free from the Chrome Web Store.</p>
-                </div>
-
-                <!-- Step 2 -->
-                <div class="reveal relative flex flex-col items-center text-center group transition-delay-100">
-                    <div class="w-16 h-16 rounded-full bg-[#141518] border border-white/10 shadow-lg flex items-center justify-center mb-6 relative z-10 group-hover:border-accent transition-colors">
-                        <span class="text-xl font-bold text-white">2</span>
                     </div>
                     <h3 class="text-lg font-semibold mb-2">Install Extension</h3>
                     <p class="text-sm text-secondary px-4">Add Simora to Chrome, Brave, or Edge browser instantly.</p>
                 </div>
 
-                <!-- Step 3 -->
-                <div class="reveal relative flex flex-col items-center text-center group transition-delay-200">
+                <!-- Step 2: Start Trading -->
+                <div class="reveal relative flex flex-col items-center text-center group transition-delay-100">
                     <div class="w-16 h-16 rounded-full bg-[#141518] border border-white/10 shadow-lg flex items-center justify-center mb-6 relative z-10 group-hover:border-accent transition-colors">
-                        <span class="text-xl font-bold text-white">3</span>
+                        <span class="text-xl font-bold text-white">2</span>
                     </div>
                     <h3 class="text-lg font-semibold mb-2">Start Trading</h3>
                     <p class="text-sm text-secondary px-4">Open GMGN, Axiom, or Padre, Simora activates automatically.</p>
@@ -859,11 +1407,9 @@
             <div class="reveal flex flex-col items-center gap-8 w-full">
                 <a href="https://chromewebstore.google.com/detail/chjhmhbpnnohcdafkdjklconpielhcld" target="_blank" rel="noopener noreferrer" class="chrome-gradient-btn w-full sm:w-auto px-12 py-4 rounded-full text-white text-lg font-medium transition-all flex items-center justify-center gap-2 backdrop-blur-sm relative group">
                     <i data-lucide="chrome" class="w-5 h-5"></i>
-                    <span>Start Free&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <span>Add to Chrome&nbsp;&nbsp;&nbsp;&nbsp;</span>
                 </a>
                 
-                <p class="text-xs text-secondary/60 -mt-4 mb-2">Free version. Upgrade to Pro for advanced features.</p>
-
                 <p class="text-xs text-secondary/60">Compatible with Chrome, Brave, and Edge browsers.</p>
             </div>
         </div>
@@ -960,3 +1506,286 @@
     </script>
 
 </body></html>
+
+    <!-- Feature Showcase System -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Category Configuration - 2 Balanced Groups
+            const categories = [
+                { id: 'trading', label: 'Trading' },
+                { id: 'tools', label: 'Tools & Social' }
+            ];
+
+            // Feature Configuration (Single Source of Truth)
+            const features = [
+                {
+                    id: 'trading-panel',
+                    title: 'Trading Panel',
+                    description: 'A familiar on-chart trading panel with customizable buy and sell controls.',
+                    icon: 'layout-panel-left',
+                    iconColor: '#667eea',
+                    video: './assets/videos/trade-panel.mp4',
+                    category: 'trading'
+                },
+                {
+                    id: 'pnl-bar',
+                    title: 'Dynamic PnL Bar',
+                    description: 'Track balance and live PnL at a glance. Expand to view open positions and instantly share completed trades.',
+                    icon: 'trending-up',
+                    iconColor: '#10b981',
+                    video: './assets/videos/pnl-bar.mp4',
+                    category: 'trading'
+                },
+                {
+                    id: 'quick-buy',
+                    title: 'Quick Buy Buttons',
+                    description: 'Use the platform’s native Quick Buy buttons with your Simora preset amounts.',
+                    icon: 'zap',
+                    iconColor: '#f59e0b',
+                    video: './assets/videos/quickbuy.mp4',
+                    category: 'trading'
+                },
+                {
+                    id: 'limit-orders',
+                    title: 'Limit Buy/Sell Orders',
+                    description: 'Set limit orders to automatically execute trades at your target price levels',
+                    icon: 'target',
+                    iconColor: '#ef4444',
+                    video: './assets/videos/limit-buy-sell-orders.mp4',
+                    category: 'trading'
+                },
+                {
+                    id: 'multi-chain',
+                    title: 'Multi-Chain Support',
+                    description: 'Practice on SOL, BNB, and Robinhood (ETH) within the same extension',
+                    icon: 'link',
+                    iconColor: '#14b8a6',
+                    video: './assets/videos/multi-chain.mp4',
+                    category: 'trading'
+                },
+                {
+                    id: 'trade Markers & Lines',
+                    title: 'Trade Markers & Lines',
+                    description: 'Visualize buy/sell markers and entry/exit lines directly on the chart.',
+                    icon: 'map-pin',
+                    iconColor: '#ec4899',
+                    video: './assets/videos/chart-markers.mp4',
+                    category: 'tools'
+                },
+                {
+                    id: 'audio-feedback',
+                    title: 'Audio Feedback',
+                    description: 'Customizable notification sounds for trade execution and market events',
+                    icon: 'volume-2',
+                    iconColor: '#06b6d4',
+                    video: './assets/videos/audio-feedback.mp4',
+                    category: 'tools'
+                },
+                {
+                    id: 'auto-translate',
+                    title: 'Auto Translate',
+                    description: 'Translate social posts and token content instantly into your preferred language.',
+                    icon: 'languages',
+                    iconColor: '#8b5cf6',
+                    video: './assets/videos/auto-translate.mp4',
+                    category: 'tools'
+                },
+                {
+                    id: 'portfolio',
+                    title: 'Portfolio',
+                    description: 'View your balance, performance, positions and trade history in one complete dashboard.',
+                    icon: 'calendar',
+                    iconColor: '#667eea',
+                    video: './assets/videos/pnl-calendar.mp4',
+                    category: 'tools'
+                },
+                {
+                    id: 'social',
+                    title: 'Simora Social',
+                    description: 'Follow friends, get live trade alerts, see their buy/sell markers on the chart, and jump straight to the tokens they trade.',
+                    icon: 'users',
+                    iconColor: '#a855f7',
+                    video: './assets/videos/simora-social.mp4',
+                    category: 'tools'
+                }
+            ];
+
+            let currentCategoryId = 'trading';
+            let currentFeatureId = features.find(f => f.category === 'trading').id;
+            let videoLoadingId = null; // Track which video is currently loading to prevent race conditions
+            const video = document.getElementById('feature-video-player');
+            const selectorContainer = document.querySelector('.feature-selector');
+            const categoryTabsContainer = document.querySelector('.feature-category-tabs');
+
+            // Render category tabs
+            function renderCategoryTabs() {
+                categoryTabsContainer.innerHTML = categories.map(cat => `
+                    <button class="feature-category-tab ${cat.id === currentCategoryId ? 'active' : ''}" 
+                            data-category-id="${cat.id}">
+                        ${cat.label}
+                    </button>
+                `).join('');
+            }
+
+            // Render feature items (compact: icon + name only) - filtered by category
+            function renderFeatures() {
+                const filteredFeatures = features.filter(f => f.category === currentCategoryId);
+                
+                selectorContainer.innerHTML = filteredFeatures.map(feature => `
+                    <div class="feature-item ${feature.id === currentFeatureId ? 'active' : ''}" 
+                         data-feature-id="${feature.id}"
+                         role="button"
+                         tabindex="0">
+                        <div class="feature-item-icon" style="background-color: ${feature.iconColor}15;">
+                            <i data-lucide="${feature.icon}" style="color: ${feature.iconColor};"></i>
+                        </div>
+                        <div class="feature-item-name">${feature.title}</div>
+                    </div>
+                `).join('');
+
+                // Re-initialize Lucide icons
+                lucide.createIcons();
+            }
+
+            // Switch category
+            function selectCategory(categoryId) {
+                if (categoryId === currentCategoryId) return;
+
+                currentCategoryId = categoryId;
+
+                // Update category tabs
+                const tabs = categoryTabsContainer.querySelectorAll('.feature-category-tab');
+                tabs.forEach(tab => {
+                    if (tab.dataset.categoryId === categoryId) {
+                        tab.classList.add('active');
+                    } else {
+                        tab.classList.remove('active');
+                    }
+                });
+
+                // Re-render features for new category
+                renderFeatures();
+
+                // Auto-select first feature in new category
+                const firstFeature = features.find(f => f.category === categoryId);
+                if (firstFeature) {
+                    selectFeature(firstFeature.id);
+                }
+            }
+
+            // Update description area below video
+            function updateDescription(featureId) {
+                const feature = features.find(f => f.id === featureId);
+                if (!feature) return;
+
+                const titleEl = document.getElementById('feature-current-title');
+                const descEl = document.getElementById('feature-current-description');
+
+                if (titleEl) titleEl.textContent = feature.title;
+                if (descEl) descEl.textContent = feature.description;
+            }
+
+            // Select a feature and load its video
+            function selectFeature(featureId) {
+                if (featureId === currentFeatureId) {
+                    return; // Already selected
+                }
+
+                const feature = features.find(f => f.id === featureId);
+                if (!feature) return;
+
+                // Set loading ID to prevent race conditions
+                videoLoadingId = featureId;
+
+                // Update UI state immediately
+                currentFeatureId = featureId;
+                updateActiveStates();
+                updateDescription(featureId);
+
+                // Pause current video
+                video.pause();
+
+                // Fade out current video
+                video.style.opacity = '0';
+
+                // Short delay for fade effect
+                setTimeout(() => {
+                    // Race condition check: only proceed if this is still the requested video
+                    if (videoLoadingId !== featureId) return;
+
+                    // Update video source
+                    video.src = feature.video;
+
+                    // Load and play new video
+                    video.load();
+                    video.play().catch(e => {
+                        console.log('Video autoplay prevented:', e);
+                    });
+
+                    // Fade in new video
+                    video.style.opacity = '1';
+                }, 150);
+            }
+
+            // Update active states in UI
+            function updateActiveStates() {
+                const items = selectorContainer.querySelectorAll('.feature-item');
+                items.forEach(item => {
+                    if (item.dataset.featureId === currentFeatureId) {
+                        item.classList.add('active');
+                    } else {
+                        item.classList.remove('active');
+                    }
+                });
+            }
+
+            // Event delegation for feature selection
+            selectorContainer.addEventListener('click', (e) => {
+                const item = e.target.closest('.feature-item');
+                if (!item) return;
+
+                const featureId = item.dataset.featureId;
+                selectFeature(featureId);
+            });
+
+            // Event delegation for category tabs
+            categoryTabsContainer.addEventListener('click', (e) => {
+                const tab = e.target.closest('.feature-category-tab');
+                if (!tab) return;
+
+                const categoryId = tab.dataset.categoryId;
+                selectCategory(categoryId);
+            });
+
+            // Keyboard support
+            selectorContainer.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    const item = e.target.closest('.feature-item');
+                    if (item) {
+                        item.click();
+                    }
+                }
+            });
+
+            // Initialize
+            renderCategoryTabs();
+            renderFeatures();
+            
+            // Load first video (first feature in 'trading' category)
+            const firstFeature = features.find(f => f.category === 'trading');
+            video.src = firstFeature.video;
+            video.style.opacity = '1';
+            video.style.transition = 'opacity 0.15s ease';
+            video.load();
+            video.play().catch(e => {
+                console.log('Initial video autoplay prevented:', e);
+            });
+        });
+    </script>
+
+    <!-- Interactive Trade Panel Demo -->
+    <script src="trade-panel-demo.js" defer></script>
+    
+    <!-- Paper Trading Interactive Demo -->
+    <script src="paper-trading-demo.js" defer></script>
