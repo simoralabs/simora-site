@@ -734,15 +734,15 @@
         <!-- Animated Background - Fixed Position Blobs (Like generated-page (1).html) -->
         <div class="absolute inset-0 bg-grid opacity-[0.05] pointer-events-none"></div>
 
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 text-center relative z-10">
+        <div class="w-full mx-auto px-4 sm:px-6 text-center relative z-10">
             
             <h1 class="reveal text-3xl sm:text-4xl md:text-6xl font-semibold tracking-tight leading-[1.2] mb-6">
-                Practice Trading Like a Pro. <br class="hidden sm:block">
-                <span class="text-gradient">Share Your Performance With Friends.</span>
+                Paper Trade Memecoins on <br class="hidden sm:block">
+                <span class="text-gradient">Axiom, Gmgn & Padre</span>
             </h1>
             
             <p class="reveal text-base sm:text-lg md:text-xl text-secondary max-w-2xl mx-auto mb-8 md:mb-10 leading-relaxed px-2">
-                Practice meme coin trading directly on Axiom, Gmgn & Padre with live paper trading, social tracking and performance analytics. No real funds required.
+                Practice with live market data, real-time PnL, chart markers and social tracking, without using real funds.
             </p>
             
             <!-- Chain Support & Social Tracking Badge -->
@@ -756,7 +756,7 @@
                 </div>
             </div>
             
-            <div class="reveal flex flex-col sm:flex-row items-center justify-center gap-3 mb-8 md:mb-12 px-4 sm:px-0">
+            <div class="reveal flex flex-col sm:flex-row items-center justify-center gap-3 mb-4 px-4 sm:px-0">
                 <a href="https://chromewebstore.google.com/detail/chjhmhbpnnohcdafkdjklconpielhcld" target="_blank" rel="noopener noreferrer" class="chrome-gradient-btn px-6 py-3.5 rounded-full text-white text-sm font-medium transition-all backdrop-blur-sm relative group whitespace-nowrap flex items-center gap-2">
                     <i data-lucide="chrome" class="w-4 h-4"></i>
                     <span>Add to Chrome&nbsp;&nbsp;&nbsp;&nbsp;</span>
@@ -765,6 +765,15 @@
                     <i data-lucide="play-circle" class="w-4 h-4"></i>
                     <span>Watch Demo</span>
                 </a>
+            </div>
+            
+            <!-- Features Badge -->
+            <div class="reveal flex items-center justify-center gap-2 mb-8 md:mb-12">
+                <span class="text-sm text-primary/90 font-medium">100% Free</span>
+                <span class="text-primary/50">•</span>
+                <span class="text-sm text-primary/90 font-medium">3 Supported Platforms</span>
+                <span class="text-primary/50">•</span>
+                <span class="text-sm text-primary/90 font-medium">Easy to Use</span>
             </div>
 
             <!-- Enhanced Browser Mockup with Stronger Glow (30% Larger) -->
@@ -788,7 +797,7 @@
                 </div>
                 
                 <!-- Trading Interface Placeholder -->
-                <div class="aspect-[4/3] sm:aspect-[16/9] md:aspect-[18/9] bg-[#0A0B0D] relative overflow-hidden browser-mockup-container">
+                <div class="aspect-[4/3] sm:aspect-[16/10] md:aspect-[16/9] bg-[#0A0B0D] relative overflow-hidden browser-mockup-container">
                     <!-- Terminal Preview Background - Full Bleed -->
                     <img src="./assets/terminal-preview.webp" alt="" class="absolute inset-0 w-full h-full object-cover" />
                     <!-- Dark Overlay for Contrast -->
@@ -798,7 +807,7 @@
                     <div class="browser-mockup-viewport absolute inset-0">
                     
                     <!-- Dynamic PnL Bar (Right Side, Top) - Hidden on Mobile & Tablet -->
-                    <div id="pnl-bar-demo" class="hidden xl:block absolute right-[240px] z-20" style="pointer-events: auto; top: 23.5%;">
+                    <div id="pnl-bar-demo" class="hidden xl:block absolute right-[240px] z-20" style="pointer-events: auto; top: 27.5%;">
                         <div class="pnl-bar-inner" style="position: relative; width: 280px; min-width: 200px; padding: calc(10px * var(--sgs-ui-scale)) calc(18px * var(--sgs-ui-scale)) calc(12px * var(--sgs-ui-scale)); border-radius: 22px; background: radial-gradient(circle at 10% 0%, rgba(51, 53, 61, 0.45), rgba(21, 21, 24, 0.96) 40%, rgba(13, 14, 15, 0.96) 100%); box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35); backdrop-filter: blur(10px); border: 1px solid rgba(67, 73, 82, 0.8); --sgs-ui-scale: 1; --sgs-primary-value-size: 20px; --sgs-row-height: 70px;">
                             <!-- Header Icons Left -->
                             <div class="pnl-header-icons pnl-header-left" style="position: absolute; top: 4px; left: 6px; display: flex; gap: calc(5px * var(--sgs-ui-scale)); opacity: 0; transition: opacity 0.15s ease; z-index: 10;">
@@ -1546,6 +1555,15 @@
                     category: 'trading'
                 },
                 {
+                    id: 'trade-markers',
+                    title: 'Trade Markers & Lines',
+                    description: 'Visualize buy/sell markers and entry/exit lines directly on the chart.',
+                    icon: 'map-pin',
+                    iconColor: '#ec4899',
+                    video: './assets/videos/chart-markers.mp4',
+                    category: 'trading'
+                },
+                {
                     id: 'limit-orders',
                     title: 'Limit Buy/Sell Orders',
                     description: 'Set limit orders to automatically execute trades at your target price levels',
@@ -1553,24 +1571,6 @@
                     iconColor: '#ef4444',
                     video: './assets/videos/limit-buy-sell-orders.mp4',
                     category: 'trading'
-                },
-                {
-                    id: 'multi-chain',
-                    title: 'Multi-Chain Support',
-                    description: 'Practice on SOL, BNB, and Robinhood (ETH) within the same extension',
-                    icon: 'link',
-                    iconColor: '#14b8a6',
-                    video: './assets/videos/multi-chain.mp4',
-                    category: 'trading'
-                },
-                {
-                    id: 'trade Markers & Lines',
-                    title: 'Trade Markers & Lines',
-                    description: 'Visualize buy/sell markers and entry/exit lines directly on the chart.',
-                    icon: 'map-pin',
-                    iconColor: '#ec4899',
-                    video: './assets/videos/chart-markers.mp4',
-                    category: 'tools'
                 },
                 {
                     id: 'audio-feedback',
@@ -1606,6 +1606,15 @@
                     icon: 'users',
                     iconColor: '#a855f7',
                     video: './assets/videos/simora-social.mp4',
+                    category: 'tools'
+                },
+                {
+                    id: 'multi-chain',
+                    title: 'Multi-Chain Support',
+                    description: 'Practice on SOL, BNB, and Robinhood (ETH) within the same extension',
+                    icon: 'link',
+                    iconColor: '#14b8a6',
+                    video: './assets/videos/multi-chain.mp4',
                     category: 'tools'
                 }
             ];
