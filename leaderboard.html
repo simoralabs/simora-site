@@ -182,12 +182,12 @@
         <table class="w-full text-sm">
           <thead class="bg-surface/80 border-b border-border">
             <tr>
-              <th class="px-3 py-3 text-left text-[11px] font-semibold text-secondary uppercase tracking-wider w-14 text-center">Rank</th>
-              <th class="px-3 py-3 text-left text-[11px] font-semibold text-secondary uppercase tracking-wider">User</th>
-              <th class="px-3 py-3 text-left text-[11px] font-semibold text-secondary uppercase tracking-wider">Trades</th>
-              <th class="px-3 py-3 text-left text-[11px] font-semibold text-secondary uppercase tracking-wider">Volume</th>
-              <th class="px-3 py-3 text-left text-[11px] font-semibold text-secondary uppercase tracking-wider">ROI</th>
-              <th class="px-3 py-3 text-left text-[11px] font-semibold text-secondary uppercase tracking-wider">Total Profit</th>
+              <th class="px-3 py-2.5 text-left text-[10px] font-semibold text-secondary uppercase tracking-wider w-14 text-center">Rank</th>
+              <th class="px-3 py-2.5 text-left text-[10px] font-semibold text-secondary uppercase tracking-wider">User</th>
+              <th class="px-3 py-2.5 text-left text-[10px] font-semibold text-secondary uppercase tracking-wider">Trades</th>
+              <th class="px-3 py-2.5 text-left text-[10px] font-semibold text-secondary uppercase tracking-wider">Volume</th>
+              <th class="px-3 py-2.5 text-left text-[10px] font-semibold text-secondary uppercase tracking-wider">ROI</th>
+              <th class="px-3 py-2.5 text-left text-[10px] font-semibold text-secondary uppercase tracking-wider">Total Profit</th>
             </tr>
           </thead>
           <tbody id="leaderboard-body" class="divide-y divide-border/40">
@@ -253,17 +253,17 @@
       const skeletonClass = 'animate-pulse bg-border/30 rounded';
       tbody.innerHTML = Array.from({ length: 20 }).map(() => `
         <tr class="hover:bg-surface/50 transition-colors">
-          <td class="px-3 py-3 text-center"><div class="${skeletonClass} h-4 w-5 mx-auto"></div></td>
-          <td class="px-3 py-3">
+          <td class="px-3 py-2 text-center"><div class="${skeletonClass} h-3.5 w-4 mx-auto"></div></td>
+          <td class="px-3 py-2">
             <div class="flex items-center gap-2">
               <div class="${skeletonClass} w-6 h-6 rounded-full flex-shrink-0"></div>
-              <div class="${skeletonClass} h-3.5 w-20"></div>
+              <div class="${skeletonClass} h-3 w-20"></div>
             </div>
           </td>
-          <td class="px-3 py-3"><div class="${skeletonClass} h-3.5 w-10"></div></td>
-          <td class="px-3 py-3"><div class="${skeletonClass} h-3.5 w-14"></div></td>
-          <td class="px-3 py-3"><div class="${skeletonClass} h-3.5 w-14"></div></td>
-          <td class="px-3 py-3"><div class="${skeletonClass} h-3.5 w-14"></div></td>
+          <td class="px-3 py-2"><div class="${skeletonClass} h-3 w-8"></div></td>
+          <td class="px-3 py-2"><div class="${skeletonClass} h-3 w-12"></div></td>
+          <td class="px-3 py-2"><div class="${skeletonClass} h-3 w-12"></div></td>
+          <td class="px-3 py-2"><div class="${skeletonClass} h-3 w-12"></div></td>
         </tr>
       `).join('');
     }
@@ -339,17 +339,17 @@
 
         return `
           <tr class="hover:bg-accent/5 transition-colors">
-            <td class="px-3 py-3 text-center text-sm font-bold ${rankClass}">${user.rank}</td>
-            <td class="px-3 py-3">
+            <td class="px-3 py-2 text-center text-xs font-bold ${rankClass}">${user.rank}</td>
+            <td class="px-3 py-2">
               <div class="flex items-center gap-2">
                 <div class="w-6 h-6 rounded-full border border-accent/20 overflow-hidden flex-shrink-0">${avatarHtml}</div>
-                <span class="font-semibold text-primary text-sm">${user.username}</span>
+                <span class="font-semibold text-primary text-xs">${user.username}</span>
               </div>
             </td>
-            <td class="px-3 py-3 text-secondary text-sm font-medium">${user.completedTrades}</td>
-            <td class="px-3 py-3 text-secondary text-xs">${formatSOL(user.volumeSol, 2)} SOL</td>
-            <td class="px-3 py-3 text-sm font-bold ${roiClass}">${formatPercent(user.realizedRoiPercent)}</td>
-            <td class="px-3 py-3 text-xs font-semibold ${profitClass}">${formatSOL(user.totalRealizedProfitSol, 3)} SOL</td>
+            <td class="px-3 py-2 text-secondary text-xs font-medium">${user.completedTrades}</td>
+            <td class="px-3 py-2 text-secondary text-xs">${formatSOL(user.volumeSol, 2)} SOL</td>
+            <td class="px-3 py-2 text-xs font-bold ${roiClass}">${formatPercent(user.realizedRoiPercent)}</td>
+            <td class="px-3 py-2 text-xs font-semibold ${profitClass}">${formatSOL(user.totalRealizedProfitSol, 3)} SOL</td>
           </tr>
         `;
       }).join('');
