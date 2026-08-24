@@ -150,15 +150,15 @@
   </nav>
 
   <!-- Main Content -->
-  <main class="flex-1 container mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-16 max-w-7xl">
+  <main class="flex-1 container mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-12 max-w-5xl">
     <!-- Header -->
-    <div class="text-center mb-12">
-      <h1 class="text-4xl md:text-5xl font-bold mb-4">
+    <div class="text-center mb-8">
+      <h1 class="text-3xl md:text-4xl font-bold mb-3">
         <span class="text-gradient">Simora Social Leaderboard</span>
       </h1>
-      <div class="flex items-center justify-center gap-6 text-sm text-secondary flex-wrap">
-        <div class="flex items-center gap-2">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+      <div class="flex items-center justify-center gap-5 text-xs text-secondary flex-wrap">
+        <div class="flex items-center gap-1.5">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
             <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
             <line x1="16" y1="2" x2="16" y2="6"></line>
             <line x1="8" y1="2" x2="8" y2="6"></line>
@@ -166,8 +166,8 @@
           </svg>
           <span id="period-text" class="text-primary/80">Loading...</span>
         </div>
-        <div id="updated-label" class="flex items-center gap-2" style="display: none;">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+        <div id="updated-label" class="flex items-center gap-1.5" style="display: none;">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
             <circle cx="12" cy="12" r="10"></circle>
             <polyline points="12 6 12 12 16 14"></polyline>
           </svg>
@@ -177,17 +177,17 @@
     </div>
 
     <!-- Leaderboard Table -->
-    <div class="glass border border-border rounded-xl overflow-hidden">
+    <div class="glass border border-border rounded-lg overflow-hidden">
       <div class="overflow-x-auto">
-        <table class="w-full">
+        <table class="w-full text-sm">
           <thead class="bg-surface/80 border-b border-border">
             <tr>
-              <th class="px-4 py-4 text-left text-xs font-semibold text-secondary uppercase tracking-wider w-16 text-center">Rank</th>
-              <th class="px-4 py-4 text-left text-xs font-semibold text-secondary uppercase tracking-wider">User</th>
-              <th class="px-4 py-4 text-left text-xs font-semibold text-secondary uppercase tracking-wider">Trades</th>
-              <th class="px-4 py-4 text-left text-xs font-semibold text-secondary uppercase tracking-wider">Volume</th>
-              <th class="px-4 py-4 text-left text-xs font-semibold text-secondary uppercase tracking-wider">ROI</th>
-              <th class="px-4 py-4 text-left text-xs font-semibold text-secondary uppercase tracking-wider">Total Profit</th>
+              <th class="px-3 py-3 text-left text-[11px] font-semibold text-secondary uppercase tracking-wider w-14 text-center">Rank</th>
+              <th class="px-3 py-3 text-left text-[11px] font-semibold text-secondary uppercase tracking-wider">User</th>
+              <th class="px-3 py-3 text-left text-[11px] font-semibold text-secondary uppercase tracking-wider">Trades</th>
+              <th class="px-3 py-3 text-left text-[11px] font-semibold text-secondary uppercase tracking-wider">Volume</th>
+              <th class="px-3 py-3 text-left text-[11px] font-semibold text-secondary uppercase tracking-wider">ROI</th>
+              <th class="px-3 py-3 text-left text-[11px] font-semibold text-secondary uppercase tracking-wider">Total Profit</th>
             </tr>
           </thead>
           <tbody id="leaderboard-body" class="divide-y divide-border/40">
