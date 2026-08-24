@@ -13,6 +13,7 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -32,6 +33,21 @@
             secondary: '#8A8F98',
             accent: '#5E6AD2',
             success: '#2E9E6E',
+          },
+          backgroundImage: {
+            'accent-gradient': 'linear-gradient(135deg, #5E6AD2 0%, #8B5CF6 100%)',
+          },
+          animation: {
+            'blob': 'blob 10s infinite',
+            'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+          },
+          keyframes: {
+            blob: {
+              '0%':   { transform: 'translate(0px, 0px) scale(1)' },
+              '33%':  { transform: 'translate(40px, -60px) scale(1.15)' },
+              '66%':  { transform: 'translate(-30px, 30px) scale(0.85)' },
+              '100%': { transform: 'translate(0px, 0px) scale(1)' },
+            }
           }
         }
       }
@@ -39,25 +55,106 @@
   </script>
   
   <style>
-  <style>
+    /* Custom Scrollbar */
     ::-webkit-scrollbar { width: 8px; }
     ::-webkit-scrollbar-track { background: #0B0C0E; }
     ::-webkit-scrollbar-thumb { background: #2A2C32; border-radius: 4px; }
     ::-webkit-scrollbar-thumb:hover { background: #3E4149; }
-    
+
     .glass {
       background: rgba(20, 21, 24, 0.6);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
     }
+
+    .text-gradient {
+      background: linear-gradient(135deg, #7F9CF5 0%, #C4B5FD 100%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* Subtle Grid Pattern */
+    .bg-grid-pattern {
+      background-size: 50px 50px;
+      background-image:
+        linear-gradient(to right,  rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+    }
+
+    /* Loading State */
+    body {
+      opacity: 0;
+      transition: opacity 0.5s ease-out;
+    }
+    body.loaded {
+      opacity: 1;
+    }
   </style>
 </head>
-<body class="bg-bg text-primary font-sans antialiased min-h-screen">
-  <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-12 max-w-7xl">
+<body class="bg-bg text-primary font-sans antialiased min-h-screen selection:bg-accent/30 selection:text-white overflow-x-hidden flex flex-col">
+
+  <!-- Background Elements (matching index.html) -->
+  <div class="fixed inset-0 z-[-1] bg-grid-pattern pointer-events-none"></div>
+  <div class="fixed top-0 left-1/2 -translate-x-1/2 w-full h-[800px] z-[-1] overflow-hidden pointer-events-none opacity-30">
+    <div class="absolute top-0 left-1/4 w-96 h-96 bg-[#667eea] rounded-full mix-blend-multiply filter blur-[128px] animate-blob"></div>
+    <div class="absolute top-0 right-1/4 w-96 h-96 bg-[#764ba2] rounded-full mix-blend-multiply filter blur-[128px] animate-blob" style="animation-delay: 2s"></div>
+  </div>
+
+  <!-- Navigation (matching index.html) -->
+  <nav class="fixed top-0 w-full z-50 border-b border-white/5 glass transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-3 hover:opacity-80 transition-opacity cursor-pointer">
+        <img src="./assets/simora-logo.png" alt="Simora" class="w-8 h-8">
+        <span class="text-[18px] font-medium text-[#e5e7eb] uppercase tracking-[0.18em]">Simora</span>
+      </a>
+
+      <!-- Centered Navigation Links -->
+      <div class="absolute left-1/2 transform -translate-x-1/2 hidden md:flex items-center gap-8 text-sm text-secondary font-medium">
+        <a href="/" class="hover:text-primary transition-colors">Home</a>
+        <a href="/#stats" class="hover:text-primary transition-colors">Community</a>
+        <a href="/#social" class="hover:text-primary transition-colors">Social</a>
+        <a href="/#platforms" class="hover:text-primary transition-colors">Platforms</a>
+        <a href="/#features" class="hover:text-primary transition-colors">Features</a>
+      </div>
+
+      <div class="flex items-center gap-20">
+        <!-- Social Icons -->
+        <div class="hidden sm:flex items-center gap-5 text-secondary/60">
+          <a href="https://x.com/simoralabs" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors" title="Follow us on X">
+            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+            </svg>
+          </a>
+          <a href="https://github.com/simoralabs/simora" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors" title="View on GitHub">
+            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+            </svg>
+          </a>
+          <div class="relative group cursor-not-allowed">
+            <svg class="w-5 h-5 opacity-40" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515a.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0a12.64 12.64 0 0 0-.617-1.25a.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057a19.9 19.9 0 0 0 5.993 3.03a.078.078 0 0 0 .084-.028a14.09 14.09 0 0 0 1.226-1.994a.076.076 0 0 0-.041-.106a13.107 13.107 0 0 1-1.872-.892a.077.077 0 0 1-.008-.128a10.2 10.2 0 0 0 .372-.292a.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127a12.299 12.299 0 0 1-1.873.892a.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028a19.839 19.839 0 0 0 6.002-3.03a.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.956-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.955-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.946 2.418-2.157 2.418z"/>
+            </svg>
+            <div class="absolute top-full left-1/2 -translate-x-1/2 mt-2 px-2 py-1 bg-surface border border-white/10 rounded text-xs text-secondary whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+              Coming Soon
+            </div>
+          </div>
+        </div>
+        <!-- Get Simora Button -->
+        <a href="https://chromewebstore.google.com/detail/chjhmhbpnnohcdafkdjklconpielhcld" target="_blank" rel="noopener noreferrer" class="hidden sm:flex items-center gap-2 text-sm font-medium bg-white/5 hover:bg-white/10 border border-white/10 px-5 py-2 rounded-full transition-all group hover:border-accent/50">
+          <i data-lucide="chrome" class="w-4 h-4 text-secondary group-hover:text-white transition-colors"></i>
+          <span>Add to Chrome&nbsp;&nbsp;&nbsp;&nbsp;</span>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="flex-1 container mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-16 max-w-7xl">
     <!-- Header -->
     <div class="text-center mb-12">
-      <h1 class="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-purple-400 via-purple-500 to-indigo-500 bg-clip-text text-transparent">
-        Simora Social Leaderboard
+      <h1 class="text-4xl md:text-5xl font-bold mb-4">
+        <span class="text-gradient">Simora Social Leaderboard</span>
       </h1>
       <div class="flex items-center justify-center gap-6 text-sm text-secondary flex-wrap">
         <div class="flex items-center gap-2">
@@ -99,9 +196,17 @@
         </table>
       </div>
     </div>
-  </div>
+  </main>
 
   <script>
+    // Initialize Lucide icons
+    if (typeof lucide !== 'undefined') lucide.createIcons();
+
+    // Fade in body
+    window.addEventListener('load', () => {
+      document.body.classList.add('loaded');
+    });
+
     const API_URL = 'https://simora-social.cokrailcc.workers.dev/v1/leaderboard';
     const POLL_INTERVAL = 60000; // 60 seconds
     
@@ -113,12 +218,8 @@
     function formatPeriodRange(start, end) {
       const startDate = new Date(start);
       const endDate = new Date(end);
-      
       const options = { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' };
-      const startStr = startDate.toLocaleDateString('en-US', options);
-      const endStr = endDate.toLocaleDateString('en-US', options);
-      
-      return `${startStr} – ${endStr}`;
+      return `${startDate.toLocaleDateString('en-US', options)} – ${endDate.toLocaleDateString('en-US', options)}`;
     }
 
     // Format relative time
@@ -128,26 +229,19 @@
       const seconds = Math.floor(diff / 1000);
       const minutes = Math.floor(seconds / 60);
       const hours = Math.floor(minutes / 60);
-      
       if (minutes < 1) return 'Just now';
       if (minutes < 60) return `${minutes}m ago`;
       if (hours < 24) return `${hours}h ago`;
-      
-      return new Date(timestamp).toLocaleString('en-US', { 
-        month: 'short', 
-        day: 'numeric', 
-        hour: '2-digit', 
-        minute: '2-digit',
-        timeZone: 'UTC'
+      return new Date(timestamp).toLocaleString('en-US', {
+        month: 'short', day: 'numeric',
+        hour: '2-digit', minute: '2-digit', timeZone: 'UTC'
       });
     }
 
-    // Format SOL
     function formatSOL(value, decimals = 2) {
       return value.toFixed(decimals);
     }
 
-    // Format percentage
     function formatPercent(value) {
       const sign = value > 0 ? '+' : '';
       return `${sign}${value.toFixed(2)}%`;
@@ -157,11 +251,9 @@
     function renderLoading() {
       const tbody = document.getElementById('leaderboard-body');
       const skeletonClass = 'animate-pulse bg-border/30 rounded';
-      tbody.innerHTML = Array.from({ length: 20 }).map((_, i) => `
+      tbody.innerHTML = Array.from({ length: 20 }).map(() => `
         <tr class="hover:bg-surface/50 transition-colors">
-          <td class="px-4 py-4 text-center">
-            <div class="${skeletonClass} h-5 w-6 mx-auto"></div>
-          </td>
+          <td class="px-4 py-4 text-center"><div class="${skeletonClass} h-5 w-6 mx-auto"></div></td>
           <td class="px-4 py-4">
             <div class="flex items-center gap-3">
               <div class="${skeletonClass} w-8 h-8 rounded-full flex-shrink-0"></div>
@@ -199,10 +291,7 @@
 
     // Render error state
     function renderError(isInitial = false) {
-      if (!isInitial && lastSuccessfulData) {
-        return;
-      }
-
+      if (!isInitial && lastSuccessfulData) return;
       const tbody = document.getElementById('leaderboard-body');
       tbody.innerHTML = `
         <tr>
@@ -227,7 +316,6 @@
     // Render leaderboard
     function renderLeaderboard(data) {
       lastSuccessfulData = data;
-
       document.getElementById('period-text').textContent = formatPeriodRange(data.periodStart, data.periodEnd);
 
       if (data.updatedAt) {
@@ -238,27 +326,14 @@
       }
 
       const tbody = document.getElementById('leaderboard-body');
-      
-      if (data.leaderboard.length === 0) {
-        renderEmpty();
-        return;
-      }
+      if (data.leaderboard.length === 0) { renderEmpty(); return; }
 
       tbody.innerHTML = data.leaderboard.map(user => {
-        const rankColors = {
-          1: 'text-yellow-400',
-          2: 'text-gray-300',
-          3: 'text-orange-400'
-        };
+        const rankColors = { 1: 'text-yellow-400', 2: 'text-gray-300', 3: 'text-orange-400' };
         const rankClass = rankColors[user.rank] || 'text-primary/60';
-        
-        const roiClass = user.realizedRoiPercent > 0 ? 'text-green-500' : 
-                        user.realizedRoiPercent < 0 ? 'text-red-500' : 'text-secondary';
-        
-        const profitClass = user.totalRealizedProfitSol > 0 ? 'text-green-500' : 
-                           user.totalRealizedProfitSol < 0 ? 'text-red-500' : 'text-secondary';
-
-        const avatarHtml = user.avatarDataUrl 
+        const roiClass    = user.realizedRoiPercent > 0 ? 'text-green-500' : user.realizedRoiPercent < 0 ? 'text-red-500' : 'text-secondary';
+        const profitClass = user.totalRealizedProfitSol > 0 ? 'text-green-500' : user.totalRealizedProfitSol < 0 ? 'text-red-500' : 'text-secondary';
+        const avatarHtml  = user.avatarDataUrl
           ? `<img src="${user.avatarDataUrl}" alt="${user.username}" class="w-full h-full object-cover">`
           : `<div class="w-full h-full flex items-center justify-center bg-accent/10 text-accent font-bold text-sm">${user.username.charAt(0).toUpperCase()}</div>`;
 
@@ -282,42 +357,23 @@
 
     // Fetch leaderboard
     async function fetchLeaderboard(isInitial = false) {
-      // Cancel previous request
-      if (currentRequest) {
-        currentRequest.abort();
-      }
-
-      if (isInitial) {
-        renderLoading();
-      }
+      if (currentRequest) currentRequest.abort();
+      if (isInitial) renderLoading();
 
       try {
         const controller = new AbortController();
         currentRequest = controller;
 
-        const response = await fetch(`${API_URL}?period=weekly&limit=20`, {
-          signal: controller.signal
-        });
-
-        if (!response.ok) {
-          throw new Error(`HTTP ${response.status}`);
-        }
+        const response = await fetch(`${API_URL}?period=weekly&limit=20`, { signal: controller.signal });
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
 
         const data = await response.json();
-
-        if (!data.ok) {
-          throw new Error('API returned ok: false');
-        }
+        if (!data.ok) throw new Error('API returned ok: false');
 
         renderLeaderboard(data);
         currentRequest = null;
-
       } catch (error) {
-        if (error.name === 'AbortError') {
-          // Request was cancelled, ignore
-          return;
-        }
-
+        if (error.name === 'AbortError') return;
         console.error('Leaderboard fetch error:', error);
         renderError(isInitial);
         currentRequest = null;
@@ -326,18 +382,9 @@
 
     // Start polling
     function startPolling() {
-      if (pollTimer) {
-        clearInterval(pollTimer);
-      }
-
-      pollTimer = setInterval(() => {
-        fetchLeaderboard(false);
-      }, POLL_INTERVAL);
+      if (pollTimer) clearInterval(pollTimer);
+      pollTimer = setInterval(() => fetchLeaderboard(false), POLL_INTERVAL);
     }
-
-    // Initialize
-    fetchLeaderboard(true);
-    startPolling();
 
     // Update relative time every minute
     setInterval(() => {
@@ -345,6 +392,10 @@
         document.getElementById('updated-text').textContent = `Updated ${formatRelativeTime(lastSuccessfulData.updatedAt)}`;
       }
     }, 60000);
+
+    // Initialize
+    fetchLeaderboard(true);
+    startPolling();
   </script>
 </body>
 </html>
