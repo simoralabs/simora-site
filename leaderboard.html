@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simora Social Leaderboard</title>
+  <meta name="robots" content="noindex, nofollow">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          },
+          colors: {
+            bg: '#0B0C0E',
+            surface: '#141518',
+            border: '#2A2C32',
+            primary: '#EDEDEF',
+            secondary: '#8A8F98',
+            accent: '#5E6AD2',
+            success: '#2E9E6E',
+          }
+        }
+      }
+    }
+  </script>
+  
+  <style>
+  <style>
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #0B0C0E; }
+    ::-webkit-scrollbar-thumb { background: #2A2C32; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #3E4149; }
+    
+    .glass {
+      background: rgba(20, 21, 24, 0.6);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+    }
+  </style>
+</head>
+<body class="bg-bg text-primary font-sans antialiased min-h-screen">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-12 max-w-7xl">
+    <!-- Header -->
+    <div class="text-center mb-12">
+      <h1 class="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-purple-400 via-purple-500 to-indigo-500 bg-clip-text text-transparent">
+        Simora Social Leaderboard
+      </h1>
+      <div class="flex items-center justify-center gap-6 text-sm text-secondary flex-wrap">
+        <div class="flex items-center gap-2">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+            <line x1="16" y1="2" x2="16" y2="6"></line>
+            <line x1="8" y1="2" x2="8" y2="6"></line>
+            <line x1="3" y1="10" x2="21" y2="10"></line>
+          </svg>
+          <span id="period-text" class="text-primary/80">Loading...</span>
+        </div>
+        <div id="updated-label" class="flex items-center gap-2" style="display: none;">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="10"></circle>
+            <polyline points="12 6 12 12 16 14"></polyline>
+          </svg>
+          <span id="updated-text" class="text-secondary/70"></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Leaderboard Table -->
+    <div class="glass border border-border rounded-xl overflow-hidden">
+      <div class="overflow-x-auto">
+        <table class="w-full">
+          <thead class="bg-surface/80 border-b border-border">
+            <tr>
+              <th class="px-4 py-4 text-left text-xs font-semibold text-secondary uppercase tracking-wider w-16 text-center">Rank</th>
+              <th class="px-4 py-4 text-left text-xs font-semibold text-secondary uppercase tracking-wider">User</th>
+              <th class="px-4 py-4 text-left text-xs font-semibold text-secondary uppercase tracking-wider">Trades</th>
+              <th class="px-4 py-4 text-left text-xs font-semibold text-secondary uppercase tracking-wider">Volume</th>
+              <th class="px-4 py-4 text-left text-xs font-semibold text-secondary uppercase tracking-wider">ROI</th>
+              <th class="px-4 py-4 text-left text-xs font-semibold text-secondary uppercase tracking-wider">Total Profit</th>
+            </tr>
+          </thead>
+          <tbody id="leaderboard-body" class="divide-y divide-border/40">
+            <!-- Content injected here -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const API_URL = 'https://simora-social.cokrailcc.workers.dev/v1/leaderboard';
+    const POLL_INTERVAL = 60000; // 60 seconds
+    
+    let lastSuccessfulData = null;
+    let pollTimer = null;
+    let currentRequest = null;
+
+    // Format date range
+    function formatPeriodRange(start, end) {
+      const startDate = new Date(start);
+      const endDate = new Date(end);
+      
+      const options = { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' };
+      const startStr = startDate.toLocaleDateString('en-US', options);
+      const endStr = endDate.toLocaleDateString('en-US', options);
+      
+      return `${startStr} – ${endStr}`;
+    }
+
+    // Format relative time
+    function formatRelativeTime(timestamp) {
+      const now = Date.now();
+      const diff = now - timestamp;
+      const seconds = Math.floor(diff / 1000);
+      const minutes = Math.floor(seconds / 60);
+      const hours = Math.floor(minutes / 60);
+      
+      if (minutes < 1) return 'Just now';
+      if (minutes < 60) return `${minutes}m ago`;
+      if (hours < 24) return `${hours}h ago`;
+      
+      return new Date(timestamp).toLocaleString('en-US', { 
+        month: 'short', 
+        day: 'numeric', 
+        hour: '2-digit', 
+        minute: '2-digit',
+        timeZone: 'UTC'
+      });
+    }
+
+    // Format SOL
+    function formatSOL(value, decimals = 2) {
+      return value.toFixed(decimals);
+    }
+
+    // Format percentage
+    function formatPercent(value) {
+      const sign = value > 0 ? '+' : '';
+      return `${sign}${value.toFixed(2)}%`;
+    }
+
+    // Render loading skeleton
+    function renderLoading() {
+      const tbody = document.getElementById('leaderboard-body');
+      const skeletonClass = 'animate-pulse bg-border/30 rounded';
+      tbody.innerHTML = Array.from({ length: 20 }).map((_, i) => `
+        <tr class="hover:bg-surface/50 transition-colors">
+          <td class="px-4 py-4 text-center">
+            <div class="${skeletonClass} h-5 w-6 mx-auto"></div>
+          </td>
+          <td class="px-4 py-4">
+            <div class="flex items-center gap-3">
+              <div class="${skeletonClass} w-8 h-8 rounded-full flex-shrink-0"></div>
+              <div class="${skeletonClass} h-4 w-24"></div>
+            </div>
+          </td>
+          <td class="px-4 py-4"><div class="${skeletonClass} h-4 w-12"></div></td>
+          <td class="px-4 py-4"><div class="${skeletonClass} h-4 w-16"></div></td>
+          <td class="px-4 py-4"><div class="${skeletonClass} h-4 w-16"></div></td>
+          <td class="px-4 py-4"><div class="${skeletonClass} h-4 w-16"></div></td>
+        </tr>
+      `).join('');
+    }
+
+    // Render empty state
+    function renderEmpty() {
+      const tbody = document.getElementById('leaderboard-body');
+      tbody.innerHTML = `
+        <tr>
+          <td colspan="6" class="px-4 py-20">
+            <div class="text-center">
+              <svg class="w-16 h-16 mx-auto mb-4 text-secondary/40" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                <circle cx="9" cy="7" r="4"></circle>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+              </svg>
+              <h3 class="text-lg font-semibold text-primary mb-2">No traders yet</h3>
+              <p class="text-sm text-secondary">No traders have completed the five-trade weekly minimum yet.</p>
+            </div>
+          </td>
+        </tr>
+      `;
+    }
+
+    // Render error state
+    function renderError(isInitial = false) {
+      if (!isInitial && lastSuccessfulData) {
+        return;
+      }
+
+      const tbody = document.getElementById('leaderboard-body');
+      tbody.innerHTML = `
+        <tr>
+          <td colspan="6" class="px-4 py-16">
+            <div class="text-center">
+              <svg class="w-12 h-12 mx-auto mb-4 text-red-500" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="8" x2="12" y2="12"></line>
+                <line x1="12" y1="16" x2="12.01" y2="16"></line>
+              </svg>
+              <h3 class="text-base font-semibold text-primary mb-2">Failed to load leaderboard</h3>
+              <p class="text-sm text-secondary mb-4">Unable to fetch data. Please try again.</p>
+              <button onclick="fetchLeaderboard(true)" class="px-5 py-2 bg-accent/15 hover:bg-accent/25 border border-accent/30 hover:border-accent/50 rounded-lg text-accent text-sm font-semibold transition-all">
+                Retry
+              </button>
+            </div>
+          </td>
+        </tr>
+      `;
+    }
+
+    // Render leaderboard
+    function renderLeaderboard(data) {
+      lastSuccessfulData = data;
+
+      document.getElementById('period-text').textContent = formatPeriodRange(data.periodStart, data.periodEnd);
+
+      if (data.updatedAt) {
+        document.getElementById('updated-label').style.display = 'flex';
+        document.getElementById('updated-text').textContent = `Updated ${formatRelativeTime(data.updatedAt)}`;
+      } else {
+        document.getElementById('updated-label').style.display = 'none';
+      }
+
+      const tbody = document.getElementById('leaderboard-body');
+      
+      if (data.leaderboard.length === 0) {
+        renderEmpty();
+        return;
+      }
+
+      tbody.innerHTML = data.leaderboard.map(user => {
+        const rankColors = {
+          1: 'text-yellow-400',
+          2: 'text-gray-300',
+          3: 'text-orange-400'
+        };
+        const rankClass = rankColors[user.rank] || 'text-primary/60';
+        
+        const roiClass = user.realizedRoiPercent > 0 ? 'text-green-500' : 
+                        user.realizedRoiPercent < 0 ? 'text-red-500' : 'text-secondary';
+        
+        const profitClass = user.totalRealizedProfitSol > 0 ? 'text-green-500' : 
+                           user.totalRealizedProfitSol < 0 ? 'text-red-500' : 'text-secondary';
+
+        const avatarHtml = user.avatarDataUrl 
+          ? `<img src="${user.avatarDataUrl}" alt="${user.username}" class="w-full h-full object-cover">`
+          : `<div class="w-full h-full flex items-center justify-center bg-accent/10 text-accent font-bold text-sm">${user.username.charAt(0).toUpperCase()}</div>`;
+
+        return `
+          <tr class="hover:bg-accent/5 transition-colors">
+            <td class="px-4 py-4 text-center text-base font-bold ${rankClass}">${user.rank}</td>
+            <td class="px-4 py-4">
+              <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded-full border border-accent/20 overflow-hidden flex-shrink-0">${avatarHtml}</div>
+                <span class="font-semibold text-primary">${user.username}</span>
+              </div>
+            </td>
+            <td class="px-4 py-4 text-secondary font-medium">${user.completedTrades}</td>
+            <td class="px-4 py-4 text-secondary text-sm">${formatSOL(user.volumeSol, 2)} SOL</td>
+            <td class="px-4 py-4 text-base font-bold ${roiClass}">${formatPercent(user.realizedRoiPercent)}</td>
+            <td class="px-4 py-4 text-sm font-semibold ${profitClass}">${formatSOL(user.totalRealizedProfitSol, 3)} SOL</td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    // Fetch leaderboard
+    async function fetchLeaderboard(isInitial = false) {
+      // Cancel previous request
+      if (currentRequest) {
+        currentRequest.abort();
+      }
+
+      if (isInitial) {
+        renderLoading();
+      }
+
+      try {
+        const controller = new AbortController();
+        currentRequest = controller;
+
+        const response = await fetch(`${API_URL}?period=weekly&limit=20`, {
+          signal: controller.signal
+        });
+
+        if (!response.ok) {
+          throw new Error(`HTTP ${response.status}`);
+        }
+
+        const data = await response.json();
+
+        if (!data.ok) {
+          throw new Error('API returned ok: false');
+        }
+
+        renderLeaderboard(data);
+        currentRequest = null;
+
+      } catch (error) {
+        if (error.name === 'AbortError') {
+          // Request was cancelled, ignore
+          return;
+        }
+
+        console.error('Leaderboard fetch error:', error);
+        renderError(isInitial);
+        currentRequest = null;
+      }
+    }
+
+    // Start polling
+    function startPolling() {
+      if (pollTimer) {
+        clearInterval(pollTimer);
+      }
+
+      pollTimer = setInterval(() => {
+        fetchLeaderboard(false);
+      }, POLL_INTERVAL);
+    }
+
+    // Initialize
+    fetchLeaderboard(true);
+    startPolling();
+
+    // Update relative time every minute
+    setInterval(() => {
+      if (lastSuccessfulData && lastSuccessfulData.updatedAt) {
+        document.getElementById('updated-text').textContent = `Updated ${formatRelativeTime(lastSuccessfulData.updatedAt)}`;
+      }
+    }, 60000);
+  </script>
+</body>
+</html>
