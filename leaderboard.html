@@ -61,6 +61,13 @@
     ::-webkit-scrollbar-thumb { background: #2A2C32; border-radius: 4px; }
     ::-webkit-scrollbar-thumb:hover { background: #3E4149; }
 
+    /* Better text rendering */
+    body {
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
+    }
+
     .glass {
       background: rgba(20, 21, 24, 0.6);
       backdrop-filter: blur(16px);
@@ -384,17 +391,17 @@
 
         return `
           <tr class="hover:bg-accent/5 transition-colors">
-            <td class="px-3 py-2 text-center text-xs font-bold ${rankClass}">${user.rank}</td>
+            <td class="px-3 py-2 text-center text-xs font-semibold ${rankClass}">${user.rank}</td>
             <td class="px-3 py-2">
               <div class="flex items-center gap-2">
                 <div class="w-6 h-6 rounded-full border border-accent/20 overflow-hidden flex-shrink-0">${avatarHtml}</div>
-                <span class="font-semibold text-primary text-xs">${user.username}</span>
+                <span class="font-medium text-primary text-sm">${user.username}</span>
               </div>
             </td>
-            <td class="px-3 py-2 text-secondary text-xs font-medium">${user.completedTrades}</td>
-            <td class="px-3 py-2 text-secondary text-xs">${formatSOL(user.volumeSol, 2)} SOL</td>
-            <td class="px-3 py-2 text-xs font-bold ${roiClass}">${formatPercent(user.realizedRoiPercent)}</td>
-            <td class="px-3 py-2 text-xs font-semibold ${profitClass}">${formatSOL(user.totalRealizedProfitSol, 3)} SOL</td>
+            <td class="px-3 py-2 text-secondary text-sm">${user.completedTrades}</td>
+            <td class="px-3 py-2 text-secondary text-sm">${formatSOL(user.volumeSol, 2)} SOL</td>
+            <td class="px-3 py-2 text-sm font-semibold ${roiClass}">${formatPercent(user.realizedRoiPercent)}</td>
+            <td class="px-3 py-2 text-sm font-medium ${profitClass}">${formatSOL(user.totalRealizedProfitSol, 3)} SOL</td>
           </tr>
         `;
       }).join('');
