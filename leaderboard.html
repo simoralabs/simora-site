@@ -168,7 +168,10 @@
       <!-- Center: Period Info -->
       <div class="flex items-center gap-5 text-sm text-secondary">
         <div class="flex items-center gap-2">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+          <svg id="loading-spinner" class="w-4 h-4 animate-spin hidden" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+            <path d="M21 12a9 9 0 1 1-6.219-8.56"></path>
+          </svg>
+          <svg id="calendar-icon" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
             <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
             <line x1="16" y1="2" x2="16" y2="6"></line>
             <line x1="8" y1="2" x2="8" y2="6"></line>
@@ -410,7 +413,15 @@
     // Fetch leaderboard
     async function fetchLeaderboard(isInitial = false) {
       if (currentRequest) currentRequest.abort();
-      if (isInitial) renderLoading();
+      
+      // Only show skeleton on initial load, not on period switch
+      if (isInitial && !lastSuccessfulData) {
+        renderLoading();
+      } else if (!isInitial || lastSuccessfulData) {
+        // Show loading spinner for period switches and background refreshes
+        document.getElementById('loading-spinner').classList.remove('hidden');
+        document.getElementById('calendar-icon').classList.add('hidden');
+      }
 
       const requestPeriod = selectedPeriod; // Capture current period
 
@@ -432,11 +443,19 @@
 
         renderLeaderboard(data);
         currentRequest = null;
+        
+        // Hide loading spinner
+        document.getElementById('loading-spinner').classList.add('hidden');
+        document.getElementById('calendar-icon').classList.remove('hidden');
       } catch (error) {
         if (error.name === 'AbortError') return;
         console.error('Leaderboard fetch error:', error);
-        renderError(isInitial);
+        renderError(isInitial && !lastSuccessfulData);
         currentRequest = null;
+        
+        // Hide loading spinner
+        document.getElementById('loading-spinner').classList.add('hidden');
+        document.getElementById('calendar-icon').classList.remove('hidden');
       }
     }
 
