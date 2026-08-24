@@ -159,22 +159,22 @@
       </h1>
 
       <!-- Center: Period Info -->
-      <div class="flex items-center gap-5 text-xs text-secondary">
-        <div class="flex items-center gap-1.5">
-          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+      <div class="flex items-center gap-5 text-sm text-secondary">
+        <div class="flex items-center gap-2">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
             <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
             <line x1="16" y1="2" x2="16" y2="6"></line>
             <line x1="8" y1="2" x2="8" y2="6"></line>
             <line x1="3" y1="10" x2="21" y2="10"></line>
           </svg>
-          <span id="period-text" class="text-primary/80">Loading...</span>
+          <span id="period-text" class="text-primary/90">Loading...</span>
         </div>
-        <div id="updated-label" class="flex items-center gap-1.5" style="display: none;">
-          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+        <div id="updated-label" class="flex items-center gap-2" style="display: none;">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
             <circle cx="12" cy="12" r="10"></circle>
             <polyline points="12 6 12 12 16 14"></polyline>
           </svg>
-          <span id="updated-text" class="text-secondary/70"></span>
+          <span id="updated-text" class="text-secondary/80"></span>
         </div>
       </div>
 
@@ -183,13 +183,13 @@
         <button 
           id="period-1d" 
           onclick="selectPeriod('1d')"
-          class="px-4 py-1.5 text-xs font-semibold rounded-md transition-all text-secondary hover:text-primary">
+          class="px-5 py-2 text-sm font-semibold rounded-md transition-all text-secondary hover:text-primary">
           Daily
         </button>
         <button 
           id="period-7d" 
           onclick="selectPeriod('7d')"
-          class="px-4 py-1.5 text-xs font-semibold rounded-md transition-all bg-accent/15 text-accent">
+          class="px-5 py-2 text-sm font-semibold rounded-md transition-all bg-accent/15 text-accent">
           Weekly
         </button>
       </div>
