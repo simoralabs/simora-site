@@ -208,15 +208,15 @@
     <!-- Leaderboard Table -->
     <div class="glass border border-border rounded-lg overflow-hidden">
       <div class="overflow-x-auto">
-        <table class="w-full text-sm">
+        <table class="w-full text-sm table-fixed">
           <thead class="bg-surface/80 border-b border-border">
             <tr>
-              <th class="px-3 py-2.5 text-left text-[10px] font-semibold text-secondary uppercase tracking-wider w-16 text-center">Rank</th>
-              <th class="px-3 py-2.5 text-left text-[10px] font-semibold text-secondary uppercase tracking-wider min-w-[180px]">User</th>
-              <th class="px-3 py-2.5 text-left text-[10px] font-semibold text-secondary uppercase tracking-wider w-20 text-center">Trades</th>
-              <th class="px-3 py-2.5 text-left text-[10px] font-semibold text-secondary uppercase tracking-wider w-32">Volume</th>
-              <th class="px-3 py-2.5 text-left text-[10px] font-semibold text-secondary uppercase tracking-wider w-24 text-center">ROI</th>
-              <th class="px-3 py-2.5 text-left text-[10px] font-semibold text-secondary uppercase tracking-wider w-32">Total Profit</th>
+              <th class="px-3 py-2.5 text-left text-[10px] font-semibold text-secondary uppercase tracking-wider text-center" style="width: 8%;">Rank</th>
+              <th class="px-3 py-2.5 text-left text-[10px] font-semibold text-secondary uppercase tracking-wider" style="width: 22%;">User</th>
+              <th class="px-3 py-2.5 text-left text-[10px] font-semibold text-secondary uppercase tracking-wider text-center" style="width: 12%;">Trades</th>
+              <th class="px-3 py-2.5 text-left text-[10px] font-semibold text-secondary uppercase tracking-wider" style="width: 18%;">Volume</th>
+              <th class="px-3 py-2.5 text-left text-[10px] font-semibold text-secondary uppercase tracking-wider text-center" style="width: 15%;">ROI</th>
+              <th class="px-3 py-2.5 text-left text-[10px] font-semibold text-secondary uppercase tracking-wider" style="width: 25%;">Total Profit</th>
             </tr>
           </thead>
           <tbody id="leaderboard-body" class="divide-y divide-border/40">
@@ -394,17 +394,17 @@
 
         return `
           <tr class="hover:bg-accent/5 transition-colors">
-            <td class="px-3 py-2 text-center text-xs font-semibold ${rankClass} w-16">${user.rank}</td>
-            <td class="px-3 py-2 min-w-[180px]">
+            <td class="px-3 py-2 text-center text-xs font-semibold ${rankClass}">${user.rank}</td>
+            <td class="px-3 py-2">
               <div class="flex items-center gap-2">
                 <div class="w-6 h-6 rounded-full border border-accent/20 overflow-hidden flex-shrink-0">${avatarHtml}</div>
-                <span class="font-medium text-primary text-sm">${user.username}</span>
+                <span class="font-medium text-primary text-sm truncate">${user.username}</span>
               </div>
             </td>
-            <td class="px-3 py-2 text-secondary text-sm text-center w-20">${user.completedTrades}</td>
-            <td class="px-3 py-2 text-secondary text-sm w-32">${formatSOL(user.volumeSol, 2)} SOL</td>
-            <td class="px-3 py-2 text-sm font-semibold ${roiClass} text-center w-24">${formatPercent(user.realizedRoiPercent)}</td>
-            <td class="px-3 py-2 text-sm font-medium ${profitClass} w-32">${formatSOL(user.totalRealizedProfitSol, 3)} SOL</td>
+            <td class="px-3 py-2 text-secondary text-sm text-center">${user.completedTrades}</td>
+            <td class="px-3 py-2 text-secondary text-sm">${formatSOL(user.volumeSol, 2)} SOL</td>
+            <td class="px-3 py-2 text-sm font-semibold ${roiClass} text-center">${formatPercent(user.realizedRoiPercent)}</td>
+            <td class="px-3 py-2 text-sm font-medium ${profitClass}">${formatSOL(user.totalRealizedProfitSol, 3)} SOL</td>
           </tr>
         `;
       }).join('');
