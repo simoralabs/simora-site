@@ -515,7 +515,8 @@
       
       const tbody = document.getElementById('leaderboard-body');
       
-      tbody.innerHTML = pageUsers.map(user => {
+      // Render real user rows
+      let html = pageUsers.map(user => {
         const rankColors = { 1: 'text-yellow-400', 2: 'text-gray-300', 3: 'text-orange-400' };
         const rankClass = rankColors[user.rank] || 'text-primary/60';
         const roiClass    = user.realizedRoiPercent > 0 ? 'text-green-500' : user.realizedRoiPercent < 0 ? 'text-red-500' : 'text-secondary';
@@ -540,6 +541,23 @@
           </tr>
         `;
       }).join('');
+      
+      // Add empty placeholder rows to maintain fixed height (15 rows total)
+      const emptyRowsNeeded = USERS_PER_PAGE - pageUsers.length;
+      for (let i = 0; i < emptyRowsNeeded; i++) {
+        html += `
+          <tr class="h-[41px]">
+            <td class="px-3 py-2">&nbsp;</td>
+            <td class="px-3 py-2">&nbsp;</td>
+            <td class="px-3 py-2">&nbsp;</td>
+            <td class="px-3 py-2">&nbsp;</td>
+            <td class="px-3 py-2">&nbsp;</td>
+            <td class="px-3 py-2">&nbsp;</td>
+          </tr>
+        `;
+      }
+      
+      tbody.innerHTML = html;
       
       renderPagination(data.leaderboard.length);
     }
