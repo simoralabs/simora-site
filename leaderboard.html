@@ -225,6 +225,11 @@
         </table>
       </div>
     </div>
+
+    <!-- Pagination Controls -->
+    <div id="pagination-container" class="mt-6 flex items-center justify-center gap-2" style="display: none;">
+      <!-- Dynamically rendered pagination -->
+    </div>
   </main>
 
   <script>
@@ -238,17 +243,21 @@
 
     const API_URL = 'https://simora-social.cokrailcc.workers.dev/v1/leaderboard';
     const POLL_INTERVAL = 15 * 60 * 1000; // 15 minutes
+    const USERS_PER_PAGE = 15;
     
     let lastSuccessfulData = null;
     let pollTimer = null;
     let currentRequest = null;
     let selectedPeriod = '7d'; // Default to 7D
+    let currentPage = 1; // Current page number
+    let fullLeaderboardData = null; // Store full leaderboard data
 
     // Period selection
     function selectPeriod(period) {
       if (selectedPeriod === period) return; // Already selected
       
       selectedPeriod = period;
+      currentPage = 1; // Reset to page 1 when switching periods
       updatePeriodButtons();
       fetchLeaderboard(true); // Immediate fetch for new period
     }
@@ -324,7 +333,7 @@
     }
 
     // Render empty state
-    function renderEmpty() {
+    function renderEmpty(minimumCompletedTrades = 5) {
       const tbody = document.getElementById('leaderboard-body');
       tbody.innerHTML = `
         <tr>
@@ -337,11 +346,138 @@
                 <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
               </svg>
               <h3 class="text-lg font-semibold text-primary mb-2">No traders yet</h3>
-              <p class="text-sm text-secondary">No traders have completed the five-trade minimum yet.</p>
+              <p class="text-sm text-secondary">No traders have completed the ${minimumCompletedTrades}-trade minimum yet.</p>
             </div>
           </td>
         </tr>
       `;
+      hidePagination();
+    }
+
+    // Hide pagination controls
+    function hidePagination() {
+      document.getElementById('pagination-container').style.display = 'none';
+    }
+
+    // Show pagination controls
+    function showPagination() {
+      document.getElementById('pagination-container').style.display = 'flex';
+    }
+
+    // Generate page numbers with ellipsis
+    function generatePageNumbers(currentPage, totalPages) {
+      const pages = [];
+      
+      if (totalPages <= 7) {
+        // Show all pages if 7 or fewer
+        for (let i = 1; i <= totalPages; i++) {
+          pages.push(i);
+        }
+      } else {
+        // Always show first page
+        pages.push(1);
+        
+        // Calculate range around current page
+        if (currentPage <= 3) {
+          // Near start: 1 2 3 4 ... last
+          pages.push(2, 3, 4);
+          pages.push('...');
+          pages.push(totalPages);
+        } else if (currentPage >= totalPages - 2) {
+          // Near end: 1 ... last-3 last-2 last-1 last
+          pages.push('...');
+          pages.push(totalPages - 3, totalPages - 2, totalPages - 1, totalPages);
+        } else {
+          // Middle: 1 ... current-1 current current+1 ... last
+          pages.push('...');
+          pages.push(currentPage - 1, currentPage, currentPage + 1);
+          pages.push('...');
+          pages.push(totalPages);
+        }
+      }
+      
+      return pages;
+    }
+
+    // Render pagination controls
+    function renderPagination(totalUsers) {
+      const totalPages = Math.ceil(totalUsers / USERS_PER_PAGE);
+      
+      // Hide pagination if 15 or fewer users
+      if (totalUsers <= USERS_PER_PAGE) {
+        hidePagination();
+        return;
+      }
+      
+      // Validate current page
+      if (currentPage > totalPages) {
+        currentPage = totalPages;
+      }
+      if (currentPage < 1) {
+        currentPage = 1;
+      }
+      
+      const container = document.getElementById('pagination-container');
+      const pageNumbers = generatePageNumbers(currentPage, totalPages);
+      
+      const prevDisabled = currentPage === 1;
+      const nextDisabled = currentPage === totalPages;
+      
+      const prevClass = prevDisabled
+        ? 'px-3 py-1.5 text-xs font-medium text-secondary/40 cursor-not-allowed'
+        : 'px-3 py-1.5 text-xs font-medium text-secondary hover:text-primary transition-colors cursor-pointer';
+      
+      const nextClass = nextDisabled
+        ? 'px-3 py-1.5 text-xs font-medium text-secondary/40 cursor-not-allowed'
+        : 'px-3 py-1.5 text-xs font-medium text-secondary hover:text-primary transition-colors cursor-pointer';
+      
+      let html = `
+        <button 
+          onclick="${prevDisabled ? '' : 'goToPage(' + (currentPage - 1) + ')'}" 
+          class="${prevClass}"
+          ${prevDisabled ? 'disabled' : ''}>
+          Previous
+        </button>
+      `;
+      
+      pageNumbers.forEach(page => {
+        if (page === '...') {
+          html += `<span class="px-2 py-1.5 text-xs text-secondary/60">...</span>`;
+        } else {
+          const isActive = page === currentPage;
+          const pageClass = isActive
+            ? 'px-3 py-1.5 text-xs font-semibold bg-accent/15 text-accent rounded-md'
+            : 'px-3 py-1.5 text-xs font-medium text-secondary hover:text-primary transition-colors cursor-pointer rounded-md hover:bg-surface/60';
+          
+          html += `
+            <button 
+              onclick="goToPage(${page})" 
+              class="${pageClass}">
+              ${page}
+            </button>
+          `;
+        }
+      });
+      
+      html += `
+        <button 
+          onclick="${nextDisabled ? '' : 'goToPage(' + (currentPage + 1) + ')'}" 
+          class="${nextClass}"
+          ${nextDisabled ? 'disabled' : ''}>
+          Next
+        </button>
+      `;
+      
+      container.innerHTML = html;
+      showPagination();
+    }
+
+    // Navigate to specific page
+    function goToPage(page) {
+      if (!fullLeaderboardData || page === currentPage) return;
+      
+      currentPage = page;
+      renderLeaderboardPage();
     }
 
     // Render error state
@@ -368,22 +504,18 @@
       `;
     }
 
-    // Render leaderboard
-    function renderLeaderboard(data) {
-      lastSuccessfulData = data;
-      document.getElementById('period-text').textContent = formatPeriodRange(data.periodStart, data.periodEnd, data.periodType);
-
-      if (data.updatedAt) {
-        document.getElementById('updated-label').style.display = 'flex';
-        document.getElementById('updated-text').textContent = `Updated ${formatRelativeTime(data.updatedAt)}`;
-      } else {
-        document.getElementById('updated-label').style.display = 'none';
-      }
-
+    // Render leaderboard page (client-side pagination)
+    function renderLeaderboardPage() {
+      if (!fullLeaderboardData) return;
+      
+      const data = fullLeaderboardData;
+      const startIndex = (currentPage - 1) * USERS_PER_PAGE;
+      const endIndex = startIndex + USERS_PER_PAGE;
+      const pageUsers = data.leaderboard.slice(startIndex, endIndex);
+      
       const tbody = document.getElementById('leaderboard-body');
-      if (data.leaderboard.length === 0) { renderEmpty(); return; }
-
-      tbody.innerHTML = data.leaderboard.map(user => {
+      
+      tbody.innerHTML = pageUsers.map(user => {
         const rankColors = { 1: 'text-yellow-400', 2: 'text-gray-300', 3: 'text-orange-400' };
         const rankClass = rankColors[user.rank] || 'text-primary/60';
         const roiClass    = user.realizedRoiPercent > 0 ? 'text-green-500' : user.realizedRoiPercent < 0 ? 'text-red-500' : 'text-secondary';
@@ -408,6 +540,30 @@
           </tr>
         `;
       }).join('');
+      
+      renderPagination(data.leaderboard.length);
+    }
+
+    // Render leaderboard (initial load and period updates)
+    function renderLeaderboard(data) {
+      lastSuccessfulData = data;
+      fullLeaderboardData = data;
+      
+      document.getElementById('period-text').textContent = formatPeriodRange(data.periodStart, data.periodEnd, data.periodType);
+
+      if (data.updatedAt) {
+        document.getElementById('updated-label').style.display = 'flex';
+        document.getElementById('updated-text').textContent = `Updated ${formatRelativeTime(data.updatedAt)}`;
+      } else {
+        document.getElementById('updated-label').style.display = 'none';
+      }
+
+      if (data.leaderboard.length === 0) {
+        renderEmpty(data.minimumCompletedTrades);
+        return;
+      }
+
+      renderLeaderboardPage();
     }
 
     // Fetch leaderboard
@@ -429,7 +585,7 @@
         const controller = new AbortController();
         currentRequest = controller;
 
-        const response = await fetch(`${API_URL}?period=${requestPeriod}&limit=20`, { signal: controller.signal });
+        const response = await fetch(`${API_URL}?period=${requestPeriod}&limit=500`, { signal: controller.signal });
         if (!response.ok) throw new Error(`HTTP ${response.status}`);
 
         const data = await response.json();
