@@ -102,6 +102,16 @@
       opacity: 1;
       transform: scale(1);
     }
+    .lb-avatar-popup img,
+    .lb-avatar-popup div {
+      width: 208px;
+      height: 208px;
+      border-radius: 8px;
+      object-fit: cover;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.7), 0 0 0 1px rgba(255,255,255,0.07);
+      display: block;
+    }
+
     /* Loading State */
     body {
       opacity: 0;
@@ -691,8 +701,8 @@
 
       // Position: above-right of the avatar, clamped to viewport
       const r   = avatar.getBoundingClientRect();
-      const pw  = 160;
-      const ph  = 160;
+      const pw  = 208;
+      const ph  = 208;
       const gap = 8;
 
       let left = r.right + gap;
