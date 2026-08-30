@@ -89,6 +89,29 @@
         linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
     }
 
+    /* Avatar preview popup */
+    .lb-avatar-popup {
+      position: fixed;
+      z-index: 9999;
+      pointer-events: none;
+      opacity: 0;
+      transform: scale(0.92);
+      transition: opacity 0.15s ease, transform 0.15s ease;
+    }
+    .lb-avatar-popup.is-visible {
+      opacity: 1;
+      transform: scale(1);
+    }
+    .lb-avatar-popup img,
+    .lb-avatar-popup div {
+      width: 208px;
+      height: 208px;
+      border-radius: 8px;
+      object-fit: cover;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.7), 0 0 0 1px rgba(255,255,255,0.07);
+      display: block;
+    }
+
     /* Loading State */
     body {
       opacity: 0;
@@ -321,7 +344,7 @@
           <td class="px-3 py-2 text-center"><div class="${skeletonClass} h-3.5 w-4 mx-auto"></div></td>
           <td class="px-3 py-2">
             <div class="flex items-center gap-2">
-              <div class="${skeletonClass} w-6 h-6 rounded-full flex-shrink-0"></div>
+              <div class="${skeletonClass} w-8 h-8 rounded flex-shrink-0"></div>
               <div class="${skeletonClass} h-3 w-20"></div>
             </div>
           </td>
@@ -521,24 +544,25 @@
         const rankColors = { 1: 'text-yellow-400', 2: 'text-gray-300', 3: 'text-orange-400' };
         const rankClass = rankColors[user.rank] || 'text-primary/60';
         const roiClass    = user.realizedRoiPercent > 0 ? 'text-green-500' : user.realizedRoiPercent < 0 ? 'text-red-500' : 'text-secondary';
-        const winRateClass = user.winRatePercent > 50 ? 'text-green-500' : user.winRatePercent < 50 ? 'text-red-500' : 'text-secondary';
         const avatarHtml  = user.avatarDataUrl
           ? `<img src="${user.avatarDataUrl}" alt="${user.username}" class="w-full h-full object-cover">`
           : `<div class="w-full h-full flex items-center justify-center bg-accent/10 text-accent font-bold text-xs">${user.username.charAt(0).toUpperCase()}</div>`;
+
+        const safeAvatar = user.avatarDataUrl ? user.avatarDataUrl.replace(/"/g, '&quot;') : '';
 
         return `
           <tr class="hover:bg-accent/5 transition-colors">
             <td class="px-3 py-2 text-center text-xs font-semibold ${rankClass}">${user.rank}</td>
             <td class="px-3 py-2">
               <div class="flex items-center gap-2">
-                <div class="w-6 h-6 rounded-full border border-accent/20 overflow-hidden flex-shrink-0">${avatarHtml}</div>
+                <div class="lb-avatar w-8 h-8 rounded border border-white/10 overflow-hidden flex-shrink-0 cursor-pointer" data-avatar="${safeAvatar}" data-initial="${user.username.charAt(0).toUpperCase()}">${avatarHtml}</div>
                 <span class="font-medium text-primary text-sm truncate">${user.username}</span>
               </div>
             </td>
             <td class="px-3 py-2 text-secondary text-sm text-center">${user.completedTrades}</td>
             <td class="px-3 py-2 text-secondary text-sm">${formatSOL(user.volumeSol, 2)} SOL</td>
             <td class="px-3 py-2 text-sm font-semibold ${roiClass} text-center">${formatPercent(user.realizedRoiPercent)}</td>
-            <td class="px-3 py-2 text-sm font-semibold ${winRateClass} text-center">${user.winRatePercent.toFixed(2)}%</td>
+            <td class="px-3 py-2 text-sm font-medium text-primary text-center">${user.winRatePercent.toFixed(1)}%</td>
           </tr>
         `;
       }).join('');
@@ -651,6 +675,56 @@
     updatePeriodButtons();
     fetchLeaderboard(true);
     startPolling();
+
+    // ── Avatar hover popup ──────────────────────────────────────
+    const popup = document.createElement('div');
+    popup.className = 'lb-avatar-popup';
+    document.body.appendChild(popup);
+
+    let popupHideTimer = null;
+
+    document.addEventListener('mouseover', e => {
+      const avatar = e.target.closest('.lb-avatar');
+      if (!avatar) return;
+
+      clearTimeout(popupHideTimer);
+
+      const src    = avatar.dataset.avatar;
+      const letter = avatar.dataset.initial || '?';
+
+      if (src) {
+        popup.innerHTML = `<img src="${src}" alt="">`;
+      } else {
+        popup.innerHTML = `<div style="display:flex;align-items:center;justify-content:center;background:rgba(94,106,210,0.15);color:#5E6AD2;font-size:48px;font-weight:700;">${letter}</div>`;
+      }
+
+      // Position: above-right of the avatar, clamped to viewport
+      const r   = avatar.getBoundingClientRect();
+      const pw  = 208;
+      const ph  = 208;
+      const gap = 8;
+
+      let left = r.right + gap;
+      let top  = r.top - ph / 2 + r.height / 2;
+
+      // Clamp horizontally
+      if (left + pw > window.innerWidth - 8) left = r.left - pw - gap;
+      if (left < 8) left = 8;
+      // Clamp vertically
+      if (top + ph > window.innerHeight - 8) top = window.innerHeight - ph - 8;
+      if (top < 8) top = 8;
+
+      popup.style.left = `${left}px`;
+      popup.style.top  = `${top}px`;
+      popup.classList.add('is-visible');
+    });
+
+    document.addEventListener('mouseout', e => {
+      const avatar = e.target.closest('.lb-avatar');
+      if (!avatar) return;
+      // Small delay so moving from avatar to popup edge doesn't flicker
+      popupHideTimer = setTimeout(() => popup.classList.remove('is-visible'), 80);
+    });
   </script>
 </body>
 </html>
