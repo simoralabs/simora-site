@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Primary Meta Tags -->
+    <title>Terminal Paper Trading | Practice Memecoin Trading with Simora</title>
+    <meta name="description" content="Paper trade memecoins on Terminal, formerly Padre, without risking real funds. Simora lets you simulate trades, track PnL and practice directly on supported Terminal pages.">
+    <meta name="keywords" content="Terminal paper trading, Terminal memecoin paper trading, pump.fun Terminal paper trading, paper trade Terminal, Padre Terminal paper trading">
+    <meta name="author" content="Simora Labs">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://simoralabs.com/terminal-paper-trading.html">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://simoralabs.com/terminal-paper-trading.html">
+    <meta property="og:title" content="Terminal Paper Trading | Practice Memecoin Trading with Simora">
+    <meta property="og:description" content="Paper trade memecoins on Terminal without risking real funds. Practice trades, track PnL and test strategies with Simora.">
+    <meta property="og:image" content="https://simoralabs.com/assets/simora-og-image.png">
+    <meta property="og:site_name" content="Simora">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://simoralabs.com/terminal-paper-trading.html">
+    <meta property="twitter:title" content="Terminal Paper Trading | Practice Memecoin Trading with Simora">
+    <meta property="twitter:description" content="Paper trade memecoins on Terminal without risking real funds. Practice trades, track PnL and test strategies with Simora.">
+    <meta property="twitter:image" content="https://simoralabs.com/assets/simora-og-image.png">
+    <meta property="twitter:site" content="@simoralabs">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebPage",
+          "@id": "https://simoralabs.com/terminal-paper-trading.html#webpage",
+          "url": "https://simoralabs.com/terminal-paper-trading.html",
+          "name": "Terminal Paper Trading | Practice Memecoin Trading with Simora",
+          "description": "Paper trade memecoins on Terminal, formerly Padre, without risking real funds. Simora lets you simulate trades, track PnL and practice directly on supported Terminal pages.",
+          "isPartOf": {
+            "@id": "https://simoralabs.com/#website"
+          },
+          "about": {
+            "@id": "https://simoralabs.com/#software"
+          }
+        },
+        {
+          "@type": "FAQPage",
+          "@id": "https://simoralabs.com/terminal-paper-trading.html#faq",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "What is Terminal?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Terminal is the current name of the trading platform previously known as Padre."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Can I paper trade on Terminal with Simora?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes. Simora provides paper trading tools on supported Terminal pages so you can simulate trades without using real funds."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Does Simora execute real trades on Terminal?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "No. Simora paper trades are simulated and do not move real assets or execute blockchain transactions."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Can I use Quick Buy on Terminal?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes. Simora provides Quick Buy tools on supported Terminal token listings so you can practice fast entries using simulated funds."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Does Simora show chart markers on Terminal?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes. Simora can display supported simulated entry and exit markers on Terminal charts."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Do I need to connect a wallet?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "No. Simora does not require a wallet connection for paper trading."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Is Simora free?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes. Simora is free to use with no activation key, subscription or paid feature tier."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Does Simora support the former Padre platform?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Padre is the former name of Terminal. Simora supports the current Terminal platform, and the Padre page remains available for users searching by the former name."
+              }
+            }
+          ]
+        }
+      ]
+    }
+    </script>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        bg: '#0B0C0E',
+                        surface: '#141518',
+                        border: '#2A2C32',
+                        primary: '#EDEDEF',
+                        secondary: '#8A8F98',
+                        accent: '#5E6AD2',
+                        success: '#2E9E6E',
+                    },
+                    backgroundImage: {
+                        'accent-gradient': 'linear-gradient(135deg, #5E6AD2 0%, #8B5CF6 100%)',
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0B0C0E; }
+        ::-webkit-scrollbar-thumb { background: #2A2C32; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #3E4149; }
+        
+        .glass {
+            background: rgba(20, 21, 24, 0.6);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+
+        .bg-grid-pattern {
+            background-size: 50px 50px;
+            background-image: linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+        }
+
+        .glass-card {
+            background: rgba(26, 27, 30, 0.4);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .glass-card:hover {
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        body {
+            opacity: 0;
+            transition: opacity 0.5s ease-out;
+        }
+        body.loaded {
+            opacity: 1;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="bg-bg text-primary font-sans antialiased selection:bg-accent/30 selection:text-white overflow-x-hidden">
+
+    <!-- Background Elements -->
+    <div class="fixed inset-0 z-[-1] bg-grid-pattern pointer-events-none"></div>
+    <div class="fixed top-0 left-1/2 -translate-x-1/2 w-full h-[800px] z-[-1] overflow-hidden pointer-events-none opacity-30">
+        <div class="absolute top-0 left-1/4 w-96 h-96 bg-[#667eea] rounded-full mix-blend-multiply filter blur-[128px] animate-pulse" style="animation-duration: 10s"></div>
+        <div class="absolute top-0 right-1/4 w-96 h-96 bg-[#764ba2] rounded-full mix-blend-multiply filter blur-[128px] animate-pulse" style="animation-duration: 10s; animation-delay: 2s"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 border-b border-white/5 glass transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+            <a href="./" class="flex items-center gap-3 hover:opacity-80 transition-opacity">
+                <img src="./assets/simora-logo.png" alt="Simora" class="w-8 h-8">
+                <span class="text-[18px] font-medium text-[#e5e7eb] uppercase tracking-[0.18em]">Simora</span>
+            </a>
+            
+            <!-- Centered Navigation Links -->
+            <div class="absolute left-1/2 transform -translate-x-1/2 hidden md:flex items-center gap-6 text-sm text-secondary font-medium">
+                <a href="./" class="hover:text-primary transition-colors">Home</a>
+                <a href="./#features" class="hover:text-primary transition-colors">Features</a>
+                <a href="./#platforms" class="hover:text-primary transition-colors">Platforms</a>
+                <a href="./support.html" class="hover:text-primary transition-colors">Support</a>
+            </div>
+            
+            <div class="flex items-center gap-4">
+                <!-- Social Icons -->
+                <div class="hidden sm:flex items-center gap-3 text-secondary/60">
+                    <a href="https://x.com/simoralabs" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors" title="Follow us on X">
+                        <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                        </svg>
+                    </a>
+                    <a href="https://github.com/simoralabs/simora-paper-trading-extension" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors" title="View on GitHub">
+                        <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                        </svg>
+                    </a>
+                </div>
+                <!-- Get Simora Button -->
+                <a href="https://chromewebstore.google.com/detail/chjhmhbpnnohcdafkdjklconpielhcld" target="_blank" rel="noopener noreferrer" class="hidden sm:flex items-center gap-2 text-sm font-medium bg-white/5 hover:bg-white/10 border border-white/10 px-5 py-2 rounded-full transition-all group hover:border-accent/50">
+                    <i data-lucide="chrome" class="w-4 h-4 text-secondary group-hover:text-white transition-colors"></i>
+                    <span>Add to Chrome&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-32 pb-20 min-h-[600px] flex flex-col justify-center">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <h1 class="reveal text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight mb-6 text-white">Paper Trade Memecoins on Terminal</h1>
+            <p class="reveal text-xl md:text-2xl text-secondary mb-4 max-w-3xl mx-auto leading-relaxed">Practice entries, exits and fast trade execution on supported Terminal pages without using real funds.</p>
+            <p class="reveal text-lg text-secondary/80 mb-2 max-w-2xl mx-auto">Terminal was formerly known as Padre. Simora supports paper trading on the current Terminal platform.</p>
+            <p class="reveal text-lg text-secondary/80 mb-10 max-w-2xl mx-auto">Simora is a free memecoin paper trading extension for Axiom, GMGN and Terminal.</p>
+            
+            <div class="reveal flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="https://chromewebstore.google.com/detail/chjhmhbpnnohcdafkdjklconpielhcld" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto px-8 py-4 bg-accent-gradient hover:bg-accent-gradient-hover rounded-full text-white text-lg font-medium transition-all flex items-center justify-center gap-2 shadow-lg">
+                    <i data-lucide="chrome" class="w-5 h-5"></i>
+                    <span>Add Simora to Chrome</span>
+                </a>
+                <a href="./" class="w-full sm:w-auto px-8 py-4 bg-white/5 hover:bg-white/10 border border-white/10 rounded-full text-white text-lg font-medium transition-all">
+                    Back to Simora
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 1: What Is Terminal Paper Trading -->
+    <section class="py-20 border-t border-white/5">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="reveal text-3xl md:text-4xl font-semibold tracking-tight mb-4">What Is Terminal Paper Trading?</h2>
+            </div>
+            <div class="reveal glass-card rounded-xl p-8 md:p-10">
+                <p class="text-lg text-secondary leading-relaxed mb-6">Paper trading allows traders to practice with simulated funds instead of real capital.</p>
+                <p class="text-lg text-secondary leading-relaxed mb-6">Simora adds paper trading tools to supported Terminal pages so users can practice interacting with fast-moving memecoin markets without executing real blockchain transactions.</p>
+                <p class="text-base text-secondary/70 leading-relaxed italic">Terminal was previously known as Padre.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 2: How to Paper Trade on Terminal -->
+    <section class="py-20 border-t border-white/5">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="reveal text-3xl md:text-4xl font-semibold tracking-tight mb-4">How to Paper Trade on Terminal</h2>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8 mb-12">
+                <!-- Step 1 -->
+                <div class="reveal glass-card rounded-xl p-8 text-center">
+                    <div class="w-16 h-16 mx-auto mb-6 rounded-full bg-accent/10 border border-accent/20 flex items-center justify-center">
+                        <span class="text-2xl font-bold text-accent">1</span>
+                    </div>
+                    <h3 class="text-xl font-semibold text-white mb-4">Install Simora</h3>
+                    <p class="text-secondary leading-relaxed">Install the free Simora extension from the Chrome Web Store.</p>
+                </div>
+                
+                <!-- Step 2 -->
+                <div class="reveal glass-card rounded-xl p-8 text-center">
+                    <div class="w-16 h-16 mx-auto mb-6 rounded-full bg-accent/10 border border-accent/20 flex items-center justify-center">
+                        <span class="text-2xl font-bold text-accent">2</span>
+                    </div>
+                    <h3 class="text-xl font-semibold text-white mb-4">Open Terminal</h3>
+                    <p class="text-secondary leading-relaxed">Navigate to a supported token, trading or listing page on Terminal.</p>
+                </div>
+                
+                <!-- Step 3 -->
+                <div class="reveal glass-card rounded-xl p-8 text-center">
+                    <div class="w-16 h-16 mx-auto mb-6 rounded-full bg-accent/10 border border-accent/20 flex items-center justify-center">
+                        <span class="text-2xl font-bold text-accent">3</span>
+                    </div>
+                    <h3 class="text-xl font-semibold text-white mb-4">Start Paper Trading</h3>
+                    <p class="text-secondary leading-relaxed">Simulate entries and exits, track positions and review paper trading PnL using Simora.</p>
+                </div>
+            </div>
+            
+            <div class="reveal text-center">
+                <p class="text-lg text-secondary/80 max-w-2xl mx-auto">No wallet connection, activation key or payment is required.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 3: Practice Without Real Funds -->
+    <section class="py-20 border-t border-white/5">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="reveal text-3xl md:text-4xl font-semibold tracking-tight mb-4">Practice Terminal Trading Without Real Funds</h2>
+            </div>
+            <div class="reveal glass-card rounded-xl p-8 md:p-10">
+                <p class="text-lg text-secondary leading-relaxed mb-8">Simora uses simulated trades that do not move assets or execute blockchain transactions.</p>
+                
+                <h3 class="text-xl font-semibold text-white mb-6">Practice opportunities include:</h3>
+                <ul class="space-y-4 text-lg text-secondary">
+                    <li class="flex items-start gap-3">
+                        <i data-lucide="check" class="w-6 h-6 text-success flex-shrink-0 mt-1"></i>
+                        <span>Entries and exits</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <i data-lucide="check" class="w-6 h-6 text-success flex-shrink-0 mt-1"></i>
+                        <span>Position sizing</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <i data-lucide="check" class="w-6 h-6 text-success flex-shrink-0 mt-1"></i>
+                        <span>Fast execution practice</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <i data-lucide="check" class="w-6 h-6 text-success flex-shrink-0 mt-1"></i>
+                        <span>PnL management</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <i data-lucide="check" class="w-6 h-6 text-success flex-shrink-0 mt-1"></i>
+                        <span>Strategy testing</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <i data-lucide="check" class="w-6 h-6 text-success flex-shrink-0 mt-1"></i>
+                        <span>Reviewing past performance</span>
+                    </li>
+                </ul>
+                
+                <div class="mt-8 p-4 bg-white/5 border border-white/10 rounded-lg">
+                    <p class="text-sm text-secondary/80 italic">Paper trading cannot reproduce every condition of live trading and does not guarantee future results.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 4: Simora Tools for Terminal -->
+    <section class="py-20 border-t border-white/5">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="reveal text-3xl md:text-4xl font-semibold tracking-tight mb-4">Simora Tools for Terminal</h2>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Trading Panel -->
+                <div class="reveal glass-card rounded-xl p-6 hover:border-white/10 transition-all">
+                    <div class="w-12 h-12 mb-4 rounded-lg bg-accent/10 border border-accent/20 flex items-center justify-center">
+                        <i data-lucide="panel-top" class="w-6 h-6 text-accent"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold text-white mb-3">Trading Panel</h3>
+                    <p class="text-sm text-secondary leading-relaxed">Simulate buy and sell orders on supported Terminal trading pages.</p>
+                </div>
+                
+                <!-- Dynamic PnL Bar -->
+                <div class="reveal glass-card rounded-xl p-6 hover:border-white/10 transition-all">
+                    <div class="w-12 h-12 mb-4 rounded-lg bg-accent/10 border border-accent/20 flex items-center justify-center">
+                        <i data-lucide="bar-chart-3" class="w-6 h-6 text-accent"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold text-white mb-3">Dynamic PnL Bar</h3>
+                    <p class="text-sm text-secondary leading-relaxed">Monitor simulated balance, open positions and PnL while navigating Terminal.</p>
+                </div>
+                
+                <!-- Quick Buy -->
+                <div class="reveal glass-card rounded-xl p-6 hover:border-white/10 transition-all">
+                    <div class="w-12 h-12 mb-4 rounded-lg bg-accent/10 border border-accent/20 flex items-center justify-center">
+                        <i data-lucide="zap" class="w-6 h-6 text-accent"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold text-white mb-3">Quick Buy</h3>
+                    <p class="text-sm text-secondary leading-relaxed">Practice rapid entries from supported Terminal token listings.</p>
+                </div>
+                
+                <!-- Chart Markers -->
+                <div class="reveal glass-card rounded-xl p-6 hover:border-white/10 transition-all">
+                    <div class="w-12 h-12 mb-4 rounded-lg bg-accent/10 border border-accent/20 flex items-center justify-center">
+                        <i data-lucide="map-pin" class="w-6 h-6 text-accent"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold text-white mb-3">Chart Markers</h3>
+                    <p class="text-sm text-secondary leading-relaxed">View simulated entry and exit markers on supported Terminal charts.</p>
+                </div>
+                
+                <!-- Portfolio Calendar -->
+                <div class="reveal glass-card rounded-xl p-6 hover:border-white/10 transition-all">
+                    <div class="w-12 h-12 mb-4 rounded-lg bg-accent/10 border border-accent/20 flex items-center justify-center">
+                        <i data-lucide="calendar" class="w-6 h-6 text-accent"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold text-white mb-3">Portfolio Calendar</h3>
+                    <p class="text-sm text-secondary leading-relaxed">Review daily paper trading activity and performance history.</p>
+                </div>
+                
+                <!-- Auto Translate -->
+                <div class="reveal glass-card rounded-xl p-6 hover:border-white/10 transition-all">
+                    <div class="w-12 h-12 mb-4 rounded-lg bg-accent/10 border border-accent/20 flex items-center justify-center">
+                        <i data-lucide="languages" class="w-6 h-6 text-accent"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold text-white mb-3">Auto Translate</h3>
+                    <p class="text-sm text-secondary leading-relaxed">Translate supported Terminal interface content in real time.</p>
+                </div>
+                
+                <!-- Simora Social -->
+                <div class="reveal glass-card rounded-xl p-6 hover:border-white/10 transition-all">
+                    <div class="w-12 h-12 mb-4 rounded-lg bg-accent/10 border border-accent/20 flex items-center justify-center">
+                        <i data-lucide="users" class="w-6 h-6 text-accent"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold text-white mb-3">Simora Social</h3>
+                    <p class="text-sm text-secondary leading-relaxed">Share and follow supported paper trading activity.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 5: Why Practice on Terminal -->
+    <section class="py-20 border-t border-white/5">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="reveal text-3xl md:text-4xl font-semibold tracking-tight mb-4">Why Practice on Terminal Before Using Real Funds?</h2>
+            </div>
+            <div class="reveal glass-card rounded-xl p-8 md:p-10">
+                <ul class="space-y-4 text-lg text-secondary mb-8">
+                    <li class="flex items-start gap-3">
+                        <i data-lucide="book-open" class="w-6 h-6 text-accent flex-shrink-0 mt-1"></i>
+                        <span>Learning the Terminal interface</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <i data-lucide="timer" class="w-6 h-6 text-accent flex-shrink-0 mt-1"></i>
+                        <span>Practicing decision speed</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <i data-lucide="mouse-pointer-click" class="w-6 h-6 text-accent flex-shrink-0 mt-1"></i>
+                        <span>Testing entries and exits</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <i data-lucide="target" class="w-6 h-6 text-accent flex-shrink-0 mt-1"></i>
+                        <span>Testing personal strategies</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <i data-lucide="search" class="w-6 h-6 text-accent flex-shrink-0 mt-1"></i>
+                        <span>Reviewing mistakes</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <i data-lucide="trending-up" class="w-6 h-6 text-accent flex-shrink-0 mt-1"></i>
+                        <span>Becoming familiar with fast-moving memecoin markets</span>
+                    </li>
+                </ul>
+                
+                <div class="p-4 bg-white/5 border border-white/10 rounded-lg">
+                    <p class="text-sm text-secondary/80 italic">Paper trading cannot reproduce every condition of live trading and does not guarantee future results.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 6: Is Simora Free -->
+    <section class="py-20 border-t border-white/5">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="reveal text-3xl md:text-4xl font-semibold tracking-tight mb-4">Is Simora Free on Terminal?</h2>
+            </div>
+            <div class="reveal glass-card rounded-xl p-8 md:p-10 text-center">
+                <p class="text-xl text-white font-semibold mb-8">Yes. Simora is 100% free to use.</p>
+                
+                <div class="max-w-2xl mx-auto">
+                    <ul class="space-y-3 text-lg text-secondary">
+                        <li>No activation keys</li>
+                        <li>No subscriptions</li>
+                        <li>No paid plans</li>
+                        <li>No locked premium features</li>
+                        <li>No wallet connection required</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 7: FAQ -->
+    <section id="faq" class="py-20 border-t border-white/5">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="reveal text-3xl md:text-4xl font-semibold tracking-tight mb-4">Frequently Asked Questions</h2>
+            </div>
+
+            <div class="space-y-4">
+                <!-- FAQ 1 -->
+                <div class="reveal glass-card rounded-xl p-6 hover:border-white/10 transition-all">
+                    <h3 class="text-lg font-semibold text-white mb-3">What is Terminal?</h3>
+                    <p class="text-sm text-secondary leading-relaxed">Terminal is the current name of the trading platform previously known as Padre.</p>
+                </div>
+
+                <!-- FAQ 2 -->
+                <div class="reveal glass-card rounded-xl p-6 hover:border-white/10 transition-all">
+                    <h3 class="text-lg font-semibold text-white mb-3">Can I paper trade on Terminal with Simora?</h3>
+                    <p class="text-sm text-secondary leading-relaxed">Yes. Simora provides paper trading tools on supported Terminal pages so you can simulate trades without using real funds.</p>
+                </div>
+
+                <!-- FAQ 3 -->
+                <div class="reveal glass-card rounded-xl p-6 hover:border-white/10 transition-all">
+                    <h3 class="text-lg font-semibold text-white mb-3">Does Simora execute real trades on Terminal?</h3>
+                    <p class="text-sm text-secondary leading-relaxed">No. Simora paper trades are simulated and do not move real assets or execute blockchain transactions.</p>
+                </div>
+
+                <!-- FAQ 4 -->
+                <div class="reveal glass-card rounded-xl p-6 hover:border-white/10 transition-all">
+                    <h3 class="text-lg font-semibold text-white mb-3">Can I use Quick Buy on Terminal?</h3>
+                    <p class="text-sm text-secondary leading-relaxed">Yes. Simora provides Quick Buy tools on supported Terminal token listings so you can practice fast entries using simulated funds.</p>
+                </div>
+
+                <!-- FAQ 5 -->
+                <div class="reveal glass-card rounded-xl p-6 hover:border-white/10 transition-all">
+                    <h3 class="text-lg font-semibold text-white mb-3">Does Simora show chart markers on Terminal?</h3>
+                    <p class="text-sm text-secondary leading-relaxed">Yes. Simora can display supported simulated entry and exit markers on Terminal charts.</p>
+                </div>
+
+                <!-- FAQ 6 -->
+                <div class="reveal glass-card rounded-xl p-6 hover:border-white/10 transition-all">
+                    <h3 class="text-lg font-semibold text-white mb-3">Do I need to connect a wallet?</h3>
+                    <p class="text-sm text-secondary leading-relaxed">No. Simora does not require a wallet connection for paper trading.</p>
+                </div>
+
+                <!-- FAQ 7 -->
+                <div class="reveal glass-card rounded-xl p-6 hover:border-white/10 transition-all">
+                    <h3 class="text-lg font-semibold text-white mb-3">Is Simora free?</h3>
+                    <p class="text-sm text-secondary leading-relaxed">Yes. Simora is free to use with no activation key, subscription or paid feature tier.</p>
+                </div>
+
+                <!-- FAQ 8 -->
+                <div class="reveal glass-card rounded-xl p-6 hover:border-white/10 transition-all">
+                    <h3 class="text-lg font-semibold text-white mb-3">Does Simora support the former Padre platform?</h3>
+                    <p class="text-sm text-secondary leading-relaxed">Padre is the former name of Terminal. Simora supports the current Terminal platform, and the <a href="./padre-paper-trading.html" class="text-accent hover:text-[#A78BFA] transition-colors">Padre page</a> remains available for users searching by the former name.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA Section -->
+    <section class="py-20 border-t border-white/5">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <h2 class="reveal text-3xl md:text-4xl font-semibold tracking-tight mb-6">Practice on Terminal Without Risking Real Funds</h2>
+            <p class="reveal text-lg text-secondary mb-10 max-w-2xl mx-auto">Install Simora and start paper trading on supported Terminal pages.</p>
+            
+            <div class="reveal">
+                <a href="https://chromewebstore.google.com/detail/chjhmhbpnnohcdafkdjklconpielhcld" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-8 py-4 bg-accent-gradient hover:bg-accent-gradient-hover rounded-full text-white text-lg font-medium transition-all shadow-lg">
+                    <i data-lucide="chrome" class="w-5 h-5"></i>
+                    <span>Add Simora to Chrome</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-white/5 py-12 bg-surface/30">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <!-- Brand -->
+                <div>
+                    <div class="flex items-center gap-3 mb-4">
+                        <img src="./assets/simora-logo.png" alt="Simora" class="w-8 h-8">
+                        <span class="text-[18px] font-medium text-[#e5e7eb] uppercase tracking-[0.18em]">Simora</span>
+                    </div>
+                    <p class="text-sm text-secondary leading-relaxed">Free memecoin paper trading extension for Axiom, GMGN and Terminal.</p>
+                </div>
+                
+                <!-- Product -->
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Product</h4>
+                    <ul class="space-y-2 text-sm text-secondary">
+                        <li><a href="./#features" class="hover:text-primary transition-colors">Features</a></li>
+                        <li><a href="./#platforms" class="hover:text-primary transition-colors">Platforms</a></li>
+                        <li><a href="./support.html" class="hover:text-primary transition-colors">Support</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Resources -->
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Resources</h4>
+                    <ul class="space-y-2 text-sm text-secondary">
+                        <li><a href="./memecoin-paper-trading.html" class="hover:text-primary transition-colors">Memecoin Paper Trading</a></li>
+                        <li><a href="./axiom-paper-trading.html" class="hover:text-primary transition-colors">Axiom Paper Trading</a></li>
+                        <li><a href="./gmgn-paper-trading.html" class="hover:text-primary transition-colors">GMGN Paper Trading</a></li>
+                        <li><a href="./terminal-paper-trading.html" class="hover:text-primary transition-colors">Terminal Paper Trading</a></li>
+                        <li><a href="./padre-paper-trading.html" class="hover:text-primary transition-colors">Padre Paper Trading</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Legal -->
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Legal</h4>
+                    <ul class="space-y-2 text-sm text-secondary">
+                        <li><a href="./privacy-policy.html" class="hover:text-primary transition-colors">Privacy Policy</a></li>
+                        <li><a href="./terms-of-service.html" class="hover:text-primary transition-colors">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-sm text-secondary">© 2026 Simora Labs. All rights reserved.</p>
+                <div class="flex items-center gap-4">
+                    <a href="https://x.com/simoralabs" target="_blank" rel="noopener noreferrer" class="text-secondary hover:text-white transition-colors">
+                        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                        </svg>
+                    </a>
+                    <a href="https://github.com/simoralabs/simora-paper-trading-extension" target="_blank" rel="noopener noreferrer" class="text-secondary hover:text-white transition-colors">
+                        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Fade in page
+        window.addEventListener('load', () => {
+            document.body.classList.add('loaded');
+        });
+
+        // Reveal on scroll
+        const revealElements = document.querySelectorAll('.reveal');
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        });
+
+        revealElements.forEach(el => revealObserver.observe(el));
+    </script>
+</body>
+</html>
