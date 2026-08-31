@@ -1,0 +1,1649 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Primary Meta Tags -->
+    <title>Simora vs DryFlip | Memecoin Paper Trading Comparison</title>
+    <meta name="description" content="Compare Simora and DryFlip for memecoin paper trading. See differences in execution simulation, market data, trade history, portfolio tools, Quick Buy, social features and platform integration.">
+    <meta name="keywords" content="DryFlip alternative, Simora vs DryFlip, best DryFlip alternative, memecoin paper trading extension, memecoin trading simulator">
+    <meta name="author" content="Simora Labs">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://simoralabs.com/dryflip-alternative.html">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://simoralabs.com/dryflip-alternative.html">
+    <meta property="og:title" content="Simora vs DryFlip | Memecoin Paper Trading Comparison">
+    <meta property="og:description" content="Compare Simora and DryFlip for memecoin paper trading. See differences in execution simulation, market data, trade history, portfolio tools and platform integration.">
+    <meta property="og:image" content="https://simoralabs.com/assets/simora-og-image.png">
+    <meta property="og:site_name" content="Simora">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://simoralabs.com/dryflip-alternative.html">
+    <meta property="twitter:title" content="Simora vs DryFlip | Memecoin Paper Trading Comparison">
+    <meta property="twitter:description" content="Compare Simora and DryFlip for memecoin paper trading. See differences in execution simulation, market data, trade history and platform integration.">
+    <meta property="twitter:image" content="https://simoralabs.com/assets/simora-og-image.png">
+    <meta property="twitter:site" content="@simoralabs">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebPage",
+          "@id": "https://simoralabs.com/dryflip-alternative.html#webpage",
+          "url": "https://simoralabs.com/dryflip-alternative.html",
+          "name": "Simora vs DryFlip | Memecoin Paper Trading Comparison",
+          "description": "Compare Simora and DryFlip for memecoin paper trading. See differences in execution simulation, market data, trade history, portfolio tools, Quick Buy, social features and platform integration.",
+          "isPartOf": {
+            "@id": "https://simoralabs.com/#website"
+          },
+          "about": {
+            "@id": "https://simoralabs.com/#software"
+          }
+        },
+        {
+          "@type": "FAQPage",
+          "@id": "https://simoralabs.com/dryflip-alternative.html#faq",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "What is the main difference between Simora and DryFlip?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "DryFlip emphasizes broad website coverage. Simora focuses on deeper integration with Axiom, GMGN and Terminal, prioritizing execution realism, market-data precision and persistent trade history over platform count."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Does Simora support fewer platforms than DryFlip?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes. Simora currently focuses on Axiom, GMGN and Terminal. DryFlip supports a broader range of websites."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Why does Simora focus on Axiom, GMGN and Terminal?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Simora prioritizes integration depth over platform count. Maintaining deep integration with market data, execution behavior, navigation restoration, Quick Buy, markers, lines and Portfolio tools requires substantial engineering effort per platform."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Does Simora use WebSocket market data?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes. Simora uses a WebSocket-first market-data architecture on supported platforms to access live data streams and reduce reliance on rounded interface values."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "How does DryFlip obtain market values?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Hands-on testing and inspection of the extension code showed that DryFlip reads market values from the page DOM for its paper trading calculations."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Why are rounded DOM values important in paper trading?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Trading interfaces often display rounded values like 18.6K for readability, but this does not tell the simulator whether the underlying value is 18.56K, 18.60K or 18.64K. Small differences matter when recording simulated entry and exit points."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Does Simora simulate execution delay?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes. Simora simulates dynamic execution delay linked to the configured fee level. Higher fees produce shorter delays, while lower fees progressively increase simulated latency."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "How does Simora's fee setting affect simulated execution?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "The fee configuration affects both simulated execution cost and timing. Higher fees result in faster simulated execution, while lower fees create longer delays, allowing market movement to influence the simulated fill."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Does DryFlip have execution delay?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "During testing, DryFlip executed simulated trades immediately by default and provided an optional manually configured fixed delay."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Does Simora preserve previous trades after navigation?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes. Simora treats trading history as persistent state. When you return to a previously traded token on supported pages, Simora can restore relevant context including trades, PnL, chart markers and entry and exit lines."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Can I review old trades in Simora?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes. Simora Portfolio provides access to historical trades with direct navigation back to previously traded tokens and their restored chart context."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Does Simora have a Portfolio?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes. Simora Portfolio provides balance, realized PnL, performance graph, win rate, transaction statistics, active positions, historical trades, PnL Calendar and direct navigation to previously traded tokens."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Does DryFlip have a PnL Calendar?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes. DryFlip includes a PnL Calendar, although its historical trade workflow differs from Simora's Portfolio system."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Does Simora support Quick Buy?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes. Simora integrates with supported platforms' native Quick Buy controls for paper trading and prevents real Quick Buy actions from being triggered accidentally while Quick Buy mode is active."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "How is Simora Quick Buy different?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Simora uses the platform's existing native Quick Buy controls rather than adding separate interface elements, preserving trader muscle memory while reducing the chance of confusing simulated and real Quick Buy actions."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Does Simora require a wallet connection?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "No. Simora does not require a wallet connection for paper trading."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Is Simora free?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes. Simora is 100% free to use with no activation key, subscription or paid feature tier."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Does Simora have social trading features?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes. Simora Social includes friend system, trading activity, tracker tools and supported friend chart markers."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Does Simora support Auto Translate?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes. Simora can translate supported interface content directly inside the trading environment."
+              }
+            }
+          ]
+        }
+      ]
+    }
+    </script>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        bg: '#0B0C0E',
+                        surface: '#141518',
+                        border: '#2A2C32',
+                        primary: '#EDEDEF',
+                        secondary: '#8A8F98',
+                        accent: '#5E6AD2',
+                        success: '#2E9E6E',
+                    },
+                    backgroundImage: {
+                        'accent-gradient': 'linear-gradient(135deg, #5E6AD2 0%, #8B5CF6 100%)',
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0B0C0E; }
+        ::-webkit-scrollbar-thumb { background: #2A2C32; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #3E4149; }
+        
+        .glass {
+            background: rgba(20, 21, 24, 0.6);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+
+        .bg-grid-pattern {
+            background-size: 50px 50px;
+            background-image: linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+        }
+
+        .glass-card {
+            background: rgba(26, 27, 30, 0.4);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .glass-card:hover {
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        body {
+            opacity: 0;
+            transition: opacity 0.5s ease-out;
+        }
+        body.loaded {
+            opacity: 1;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .comparison-table {
+            overflow-x: auto;
+        }
+        
+        .comparison-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .comparison-table th,
+        .comparison-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .comparison-table th {
+            font-weight: 600;
+            color: #EDEDEF;
+            background: rgba(94, 106, 210, 0.1);
+        }
+        
+        .comparison-table td {
+            color: #8A8F98;
+        }
+        
+        .comparison-table tr:hover {
+            background: rgba(255, 255, 255, 0.02);
+        }
+        
+        @media (max-width: 768px) {
+            .comparison-table th,
+            .comparison-table td {
+                padding: 0.75rem 0.5rem;
+                font-size: 0.875rem;
+            }
+        }
+    </style>
+</head>
+<body class="bg-bg text-primary font-sans antialiased selection:bg-accent/30 selection:text-white overflow-x-hidden">
+
+    <!-- Background Elements -->
+    <div class="fixed inset-0 z-[-1] bg-grid-pattern pointer-events-none"></div>
+    <div class="fixed top-0 left-1/2 -translate-x-1/2 w-full h-[800px] z-[-1] overflow-hidden pointer-events-none opacity-30">
+        <div class="absolute top-0 left-1/4 w-96 h-96 bg-[#667eea] rounded-full mix-blend-multiply filter blur-[128px] animate-pulse" style="animation-duration: 10s"></div>
+        <div class="absolute top-0 right-1/4 w-96 h-96 bg-[#764ba2] rounded-full mix-blend-multiply filter blur-[128px] animate-pulse" style="animation-duration: 10s; animation-delay: 2s"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 border-b border-white/5 glass transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+            <a href="./" class="flex items-center gap-3 hover:opacity-80 transition-opacity">
+                <img src="./assets/simora-logo.png" alt="Simora" class="w-8 h-8">
+                <span class="text-[18px] font-medium text-[#e5e7eb] uppercase tracking-[0.18em]">Simora</span>
+            </a>
+            
+            <!-- Centered Navigation Links -->
+            <div class="absolute left-1/2 transform -translate-x-1/2 hidden md:flex items-center gap-6 text-sm text-secondary font-medium">
+                <a href="./" class="hover:text-primary transition-colors">Home</a>
+                <a href="./#features" class="hover:text-primary transition-colors">Features</a>
+                <a href="./#platforms" class="hover:text-primary transition-colors">Platforms</a>
+                <a href="./support.html" class="hover:text-primary transition-colors">Support</a>
+            </div>
+            
+            <div class="flex items-center gap-4">
+                <!-- Social Icons -->
+                <div class="hidden sm:flex items-center gap-3 text-secondary/60">
+                    <a href="https://x.com/simoralabs" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors" title="Follow us on X">
+                        <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                        </svg>
+                    </a>
+                    <a href="https://github.com/simoralabs/simora-paper-trading-extension" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors" title="View on GitHub">
+                        <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                        </svg>
+                    </a>
+                </div>
+                <!-- Get Simora Button -->
+                <a href="https://chromewebstore.google.com/detail/chjhmhbpnnohcdafkdjklconpielhcld" target="_blank" rel="noopener noreferrer" class="hidden sm:flex items-center gap-2 text-sm font-medium bg-white/5 hover:bg-white/10 border border-white/10 px-5 py-2 rounded-full transition-all group hover:border-accent/50">
+                    <i data-lucide="chrome" class="w-4 h-4 text-secondary group-hover:text-white transition-colors"></i>
+                    <span>Add to Chrome&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-32 pb-20 min-h-[600px] flex flex-col justify-center">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <h1 class="reveal text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight mb-6 text-white">Simora vs DryFlip: Memecoin Paper Trading Compared</h1>
+            <p class="reveal text-xl md:text-2xl text-secondary mb-4 max-w-3xl mx-auto leading-relaxed">Simora and DryFlip both let traders practice memecoin trading without using real funds, but they take very different approaches to simulation and platform integration.</p>
+            <p class="reveal text-lg text-secondary/80 mb-10 max-w-2xl mx-auto">DryFlip emphasizes broad website coverage. Simora focuses on deeper integration with Axiom, GMGN and Terminal.</p>
+            
+            <div class="reveal flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="https://chromewebstore.google.com/detail/chjhmhbpnnohcdafkdjklconpielhcld" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto px-8 py-4 bg-accent-gradient hover:bg-accent-gradient-hover rounded-full text-white text-lg font-medium transition-all flex items-center justify-center gap-2 shadow-lg">
+                    <i data-lucide="chrome" class="w-5 h-5"></i>
+                    <span>Try Simora Free</span>
+                </a>
+                <a href="#comparison" class="w-full sm:w-auto px-8 py-4 bg-white/5 hover:bg-white/10 border border-white/10 rounded-full text-white text-lg font-medium transition-all">
+                    See the Comparison
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 1: Main Difference -->
+    <section class="py-20 border-t border-white/5">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="reveal text-3xl md:text-4xl font-semibold tracking-tight mb-4">The Main Difference: Coverage vs Integration Depth</h2>
+            </div>
+            <div class="reveal glass-card rounded-xl p-8 md:p-10 mb-8">
+                <p class="text-lg text-secondary leading-relaxed mb-6">DryFlip supports a broader range of websites.</p>
+                <p class="text-lg text-secondary leading-relaxed mb-6">Simora intentionally supports fewer platforms and focuses engineering effort on deeper integration with dedicated memecoin trading terminals.</p>
+                
+                <h3 class="text-xl font-semibold text-white mb-4">Simora currently focuses on:</h3>
+                <ul class="space-y-2 text-lg text-secondary mb-8">
+                    <li class="flex items-center gap-2">
+                        <i data-lucide="check" class="w-5 h-5 text-accent"></i>
+                        <span>Axiom</span>
+                    </li>
+                    <li class="flex items-center gap-2">
+                        <i data-lucide="check" class="w-5 h-5 text-accent"></i>
+                        <span>GMGN</span>
+                    </li>
+                    <li class="flex items-center gap-2">
+                        <i data-lucide="check" class="w-5 h-5 text-accent"></i>
+                        <span>Terminal (formerly Padre)</span>
+                    </li>
+                </ul>
+                
+                <p class="text-lg text-secondary leading-relaxed mb-6">Platform count alone does not describe:</p>
+                <ul class="grid md:grid-cols-2 gap-3 text-base text-secondary mb-8">
+                    <li class="flex items-start gap-2">
+                        <i data-lucide="arrow-right" class="w-4 h-4 text-accent flex-shrink-0 mt-1"></i>
+                        <span>Execution realism</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <i data-lucide="arrow-right" class="w-4 h-4 text-accent flex-shrink-0 mt-1"></i>
+                        <span>Market-data precision</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <i data-lucide="arrow-right" class="w-4 h-4 text-accent flex-shrink-0 mt-1"></i>
+                        <span>Trade persistence</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <i data-lucide="arrow-right" class="w-4 h-4 text-accent flex-shrink-0 mt-1"></i>
+                        <span>Portfolio functionality</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <i data-lucide="arrow-right" class="w-4 h-4 text-accent flex-shrink-0 mt-1"></i>
+                        <span>Chart history</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <i data-lucide="arrow-right" class="w-4 h-4 text-accent flex-shrink-0 mt-1"></i>
+                        <span>Native platform integration</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <i data-lucide="arrow-right" class="w-4 h-4 text-accent flex-shrink-0 mt-1"></i>
+                        <span>Social functionality</span>
+                    </li>
+                </ul>
+                
+                <div class="p-6 bg-accent/10 border border-accent/20 rounded-lg mb-6">
+                    <p class="text-lg text-white font-semibold text-center">More supported websites does not automatically mean deeper paper trading.</p>
+                </div>
+                
+                <p class="text-base text-secondary/80 leading-relaxed">DryFlip may be attractive to users whose main priority is using one paper trading tool across a larger number of websites.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 2: Comparison Table -->
+    <section id="comparison" class="py-20 border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="reveal text-3xl md:text-4xl font-semibold tracking-tight mb-4">Simora vs DryFlip at a Glance</h2>
+            </div>
+            
+            <div class="reveal glass-card rounded-xl p-6 md:p-8 overflow-hidden">
+                <div class="comparison-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th class="w-1/3">Feature</th>
+                                <th class="w-1/3">Simora</th>
+                                <th class="w-1/3">DryFlip</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="font-medium text-white">Platform strategy</td>
+                                <td>Focused integration with Axiom, GMGN and Terminal</td>
+                                <td>Broader website coverage</td>
+                            </tr>
+                            <tr>
+                                <td class="font-medium text-white">Primary market-data approach</td>
+                                <td>WebSocket-first live market data with fallback mechanisms</td>
+                                <td>DOM-based market values, verified through hands-on testing and inspection of the extension code</td>
+                            </tr>
+                            <tr>
+                                <td class="font-medium text-white">Displayed-value precision</td>
+                                <td>Designed to use more precise underlying market inputs where supported</td>
+                                <td>Paper trades can use rounded values displayed in the page interface</td>
+                            </tr>
+                            <tr>
+                                <td class="font-medium text-white">Execution timing</td>
+                                <td>Dynamic simulated delay linked to the configured fee level</td>
+                                <td>Trades execute immediately by default in our testing, with an optional manually configured fixed delay</td>
+                            </tr>
+                            <tr>
+                                <td class="font-medium text-white">Fee simulation</td>
+                                <td>Fee configuration affects simulated cost and execution timing</td>
+                                <td>Fee simulation is present, but execution latency is not dynamically derived from the fee configuration in the same way</td>
+                            </tr>
+                            <tr>
+                                <td class="font-medium text-white">Trade persistence after navigation</td>
+                                <td>Previous trades, PnL context, lines and markers are restored when revisiting supported tokens</td>
+                                <td>In our testing, closed-position context was not consistently restored after navigation</td>
+                            </tr>
+                            <tr>
+                                <td class="font-medium text-white">Portfolio</td>
+                                <td>Dedicated Portfolio with performance data, trade history, active positions and navigation back to previous trades</td>
+                                <td>PnL Calendar is available, but no equivalent integrated Portfolio workflow was observed in our testing</td>
+                            </tr>
+                            <tr>
+                                <td class="font-medium text-white">Open position visibility</td>
+                                <td>Open positions can be accessed through the persistent Dynamic PnL Bar</td>
+                                <td>Position information is mainly accessed through the individual token trading panel in our testing</td>
+                            </tr>
+                            <tr>
+                                <td class="font-medium text-white">Quick Buy integration</td>
+                                <td>Uses supported platforms' native Quick Buy controls for paper trading</td>
+                                <td>Adds separate Quick Buy interface elements</td>
+                            </tr>
+                            <tr>
+                                <td class="font-medium text-white">Quick Buy safety</td>
+                                <td>When Simora Quick Buy mode is active, supported native real-trade Quick Buy actions are prevented from being triggered accidentally</td>
+                                <td>Uses separate Quick Buy controls rather than taking over the supported platform's native controls</td>
+                            </tr>
+                            <tr>
+                                <td class="font-medium text-white">Historical chart context</td>
+                                <td>Historical simulated trades can be revisited with their markers and lines</td>
+                                <td>In our testing, historical chart context was not persistently restored in the same way</td>
+                            </tr>
+                            <tr>
+                                <td class="font-medium text-white">Auto Translate</td>
+                                <td>Available on supported interface content</td>
+                                <td>No equivalent feature observed in our testing</td>
+                            </tr>
+                            <tr>
+                                <td class="font-medium text-white">Social trading</td>
+                                <td>Friend system, trade activity, tracker tools and supported friend chart markers</td>
+                                <td>No equivalent social system observed in our testing</td>
+                            </tr>
+                            <tr>
+                                <td class="font-medium text-white">Customization</td>
+                                <td>Trading Panel themes, PnL Bar customization, custom images, Buy/Sell audio and customizable chart markers and lines</td>
+                                <td>More limited customization observed in our testing</td>
+                            </tr>
+                            <tr>
+                                <td class="font-medium text-white">Feedback system</td>
+                                <td>Integrated toast notifications for simulated transactions, actions and errors</td>
+                                <td>Different feedback implementation</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 3: Market Data Precision -->
+    <section class="py-20 border-t border-white/5 bg-accent/5">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="reveal text-3xl md:text-4xl font-semibold tracking-tight mb-4">Market Data Precision: WebSocket vs DOM Values</h2>
+            </div>
+            
+            <div class="reveal glass-card rounded-xl p-8 md:p-10 mb-8">
+                <h3 class="text-2xl font-semibold text-white mb-6">Simora's Approach</h3>
+                <p class="text-lg text-secondary leading-relaxed mb-6">Simora uses a WebSocket-first market-data architecture on supported platforms.</p>
+                <p class="text-lg text-secondary leading-relaxed mb-6">Where supported, Simora receives live market information directly from platform data streams. It can combine precise price information with supply data to calculate market-cap values.</p>
+                <p class="text-lg text-secondary leading-relaxed mb-8">DOM and page-level data can still be used as fallback mechanisms when required.</p>
+                
+                <h3 class="text-2xl font-semibold text-white mb-6">Why This Matters</h3>
+                <p class="text-lg text-secondary leading-relaxed mb-6">Trading interfaces often display rounded values for readability.</p>
+                <div class="p-6 bg-surface rounded-lg mb-6">
+                    <p class="text-base text-secondary/70 mb-2">For example:</p>
+                    <p class="text-3xl font-bold text-white mb-4">18.6K</p>
+                    <p class="text-base text-secondary leading-relaxed">This does not tell the simulator whether the underlying value is <span class="text-white font-medium">18.56K</span>, <span class="text-white font-medium">18.60K</span>, <span class="text-white font-medium">18.64K</span> or another nearby value.</p>
+                </div>
+                <p class="text-lg text-secondary leading-relaxed mb-8">Small differences matter when recording simulated entry and exit points.</p>
+            </div>
+            
+            <div class="reveal glass-card rounded-xl p-8 md:p-10 mb-8">
+                <h3 class="text-2xl font-semibold text-white mb-6">DryFlip Implementation</h3>
+                <p class="text-lg text-secondary leading-relaxed mb-6">Hands-on testing and inspection of the DryFlip extension code showed that DryFlip reads market values from the page DOM for its paper trading calculations.</p>
+                
+                <h4 class="text-xl font-semibold text-white mb-4">Practical Consequence</h4>
+                <p class="text-lg text-secondary leading-relaxed mb-6">If the page displays a rounded value, that rounded value can become part of the simulated trade calculation.</p>
+                <p class="text-lg text-secondary leading-relaxed mb-8">During testing, this was observable through simulated entries and exits that could appear at values not precisely aligned with the actual chart movement.</p>
+                <p class="text-base text-secondary/80 leading-relaxed italic">This represents a difference in market-data architecture and precision approach.</p>
+            </div>
+            
+            <div class="reveal glass-card rounded-xl p-8 md:p-10">
+                <h3 class="text-2xl font-semibold text-white mb-6">Simora's Design Goal</h3>
+                <p class="text-lg text-secondary leading-relaxed mb-6">Simora was specifically designed to reduce reliance on rounded interface values.</p>
+                <p class="text-lg text-secondary leading-relaxed mb-6">Its primary WebSocket data path allows the simulator to use more precise underlying values where available.</p>
+                
+                <h4 class="text-xl font-semibold text-white mb-4">This improves the precision of:</h4>
+                <ul class="space-y-3 text-lg text-secondary mb-6">
+                    <li class="flex items-start gap-2">
+                        <i data-lucide="check-circle" class="w-5 h-5 text-success flex-shrink-0 mt-1"></i>
+                        <span>Simulated entry values</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <i data-lucide="check-circle" class="w-5 h-5 text-success flex-shrink-0 mt-1"></i>
+                        <span>Simulated exit values</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <i data-lucide="check-circle" class="w-5 h-5 text-success flex-shrink-0 mt-1"></i>
+                        <span>Market-cap calculations</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <i data-lucide="check-circle" class="w-5 h-5 text-success flex-shrink-0 mt-1"></i>
+                        <span>PnL calculations</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <i data-lucide="check-circle" class="w-5 h-5 text-success flex-shrink-0 mt-1"></i>
+                        <span>Historical chart placement</span>
+                    </li>
+                </ul>
+                <p class="text-base text-secondary/80 leading-relaxed italic">Simora does not claim perfect exchange-level execution.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 4: Execution Simulation -->
+    <section class="py-20 border-t border-white/5">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="reveal text-3xl md:text-4xl font-semibold tracking-tight mb-4">Execution Simulation and Fee-Dependent Delay</h2>
+            </div>
+            
+            <div class="reveal glass-card rounded-xl p-8 md:p-10 mb-8">
+                <h3 class="text-2xl font-semibold text-white mb-6">Simora's Execution Model</h3>
+                <p class="text-lg text-secondary leading-relaxed mb-6">Simora does not treat every simulated order as an instant fill.</p>
+                <p class="text-lg text-secondary leading-relaxed mb-6">In Simora, the configured fee level affects the simulated execution behavior:</p>
+                
+                <ul class="space-y-4 text-lg text-secondary mb-8">
+                    <li class="flex items-start gap-3">
+                        <i data-lucide="trending-up" class="w-6 h-6 text-accent flex-shrink-0 mt-1"></i>
+                        <span>Higher fee configurations produce shorter simulated execution delays</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <i data-lucide="trending-down" class="w-6 h-6 text-accent flex-shrink-0 mt-1"></i>
+                        <span>Lower fee configurations progressively increase the simulated delay</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <i data-lucide="zap" class="w-6 h-6 text-accent flex-shrink-0 mt-1"></i>
+                        <span>At high fee configurations, simulated execution can occur in roughly the few-hundred-millisecond range</span>
+                    </li>
+                </ul>
+                
+                <div class="p-6 bg-accent/10 border border-accent/20 rounded-lg mb-6">
+                    <p class="text-base text-white font-medium mb-3">The relationship:</p>
+                    <p class="text-lg text-white font-mono">fee configuration + execution latency + market movement = simulated execution result</p>
+                </div>
+                
+                <p class="text-base text-secondary/80 leading-relaxed italic">Simora does not present 300ms as a universal fixed guarantee.</p>
+            </div>
+            
+            <div class="reveal glass-card rounded-xl p-8 md:p-10">
+                <h3 class="text-2xl font-semibold text-white mb-6">DryFlip's Execution Model</h3>
+                <p class="text-lg text-secondary leading-relaxed mb-6">During hands-on testing, DryFlip trades executed immediately by default.</p>
+                <p class="text-lg text-secondary leading-relaxed mb-6">DryFlip also provides a user-configurable fixed delay setting. For example, a trader can manually choose a delay such as one second.</p>
+                
+                <h4 class="text-xl font-semibold text-white mb-4">Different Philosophy</h4>
+                <ul class="space-y-3 text-lg text-secondary">
+                    <li class="flex items-start gap-2">
+                        <i data-lucide="arrow-right" class="w-5 h-5 text-accent flex-shrink-0 mt-1"></i>
+                        <span>DryFlip lets the user manually choose a latency value</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <i data-lucide="arrow-right" class="w-5 h-5 text-accent flex-shrink-0 mt-1"></i>
+                        <span>Simora attempts to derive simulated latency from the selected fee configuration</span>
+                    </li>
+                </ul>
+                <p class="text-base text-secondary/80 leading-relaxed italic mt-6">These represent different simulation models.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 5: Why Execution Delay Matters -->
+    <section class="py-20 border-t border-white/5 bg-accent/5">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="reveal text-3xl md:text-4xl font-semibold tracking-tight mb-4">Why Execution Delay Matters for Slippage</h2>
+            </div>
+            
+            <div class="reveal glass-card rounded-xl p-8 md:p-10">
+                <p class="text-lg text-secondary leading-relaxed mb-6">Memecoin markets can move significantly in very short periods.</p>
+                <p class="text-lg text-secondary leading-relaxed mb-6">If a simulator executes every trade at the exact moment the Buy button is clicked, there is little opportunity for market movement to influence the simulated fill.</p>
+                <p class="text-lg text-secondary leading-relaxed mb-8">By introducing simulated execution latency, the market can continue moving between the click and the calculated fill. This creates conditions where simulated execution price and resulting slippage can respond to market movement.</p>
+                
+                <div class="p-6 bg-accent/10 border border-accent/20 rounded-lg mb-6">
+                    <p class="text-lg text-white font-semibold">Simora's execution timing and market-data systems work together.</p>
+                </div>
+                
+                <p class="text-base text-secondary/80 leading-relaxed italic">Simora does not claim to perfectly reproduce every condition of a real blockchain transaction. Real execution can also be affected by factors that cannot be perfectly reproduced in paper trading.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 6: Persistent Trade History -->
+    <section class="py-20 border-t border-white/5">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="reveal text-3xl md:text-4xl font-semibold tracking-tight mb-4">Persistent Trade History After Navigation</h2>
+            </div>
+            
+            <div class="reveal glass-card rounded-xl p-8 md:p-10 mb-8">
+                <p class="text-lg text-secondary leading-relaxed mb-6">Simora treats simulated trading history as persistent state.</p>
+                
+                <h3 class="text-xl font-semibold text-white mb-4">Example workflow:</h3>
+                <ol class="space-y-3 text-lg text-secondary mb-8 list-decimal list-inside">
+                    <li>Trade a token</li>
+                    <li>Close the position</li>
+                    <li>Navigate to another token</li>
+                    <li>Leave the platform</li>
+                    <li>Return much later</li>
+                    <li>Open the original token again</li>
+                </ol>
+                
+                <p class="text-lg text-secondary leading-relaxed mb-6">On supported pages, Simora can restore the relevant historical trading context.</p>
+                
+                <h3 class="text-xl font-semibold text-white mb-4">This includes:</h3>
+                <ul class="grid md:grid-cols-2 gap-3 text-base text-secondary mb-8">
+                    <li class="flex items-start gap-2">
+                        <i data-lucide="check" class="w-4 h-4 text-success flex-shrink-0 mt-1"></i>
+                        <span>Previous simulated trades</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <i data-lucide="check" class="w-4 h-4 text-success flex-shrink-0 mt-1"></i>
+                        <span>Realized PnL context</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <i data-lucide="check" class="w-4 h-4 text-success flex-shrink-0 mt-1"></i>
+                        <span>Chart markers</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <i data-lucide="check" class="w-4 h-4 text-success flex-shrink-0 mt-1"></i>
+                        <span>Entry and exit lines</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <i data-lucide="check" class="w-4 h-4 text-success flex-shrink-0 mt-1"></i>
+                        <span>Portfolio history</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <i data-lucide="check" class="w-4 h-4 text-success flex-shrink-0 mt-1"></i>
+                        <span>Trade information inside the Simora interface</span>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="reveal glass-card rounded-xl p-8 md:p-10">
+                <h3 class="text-2xl font-semibold text-white mb-6">DryFlip Behavior</h3>
+                <p class="text-lg text-secondary leading-relaxed mb-6">During hands-on testing, after a position had been closed and the user navigated away, returning to the token did not consistently restore the previous trade context.</p>
+                <p class="text-lg text-secondary leading-relaxed">The closed trade could no longer appear in the trading panel or chart in the same persistent way.</p>
+                <p class="text-base text-secondary/80 leading-relaxed italic mt-6">This describes the observed user-facing behavior.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 7: Portfolio vs PnL Calendar -->
+    <section class="py-20 border-t border-white/5 bg-accent/5">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="reveal text-3xl md:text-4xl font-semibold tracking-tight mb-4">Portfolio vs PnL Calendar</h2>
+            </div>
+            
+            <div class="reveal glass-card rounded-xl p-8 md:p-10 mb-8">
+                <p class="text-lg text-secondary leading-relaxed mb-6">Both products can provide performance-history functionality, but Simora's Portfolio goes beyond a calendar view.</p>
+                
+                <h3 class="text-2xl font-semibold text-white mb-4">Simora Portfolio provides:</h3>
+                <div class="grid md:grid-cols-2 gap-4 mb-8">
+                    <div class="flex items-start gap-2">
+                        <i data-lucide="dollar-sign" class="w-5 h-5 text-success flex-shrink-0 mt-1"></i>
+                        <span class="text-base text-secondary">Overall balance</span>
+                    </div>
+                    <div class="flex items-start gap-2">
+                        <i data-lucide="trending-up" class="w-5 h-5 text-success flex-shrink-0 mt-1"></i>
+                        <span class="text-base text-secondary">Realized PnL</span>
+                    </div>
+                    <div class="flex items-start gap-2">
+                        <i data-lucide="bar-chart-2" class="w-5 h-5 text-success flex-shrink-0 mt-1"></i>
+                        <span class="text-base text-secondary">Performance graph</span>
+                    </div>
+                    <div class="flex items-start gap-2">
+                        <i data-lucide="percent" class="w-5 h-5 text-success flex-shrink-0 mt-1"></i>
+                        <span class="text-base text-secondary">Win rate</span>
+                    </div>
+                    <div class="flex items-start gap-2">
+                        <i data-lucide="star" class="w-5 h-5 text-success flex-shrink-0 mt-1"></i>
+                        <span class="text-base text-secondary">Best and worst day</span>
+                    </div>
+                    <div class="flex items-start gap-2">
+                        <i data-lucide="activity" class="w-5 h-5 text-success flex-shrink-0 mt-1"></i>
+                        <span class="text-base text-secondary">Transaction statistics</span>
+                    </div>
+                    <div class="flex items-start gap-2">
+                        <i data-lucide="list" class="w-5 h-5 text-success flex-shrink-0 mt-1"></i>
+                        <span class="text-base text-secondary">Active positions</span>
+                    </div>
+                    <div class="flex items-start gap-2">
+                        <i data-lucide="history" class="w-5 h-5 text-success flex-shrink-0 mt-1"></i>
+                        <span class="text-base text-secondary">Historical trades</span>
+                    </div>
+                    <div class="flex items-start gap-2">
+                        <i data-lucide="calendar" class="w-5 h-5 text-success flex-shrink-0 mt-1"></i>
+                        <span class="text-base text-secondary">PnL Calendar</span>
+                    </div>
+                    <div class="flex items-start gap-2">
+                        <i data-lucide="navigation" class="w-5 h-5 text-success flex-shrink-0 mt-1"></i>
+                        <span class="text-base text-secondary">Direct navigation to previously traded tokens</span>
+                    </div>
+                    <div class="flex items-start gap-2">
+                        <i data-lucide="map-pin" class="w-5 h-5 text-success flex-shrink-0 mt-1"></i>
+                        <span class="text-base text-secondary">Access to historical chart context</span>
+                    </div>
+                </div>
+                
+                <p class="text-lg text-secondary leading-relaxed mb-6">Users can select an old trade and return directly to that token. When the token page opens, Simora can restore its supported markers, lines and previous trade context.</p>
+                
+                <div class="p-6 bg-accent/10 border border-accent/20 rounded-lg">
+                    <p class="text-lg text-white font-semibold text-center">A calendar tells you what happened on a day. A portfolio lets you investigate the trades behind that day.</p>
+                </div>
+            </div>
+            
+            <div class="reveal glass-card rounded-xl p-8 md:p-10">
+                <h3 class="text-2xl font-semibold text-white mb-6">DryFlip's PnL Calendar</h3>
+                <p class="text-lg text-secondary leading-relaxed">DryFlip includes a PnL Calendar. However, in our testing, it did not provide the same integrated workflow for opening historical trades and returning directly to their restored chart context.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 8: Open Positions -->
+    <section class="py-20 border-t border-white/5">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="reveal text-3xl md:text-4xl font-semibold tracking-tight mb-4">Open Positions Without Returning to Every Token</h2>
+            </div>
+            
+            <div class="reveal glass-card rounded-xl p-8 md:p-10 mb-8">
+                <h3 class="text-2xl font-semibold text-white mb-6">Simora's Dynamic PnL Bar</h3>
+                <p class="text-lg text-secondary leading-relaxed mb-6">The PnL Bar remains available while navigating supported platforms.</p>
+                
+                <h4 class="text-xl font-semibold text-white mb-4">It can provide quick access to:</h4>
+                <ul class="space-y-3 text-lg text-secondary mb-6">
+                    <li class="flex items-start gap-2">
+                        <i data-lucide="wallet" class="w-5 h-5 text-accent flex-shrink-0 mt-1"></i>
+                        <span>Simulated balance</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <i data-lucide="trending-up" class="w-5 h-5 text-accent flex-shrink-0 mt-1"></i>
+                        <span>Total PnL</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <i data-lucide="layers" class="w-5 h-5 text-accent flex-shrink-0 mt-1"></i>
+                        <span>Open positions</span>
+                    </li>
+                </ul>
+                
+                <p class="text-lg text-secondary leading-relaxed">This means the user does not need to manually return to every token page to check active simulated positions.</p>
+            </div>
+            
+            <div class="reveal glass-card rounded-xl p-8 md:p-10">
+                <h3 class="text-2xl font-semibold text-white mb-6">DryFlip's Approach</h3>
+                <p class="text-lg text-secondary leading-relaxed">During testing, DryFlip's primary interaction model centered around the trade panel displayed on the current token page. No equivalent persistent open-position workflow was observed.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 9: Quick Buy -->
+    <section class="py-20 border-t border-white/5 bg-accent/5">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="reveal text-3xl md:text-4xl font-semibold tracking-tight mb-4">Quick Buy: Native Integration vs Added Controls</h2>
+            </div>
+            
+            <div class="reveal glass-card rounded-xl p-8 md:p-10 mb-8">
+                <h3 class="text-2xl font-semibold text-white mb-6">Simora's Quick Buy Architecture</h3>
+                <p class="text-lg text-secondary leading-relaxed mb-6">Simora does not simply add another competing row of Buy buttons beside the platform interface.</p>
+                <p class="text-lg text-secondary leading-relaxed mb-6">On supported pages, Simora integrates with the platform's existing native Quick Buy controls.</p>
+                
+                <h4 class="text-xl font-semibold text-white mb-4">When Simora Quick Buy mode is active:</h4>
+                <ul class="space-y-3 text-lg text-secondary mb-8">
+                    <li class="flex items-start gap-2">
+                        <i data-lucide="check-circle" class="w-5 h-5 text-success flex-shrink-0 mt-1"></i>
+                        <span>Supported native Quick Buy buttons become paper trading controls</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <i data-lucide="check-circle" class="w-5 h-5 text-success flex-shrink-0 mt-1"></i>
+                        <span>Users can customize their simulated Quick Buy amounts</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <i data-lucide="check-circle" class="w-5 h-5 text-success flex-shrink-0 mt-1"></i>
+                        <span>Clicking those controls triggers Simora paper trading instead of the real trade action</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <i data-lucide="check-circle" class="w-5 h-5 text-success flex-shrink-0 mt-1"></i>
+                        <span>The real Quick Buy behavior is blocked while Simora controls the interaction</span>
+                    </li>
+                </ul>
+                
+                <div class="p-6 bg-accent/10 border border-accent/20 rounded-lg">
+                    <p class="text-lg text-white font-semibold mb-2">Design Goal:</p>
+                    <p class="text-base text-secondary">Preserve trader muscle memory while reducing the chance of confusing a simulated Quick Buy with a real one.</p>
+                </div>
+            </div>
+            
+            <div class="reveal glass-card rounded-xl p-8 md:p-10">
+                <h3 class="text-2xl font-semibold text-white mb-6">DryFlip's Quick Buy</h3>
+                <p class="text-lg text-secondary leading-relaxed mb-6">DryFlip also provides Quick Buy functionality.</p>
+                <p class="text-lg text-secondary leading-relaxed">During testing, DryFlip added separate Quick Buy interface elements to supported pages. On some layouts, the additional controls occupy separate interface space rather than reusing the original native controls.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 10: Native Trading Experience -->
+    <section class="py-20 border-t border-white/5">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="reveal text-3xl md:text-4xl font-semibold tracking-tight mb-4">Designed Around the Native Trading Experience</h2>
+            </div>
+            
+            <div class="reveal glass-card rounded-xl p-8 md:p-10">
+                <p class="text-lg text-secondary leading-relaxed mb-6">Simora intentionally tries to remain visually and behaviorally close to the supported platform's native trade panel.</p>
+                
+                <h3 class="text-xl font-semibold text-white mb-4">This helps preserve:</h3>
+                <ul class="grid md:grid-cols-2 gap-3 text-base text-secondary mb-8">
+                    <li class="flex items-start gap-2">
+                        <i data-lucide="check" class="w-4 h-4 text-success flex-shrink-0 mt-1"></i>
+                        <span>Familiar Buy workflow</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <i data-lucide="check" class="w-4 h-4 text-success flex-shrink-0 mt-1"></i>
+                        <span>Familiar Sell percentages</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <i data-lucide="check" class="w-4 h-4 text-success flex-shrink-0 mt-1"></i>
+                        <span>Familiar button positioning</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <i data-lucide="check" class="w-4 h-4 text-success flex-shrink-0 mt-1"></i>
+                        <span>Existing platform habits</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <i data-lucide="check" class="w-4 h-4 text-success flex-shrink-0 mt-1"></i>
+                        <span>Trader muscle memory</span>
+                    </li>
+                </ul>
+                
+                <p class="text-lg text-secondary leading-relaxed mb-4">Simora's panel behavior is adapted for Axiom, GMGN and Terminal rather than using one generic panel regardless of platform.</p>
+                <p class="text-base text-secondary/80 leading-relaxed italic">Simora does not imply official affiliation with these platforms.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 11: Toast Notifications -->
+    <section class="py-20 border-t border-white/5 bg-accent/5">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="reveal text-3xl md:text-4xl font-semibold tracking-tight mb-4">Immediate Feedback with Toast Notifications</h2>
+            </div>
+            
+            <div class="reveal glass-card rounded-xl p-8 md:p-10">
+                <p class="text-lg text-secondary leading-relaxed mb-6">Simora provides immediate toast feedback for relevant simulated actions and system events.</p>
+                
+                <h3 class="text-xl font-semibold text-white mb-4">Examples can include:</h3>
+                <ul class="grid md:grid-cols-2 gap-3 text-base text-secondary mb-8">
+                    <li class="flex items-start gap-2">
+                        <i data-lucide="bell" class="w-4 h-4 text-accent flex-shrink-0 mt-1"></i>
+                        <span>Successful simulated buys</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <i data-lucide="bell" class="w-4 h-4 text-accent flex-shrink-0 mt-1"></i>
+                        <span>Successful simulated sells</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <i data-lucide="bell" class="w-4 h-4 text-accent flex-shrink-0 mt-1"></i>
+                        <span>Relevant trade status</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <i data-lucide="alert-circle" class="w-4 h-4 text-accent flex-shrink-0 mt-1"></i>
+                        <span>Errors</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <i data-lucide="alert-triangle" class="w-4 h-4 text-accent flex-shrink-0 mt-1"></i>
+                        <span>Invalid actions</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <i data-lucide="info" class="w-4 h-4 text-accent flex-shrink-0 mt-1"></i>
+                        <span>Important state changes</span>
+                    </li>
+                </ul>
+                
+                <p class="text-lg text-secondary leading-relaxed">This keeps users informed without requiring them to infer whether an action succeeded. This interaction style is inspired by modern trading-terminal workflows.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 12: Customization -->
+    <section class="py-20 border-t border-white/5">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="reveal text-3xl md:text-4xl font-semibold tracking-tight mb-4">Customization</h2>
+            </div>
+            
+            <div class="reveal glass-card rounded-xl p-8 md:p-10">
+                <p class="text-lg text-secondary leading-relaxed mb-8">Simora allows traders to personalize parts of their paper trading environment.</p>
+                
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="glass-card rounded-lg p-6">
+                        <h3 class="text-lg font-semibold text-white mb-3 flex items-center gap-2">
+                            <i data-lucide="palette" class="w-5 h-5 text-accent"></i>
+                            Trading Panel themes
+                        </h3>
+                        <p class="text-sm text-secondary">Customize the visual appearance of the Trading Panel</p>
+                    </div>
+                    
+                    <div class="glass-card rounded-lg p-6">
+                        <h3 class="text-lg font-semibold text-white mb-3 flex items-center gap-2">
+                            <i data-lucide="sliders" class="w-5 h-5 text-accent"></i>
+                            PnL Bar customization
+                        </h3>
+                        <p class="text-sm text-secondary">Adjust PnL Bar display preferences</p>
+                    </div>
+                    
+                    <div class="glass-card rounded-lg p-6">
+                        <h3 class="text-lg font-semibold text-white mb-3 flex items-center gap-2">
+                            <i data-lucide="image" class="w-5 h-5 text-accent"></i>
+                            Custom image support
+                        </h3>
+                        <p class="text-sm text-secondary">Add custom images to the PnL Bar</p>
+                    </div>
+                    
+                    <div class="glass-card rounded-lg p-6">
+                        <h3 class="text-lg font-semibold text-white mb-3 flex items-center gap-2">
+                            <i data-lucide="volume-2" class="w-5 h-5 text-accent"></i>
+                            Buy/Sell audio
+                        </h3>
+                        <p class="text-sm text-secondary">Choose audio feedback for simulated trades</p>
+                    </div>
+                    
+                    <div class="glass-card rounded-lg p-6">
+                        <h3 class="text-lg font-semibold text-white mb-3 flex items-center gap-2">
+                            <i data-lucide="map-pin" class="w-5 h-5 text-accent"></i>
+                            Chart marker customization
+                        </h3>
+                        <p class="text-sm text-secondary">Personalize chart marker appearance</p>
+                    </div>
+                    
+                    <div class="glass-card rounded-lg p-6">
+                        <h3 class="text-lg font-semibold text-white mb-3 flex items-center gap-2">
+                            <i data-lucide="minus" class="w-5 h-5 text-accent"></i>
+                            Chart line customization
+                        </h3>
+                        <p class="text-sm text-secondary">Adjust entry and exit line styles</p>
+                    </div>
+                    
+                    <div class="glass-card rounded-lg p-6">
+                        <h3 class="text-lg font-semibold text-white mb-3 flex items-center gap-2">
+                            <i data-lucide="zap" class="w-5 h-5 text-accent"></i>
+                            Quick Buy amount customization
+                        </h3>
+                        <p class="text-sm text-secondary">Set custom Quick Buy amounts</p>
+                    </div>
+                </div>
+                
+                <p class="text-base text-secondary/80 leading-relaxed mt-8 italic">These features are optional and do not alter the underlying paper trading history.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 13: Simora Social -->
+    <section class="py-20 border-t border-white/5 bg-accent/5">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="reveal text-3xl md:text-4xl font-semibold tracking-tight mb-4">Simora Social</h2>
+            </div>
+            
+            <div class="reveal glass-card rounded-xl p-8 md:p-10 mb-8">
+                <p class="text-lg text-secondary leading-relaxed mb-8">Simora Social creates a social paper trading layer on top of the trading terminals.</p>
+                
+                <h3 class="text-xl font-semibold text-white mb-6">Supported functionality includes:</h3>
+                <div class="grid md:grid-cols-2 gap-6 mb-8">
+                    <div class="flex items-start gap-3">
+                        <i data-lucide="user-plus" class="w-6 h-6 text-accent flex-shrink-0 mt-1"></i>
+                        <div>
+                            <h4 class="text-base font-semibold text-white mb-1">Create Account</h4>
+                            <p class="text-sm text-secondary">Set up your Simora Social profile</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start gap-3">
+                        <i data-lucide="users" class="w-6 h-6 text-accent flex-shrink-0 mt-1"></i>
+                        <div>
+                            <h4 class="text-base font-semibold text-white mb-1">Add Friends</h4>
+                            <p class="text-sm text-secondary">Connect with other paper traders</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start gap-3">
+                        <i data-lucide="activity" class="w-6 h-6 text-accent flex-shrink-0 mt-1"></i>
+                        <div>
+                            <h4 class="text-base font-semibold text-white mb-1">Trading Activity</h4>
+                            <p class="text-sm text-secondary">See friend trading activity</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start gap-3">
+                        <i data-lucide="bell" class="w-6 h-6 text-accent flex-shrink-0 mt-1"></i>
+                        <div>
+                            <h4 class="text-base font-semibold text-white mb-1">Activity Notifications</h4>
+                            <p class="text-sm text-secondary">Receive updates on friend trades</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start gap-3">
+                        <i data-lucide="radar" class="w-6 h-6 text-accent flex-shrink-0 mt-1"></i>
+                        <div>
+                            <h4 class="text-base font-semibold text-white mb-1">Tracker Panel</h4>
+                            <p class="text-sm text-secondary">Use tracker tools to monitor activity</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start gap-3">
+                        <i data-lucide="eye" class="w-6 h-6 text-accent flex-shrink-0 mt-1"></i>
+                        <div>
+                            <h4 class="text-base font-semibold text-white mb-1">View Friend Trades</h4>
+                            <p class="text-sm text-secondary">See supported friend trading data</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start gap-3">
+                        <i data-lucide="map-pin" class="w-6 h-6 text-accent flex-shrink-0 mt-1"></i>
+                        <div>
+                            <h4 class="text-base font-semibold text-white mb-1">Friend Chart Markers</h4>
+                            <p class="text-sm text-secondary">Display supported friend markers on charts</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="reveal glass-card rounded-xl p-8 md:p-10">
+                <h3 class="text-2xl font-semibold text-white mb-6">DryFlip Social Features</h3>
+                <p class="text-lg text-secondary leading-relaxed">No equivalent integrated social trading system was observed in DryFlip during testing.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 14: Auto Translate -->
+    <section class="py-20 border-t border-white/5">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="reveal text-3xl md:text-4xl font-semibold tracking-tight mb-4">Auto Translate</h2>
+            </div>
+            
+            <div class="reveal glass-card rounded-xl p-8 md:p-10 mb-8">
+                <h3 class="text-2xl font-semibold text-white mb-6">Simora's Auto Translate</h3>
+                <p class="text-lg text-secondary leading-relaxed mb-6">On supported interface content, Simora can translate platform text directly inside the trading environment.</p>
+                <p class="text-lg text-secondary leading-relaxed">The goal is to reduce language friction without requiring the trader to leave the terminal.</p>
+            </div>
+            
+            <div class="reveal glass-card rounded-xl p-8 md:p-10">
+                <h3 class="text-2xl font-semibold text-white mb-6">DryFlip Auto Translate</h3>
+                <p class="text-lg text-secondary leading-relaxed">No equivalent integrated Auto Translate feature was observed in DryFlip during testing.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 15: More Than a Trade Panel -->
+    <section class="py-20 border-t border-white/5 bg-accent/5">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="reveal text-3xl md:text-4xl font-semibold tracking-tight mb-4">More Than a Trade Panel</h2>
+            </div>
+            
+            <div class="reveal glass-card rounded-xl p-8 md:p-10">
+                <p class="text-lg text-secondary leading-relaxed mb-8">Simora is designed as a connected paper trading environment rather than only an overlay attached to the current token page.</p>
+                
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div class="glass-card rounded-lg p-4 text-center">
+                        <i data-lucide="panel-top" class="w-6 h-6 text-accent mx-auto mb-2"></i>
+                        <p class="text-sm text-white font-medium">Trading Panel</p>
+                    </div>
+                    <div class="glass-card rounded-lg p-4 text-center">
+                        <i data-lucide="bar-chart-3" class="w-6 h-6 text-accent mx-auto mb-2"></i>
+                        <p class="text-sm text-white font-medium">Dynamic PnL Bar</p>
+                    </div>
+                    <div class="glass-card rounded-lg p-4 text-center">
+                        <i data-lucide="briefcase" class="w-6 h-6 text-accent mx-auto mb-2"></i>
+                        <p class="text-sm text-white font-medium">Portfolio</p>
+                    </div>
+                    <div class="glass-card rounded-lg p-4 text-center">
+                        <i data-lucide="calendar" class="w-6 h-6 text-accent mx-auto mb-2"></i>
+                        <p class="text-sm text-white font-medium">PnL Calendar</p>
+                    </div>
+                    <div class="glass-card rounded-lg p-4 text-center">
+                        <i data-lucide="zap" class="w-6 h-6 text-accent mx-auto mb-2"></i>
+                        <p class="text-sm text-white font-medium">Quick Buy</p>
+                    </div>
+                    <div class="glass-card rounded-lg p-4 text-center">
+                        <i data-lucide="map-pin" class="w-6 h-6 text-accent mx-auto mb-2"></i>
+                        <p class="text-sm text-white font-medium">Chart Markers</p>
+                    </div>
+                    <div class="glass-card rounded-lg p-4 text-center">
+                        <i data-lucide="minus" class="w-6 h-6 text-accent mx-auto mb-2"></i>
+                        <p class="text-sm text-white font-medium">Entry and Exit Lines</p>
+                    </div>
+                    <div class="glass-card rounded-lg p-4 text-center">
+                        <i data-lucide="bell" class="w-6 h-6 text-accent mx-auto mb-2"></i>
+                        <p class="text-sm text-white font-medium">Toast Notifications</p>
+                    </div>
+                    <div class="glass-card rounded-lg p-4 text-center">
+                        <i data-lucide="languages" class="w-6 h-6 text-accent mx-auto mb-2"></i>
+                        <p class="text-sm text-white font-medium">Auto Translate</p>
+                    </div>
+                    <div class="glass-card rounded-lg p-4 text-center">
+                        <i data-lucide="sliders" class="w-6 h-6 text-accent mx-auto mb-2"></i>
+                        <p class="text-sm text-white font-medium">Customization</p>
+                    </div>
+                    <div class="glass-card rounded-lg p-4 text-center">
+                        <i data-lucide="users" class="w-6 h-6 text-accent mx-auto mb-2"></i>
+                        <p class="text-sm text-white font-medium">Simora Social</p>
+                    </div>
+                </div>
+                
+                <p class="text-lg text-secondary leading-relaxed mt-8 text-center">These systems share the same persistent trade history.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 16: Why Simora Focuses on Fewer Platforms -->
+    <section class="py-20 border-t border-white/5">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="reveal text-3xl md:text-4xl font-semibold tracking-tight mb-4">Why Simora Focuses on Fewer Platforms</h2>
+            </div>
+            
+            <div class="reveal glass-card rounded-xl p-8 md:p-10">
+                <p class="text-lg text-secondary leading-relaxed mb-6">Simora does not currently try to maximize the number of supported websites.</p>
+                <p class="text-lg text-secondary leading-relaxed mb-8">Adding another supported site also means maintaining:</p>
+                
+                <ul class="grid md:grid-cols-2 gap-3 text-base text-secondary mb-8">
+                    <li class="flex items-start gap-2">
+                        <i data-lucide="database" class="w-4 h-4 text-accent flex-shrink-0 mt-1"></i>
+                        <span>Market data</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <i data-lucide="activity" class="w-4 h-4 text-accent flex-shrink-0 mt-1"></i>
+                        <span>Trade execution behavior</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <i data-lucide="refresh-cw" class="w-4 h-4 text-accent flex-shrink-0 mt-1"></i>
+                        <span>Navigation restoration</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <i data-lucide="zap" class="w-4 h-4 text-accent flex-shrink-0 mt-1"></i>
+                        <span>Quick Buy integration</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <i data-lucide="map-pin" class="w-4 h-4 text-accent flex-shrink-0 mt-1"></i>
+                        <span>Markers</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <i data-lucide="minus" class="w-4 h-4 text-accent flex-shrink-0 mt-1"></i>
+                        <span>Lines</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <i data-lucide="trending-up" class="w-4 h-4 text-accent flex-shrink-0 mt-1"></i>
+                        <span>PnL state</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <i data-lucide="briefcase" class="w-4 h-4 text-accent flex-shrink-0 mt-1"></i>
+                        <span>Portfolio behavior</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <i data-lucide="bell" class="w-4 h-4 text-accent flex-shrink-0 mt-1"></i>
+                        <span>Notifications</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <i data-lucide="layout" class="w-4 h-4 text-accent flex-shrink-0 mt-1"></i>
+                        <span>UI compatibility</span>
+                    </li>
+                </ul>
+                
+                <p class="text-lg text-secondary leading-relaxed mb-6">Simora therefore prioritizes integration depth.</p>
+                
+                <div class="p-6 bg-accent/10 border border-accent/20 rounded-lg mb-6">
+                    <p class="text-lg text-white font-semibold mb-3 text-center">Current focus:</p>
+                    <div class="flex flex-wrap justify-center gap-3">
+                        <span class="px-4 py-2 bg-white/10 rounded-full text-white font-medium">Axiom</span>
+                        <span class="px-4 py-2 bg-white/10 rounded-full text-white font-medium">GMGN</span>
+                        <span class="px-4 py-2 bg-white/10 rounded-full text-white font-medium">Terminal</span>
+                    </div>
+                </div>
+                
+                <p class="text-base text-secondary/80 leading-relaxed italic">General market-data or charting websites may serve a different role from dedicated memecoin trading terminals. Raw platform count therefore does not always represent equivalent trading workflow coverage.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 17: Which One Should You Choose -->
+    <section class="py-20 border-t border-white/5 bg-accent/5">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="reveal text-3xl md:text-4xl font-semibold tracking-tight mb-4">Which One Should You Choose?</h2>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Choose DryFlip -->
+                <div class="reveal glass-card rounded-xl p-8">
+                    <div class="w-16 h-16 mx-auto mb-6 rounded-full bg-secondary/10 border border-secondary/20 flex items-center justify-center">
+                        <i data-lucide="globe" class="w-8 h-8 text-secondary"></i>
+                    </div>
+                    <h3 class="text-2xl font-semibold text-white mb-4 text-center">Choose DryFlip if:</h3>
+                    <p class="text-base text-secondary leading-relaxed text-center">Your main priority is broad website coverage and you want paper trading functionality across a larger number of supported websites.</p>
+                </div>
+                
+                <!-- Choose Simora -->
+                <div class="reveal glass-card rounded-xl p-8 border-accent/30">
+                    <div class="w-16 h-16 mx-auto mb-6 rounded-full bg-accent/10 border border-accent/20 flex items-center justify-center">
+                        <i data-lucide="target" class="w-8 h-8 text-accent"></i>
+                    </div>
+                    <h3 class="text-2xl font-semibold text-white mb-4 text-center">Choose Simora if:</h3>
+                    <p class="text-base text-secondary leading-relaxed mb-6 text-center">Your main trading workflow is on Axiom, GMGN or Terminal and you place more importance on:</p>
+                    <ul class="space-y-2 text-sm text-secondary">
+                        <li class="flex items-start gap-2">
+                            <i data-lucide="check" class="w-4 h-4 text-success flex-shrink-0 mt-0.5"></i>
+                            <span>Precise market data</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <i data-lucide="check" class="w-4 h-4 text-success flex-shrink-0 mt-0.5"></i>
+                            <span>Fee-linked execution simulation</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <i data-lucide="check" class="w-4 h-4 text-success flex-shrink-0 mt-0.5"></i>
+                            <span>Dynamic simulated latency</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <i data-lucide="check" class="w-4 h-4 text-success flex-shrink-0 mt-0.5"></i>
+                            <span>Persistent trade history</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <i data-lucide="check" class="w-4 h-4 text-success flex-shrink-0 mt-0.5"></i>
+                            <span>Restored chart markers and lines</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <i data-lucide="check" class="w-4 h-4 text-success flex-shrink-0 mt-0.5"></i>
+                            <span>Integrated Portfolio</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <i data-lucide="check" class="w-4 h-4 text-success flex-shrink-0 mt-0.5"></i>
+                            <span>Open-position visibility</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <i data-lucide="check" class="w-4 h-4 text-success flex-shrink-0 mt-0.5"></i>
+                            <span>Native Quick Buy integration</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <i data-lucide="check" class="w-4 h-4 text-success flex-shrink-0 mt-0.5"></i>
+                            <span>Social trading</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <i data-lucide="check" class="w-4 h-4 text-success flex-shrink-0 mt-0.5"></i>
+                            <span>Auto Translate</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <i data-lucide="check" class="w-4 h-4 text-success flex-shrink-0 mt-0.5"></i>
+                            <span>Customization</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="reveal text-center mt-8">
+                <p class="text-lg text-secondary/80 max-w-3xl mx-auto">Neither approach is automatically right for every trader. The better choice depends on whether you value broader website coverage or deeper terminal integration.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 18: Is Simora Free -->
+    <section class="py-20 border-t border-white/5">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="reveal text-3xl md:text-4xl font-semibold tracking-tight mb-4">Is Simora Free?</h2>
+            </div>
+            <div class="reveal glass-card rounded-xl p-8 md:p-10 text-center">
+                <p class="text-xl text-white font-semibold mb-8">Yes. Simora is 100% free to use.</p>
+                
+                <div class="max-w-2xl mx-auto">
+                    <ul class="space-y-3 text-lg text-secondary">
+                        <li>No activation key</li>
+                        <li>No subscription</li>
+                        <li>No paid plan</li>
+                        <li>No locked premium features</li>
+                        <li>No wallet connection required for paper trading</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="py-20 border-t border-white/5 bg-accent/5">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="reveal text-3xl md:text-4xl font-semibold tracking-tight mb-4">Frequently Asked Questions</h2>
+            </div>
+
+            <div class="space-y-4">
+                <!-- FAQ 1 -->
+                <div class="reveal glass-card rounded-xl p-6 hover:border-white/10 transition-all">
+                    <h3 class="text-lg font-semibold text-white mb-3">What is the main difference between Simora and DryFlip?</h3>
+                    <p class="text-sm text-secondary leading-relaxed">DryFlip emphasizes broad website coverage. Simora focuses on deeper integration with Axiom, GMGN and Terminal, prioritizing execution realism, market-data precision and persistent trade history over platform count.</p>
+                </div>
+
+                <!-- FAQ 2 -->
+                <div class="reveal glass-card rounded-xl p-6 hover:border-white/10 transition-all">
+                    <h3 class="text-lg font-semibold text-white mb-3">Does Simora support fewer platforms than DryFlip?</h3>
+                    <p class="text-sm text-secondary leading-relaxed">Yes. Simora currently focuses on Axiom, GMGN and Terminal. DryFlip supports a broader range of websites.</p>
+                </div>
+
+                <!-- FAQ 3 -->
+                <div class="reveal glass-card rounded-xl p-6 hover:border-white/10 transition-all">
+                    <h3 class="text-lg font-semibold text-white mb-3">Why does Simora focus on Axiom, GMGN and Terminal?</h3>
+                    <p class="text-sm text-secondary leading-relaxed">Simora prioritizes integration depth over platform count. Maintaining deep integration with market data, execution behavior, navigation restoration, Quick Buy, markers, lines and Portfolio tools requires substantial engineering effort per platform.</p>
+                </div>
+
+                <!-- FAQ 4 -->
+                <div class="reveal glass-card rounded-xl p-6 hover:border-white/10 transition-all">
+                    <h3 class="text-lg font-semibold text-white mb-3">Does Simora use WebSocket market data?</h3>
+                    <p class="text-sm text-secondary leading-relaxed">Yes. Simora uses a WebSocket-first market-data architecture on supported platforms to access live data streams and reduce reliance on rounded interface values.</p>
+                </div>
+
+                <!-- FAQ 5 -->
+                <div class="reveal glass-card rounded-xl p-6 hover:border-white/10 transition-all">
+                    <h3 class="text-lg font-semibold text-white mb-3">How does DryFlip obtain market values?</h3>
+                    <p class="text-sm text-secondary leading-relaxed">Hands-on testing and inspection of the extension code showed that DryFlip reads market values from the page DOM for its paper trading calculations.</p>
+                </div>
+
+                <!-- FAQ 6 -->
+                <div class="reveal glass-card rounded-xl p-6 hover:border-white/10 transition-all">
+                    <h3 class="text-lg font-semibold text-white mb-3">Why are rounded DOM values important in paper trading?</h3>
+                    <p class="text-sm text-secondary leading-relaxed">Trading interfaces often display rounded values like 18.6K for readability, but this does not tell the simulator whether the underlying value is 18.56K, 18.60K or 18.64K. Small differences matter when recording simulated entry and exit points.</p>
+                </div>
+
+                <!-- FAQ 7 -->
+                <div class="reveal glass-card rounded-xl p-6 hover:border-white/10 transition-all">
+                    <h3 class="text-lg font-semibold text-white mb-3">Does Simora simulate execution delay?</h3>
+                    <p class="text-sm text-secondary leading-relaxed">Yes. Simora simulates dynamic execution delay linked to the configured fee level. Higher fees produce shorter delays, while lower fees progressively increase simulated latency.</p>
+                </div>
+
+                <!-- FAQ 8 -->
+                <div class="reveal glass-card rounded-xl p-6 hover:border-white/10 transition-all">
+                    <h3 class="text-lg font-semibold text-white mb-3">How does Simora's fee setting affect simulated execution?</h3>
+                    <p class="text-sm text-secondary leading-relaxed">The fee configuration affects both simulated execution cost and timing. Higher fees result in faster simulated execution, while lower fees create longer delays, allowing market movement to influence the simulated fill.</p>
+                </div>
+
+                <!-- FAQ 9 -->
+                <div class="reveal glass-card rounded-xl p-6 hover:border-white/10 transition-all">
+                    <h3 class="text-lg font-semibold text-white mb-3">Does DryFlip have execution delay?</h3>
+                    <p class="text-sm text-secondary leading-relaxed">During testing, DryFlip executed simulated trades immediately by default and provided an optional manually configured fixed delay.</p>
+                </div>
+
+                <!-- FAQ 10 -->
+                <div class="reveal glass-card rounded-xl p-6 hover:border-white/10 transition-all">
+                    <h3 class="text-lg font-semibold text-white mb-3">Does Simora preserve previous trades after navigation?</h3>
+                    <p class="text-sm text-secondary leading-relaxed">Yes. Simora treats trading history as persistent state. When you return to a previously traded token on supported pages, Simora can restore relevant context including trades, PnL, chart markers and entry and exit lines.</p>
+                </div>
+
+                <!-- FAQ 11 -->
+                <div class="reveal glass-card rounded-xl p-6 hover:border-white/10 transition-all">
+                    <h3 class="text-lg font-semibold text-white mb-3">Can I review old trades in Simora?</h3>
+                    <p class="text-sm text-secondary leading-relaxed">Yes. Simora Portfolio provides access to historical trades with direct navigation back to previously traded tokens and their restored chart context.</p>
+                </div>
+
+                <!-- FAQ 12 -->
+                <div class="reveal glass-card rounded-xl p-6 hover:border-white/10 transition-all">
+                    <h3 class="text-lg font-semibold text-white mb-3">Does Simora have a Portfolio?</h3>
+                    <p class="text-sm text-secondary leading-relaxed">Yes. Simora Portfolio provides balance, realized PnL, performance graph, win rate, transaction statistics, active positions, historical trades, PnL Calendar and direct navigation to previously traded tokens.</p>
+                </div>
+
+                <!-- FAQ 13 -->
+                <div class="reveal glass-card rounded-xl p-6 hover:border-white/10 transition-all">
+                    <h3 class="text-lg font-semibold text-white mb-3">Does DryFlip have a PnL Calendar?</h3>
+                    <p class="text-sm text-secondary leading-relaxed">Yes. DryFlip includes a PnL Calendar, although its historical trade workflow differs from Simora's Portfolio system.</p>
+                </div>
+
+                <!-- FAQ 14 -->
+                <div class="reveal glass-card rounded-xl p-6 hover:border-white/10 transition-all">
+                    <h3 class="text-lg font-semibold text-white mb-3">Does Simora support Quick Buy?</h3>
+                    <p class="text-sm text-secondary leading-relaxed">Yes. Simora integrates with supported platforms' native Quick Buy controls for paper trading and prevents real Quick Buy actions from being triggered accidentally while Quick Buy mode is active.</p>
+                </div>
+
+                <!-- FAQ 15 -->
+                <div class="reveal glass-card rounded-xl p-6 hover:border-white/10 transition-all">
+                    <h3 class="text-lg font-semibold text-white mb-3">How is Simora Quick Buy different?</h3>
+                    <p class="text-sm text-secondary leading-relaxed">Simora uses the platform's existing native Quick Buy controls rather than adding separate interface elements, preserving trader muscle memory while reducing the chance of confusing simulated and real Quick Buy actions.</p>
+                </div>
+
+                <!-- FAQ 16 -->
+                <div class="reveal glass-card rounded-xl p-6 hover:border-white/10 transition-all">
+                    <h3 class="text-lg font-semibold text-white mb-3">Does Simora require a wallet connection?</h3>
+                    <p class="text-sm text-secondary leading-relaxed">No. Simora does not require a wallet connection for paper trading.</p>
+                </div>
+
+                <!-- FAQ 17 -->
+                <div class="reveal glass-card rounded-xl p-6 hover:border-white/10 transition-all">
+                    <h3 class="text-lg font-semibold text-white mb-3">Is Simora free?</h3>
+                    <p class="text-sm text-secondary leading-relaxed">Yes. Simora is 100% free to use with no activation key, subscription or paid feature tier.</p>
+                </div>
+
+                <!-- FAQ 18 -->
+                <div class="reveal glass-card rounded-xl p-6 hover:border-white/10 transition-all">
+                    <h3 class="text-lg font-semibold text-white mb-3">Does Simora have social trading features?</h3>
+                    <p class="text-sm text-secondary leading-relaxed">Yes. Simora Social includes friend system, trading activity, tracker tools and supported friend chart markers.</p>
+                </div>
+
+                <!-- FAQ 19 -->
+                <div class="reveal glass-card rounded-xl p-6 hover:border-white/10 transition-all">
+                    <h3 class="text-lg font-semibold text-white mb-3">Does Simora support Auto Translate?</h3>
+                    <p class="text-sm text-secondary leading-relaxed">Yes. Simora can translate supported interface content directly inside the trading environment.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA Section -->
+    <section class="py-20 border-t border-white/5">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <h2 class="reveal text-3xl md:text-4xl font-semibold tracking-tight mb-6">Try Simora Free on Axiom, GMGN and Terminal</h2>
+            <p class="reveal text-lg text-secondary mb-10 max-w-2xl mx-auto">Install Simora and experience WebSocket-driven market data, fee-linked execution simulation and persistent trade history.</p>
+            
+            <div class="reveal">
+                <a href="https://chromewebstore.google.com/detail/chjhmhbpnnohcdafkdjklconpielhcld" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-8 py-4 bg-accent-gradient hover:bg-accent-gradient-hover rounded-full text-white text-lg font-medium transition-all shadow-lg">
+                    <i data-lucide="chrome" class="w-5 h-5"></i>
+                    <span>Add Simora to Chrome</span>
+                </a>
+            </div>
+            
+            <div class="reveal mt-8 flex flex-wrap justify-center gap-4 text-sm text-secondary">
+                <a href="./memecoin-paper-trading.html" class="hover:text-primary transition-colors">Memecoin Paper Trading Guide</a>
+                <span class="text-secondary/30">|</span>
+                <a href="./axiom-paper-trading.html" class="hover:text-primary transition-colors">Axiom Paper Trading</a>
+                <span class="text-secondary/30">|</span>
+                <a href="./gmgn-paper-trading.html" class="hover:text-primary transition-colors">GMGN Paper Trading</a>
+                <span class="text-secondary/30">|</span>
+                <a href="./terminal-paper-trading.html" class="hover:text-primary transition-colors">Terminal Paper Trading</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-white/5 py-12 bg-surface/30">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <!-- Brand -->
+                <div>
+                    <div class="flex items-center gap-3 mb-4">
+                        <img src="./assets/simora-logo.png" alt="Simora" class="w-8 h-8">
+                        <span class="text-[18px] font-medium text-[#e5e7eb] uppercase tracking-[0.18em]">Simora</span>
+                    </div>
+                    <p class="text-sm text-secondary leading-relaxed">Free memecoin paper trading extension for Axiom, GMGN and Terminal.</p>
+                </div>
+                
+                <!-- Product -->
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Product</h4>
+                    <ul class="space-y-2 text-sm text-secondary">
+                        <li><a href="./#features" class="hover:text-primary transition-colors">Features</a></li>
+                        <li><a href="./#platforms" class="hover:text-primary transition-colors">Platforms</a></li>
+                        <li><a href="./support.html" class="hover:text-primary transition-colors">Support</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Resources -->
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Resources</h4>
+                    <ul class="space-y-2 text-sm text-secondary">
+                        <li><a href="./memecoin-paper-trading.html" class="hover:text-primary transition-colors">Memecoin Paper Trading</a></li>
+                        <li><a href="./axiom-paper-trading.html" class="hover:text-primary transition-colors">Axiom Paper Trading</a></li>
+                        <li><a href="./gmgn-paper-trading.html" class="hover:text-primary transition-colors">GMGN Paper Trading</a></li>
+                        <li><a href="./terminal-paper-trading.html" class="hover:text-primary transition-colors">Terminal Paper Trading</a></li>
+                        <li><a href="./dryflip-alternative.html" class="hover:text-primary transition-colors">Simora vs DryFlip</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Legal -->
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Legal</h4>
+                    <ul class="space-y-2 text-sm text-secondary">
+                        <li><a href="./privacy-policy.html" class="hover:text-primary transition-colors">Privacy Policy</a></li>
+                        <li><a href="./terms-of-service.html" class="hover:text-primary transition-colors">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-sm text-secondary">© 2026 Simora Labs. All rights reserved.</p>
+                <div class="flex items-center gap-4">
+                    <a href="https://x.com/simoralabs" target="_blank" rel="noopener noreferrer" class="text-secondary hover:text-white transition-colors">
+                        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                        </svg>
+                    </a>
+                    <a href="https://github.com/simoralabs/simora-paper-trading-extension" target="_blank" rel="noopener noreferrer" class="text-secondary hover:text-white transition-colors">
+                        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Fade in page
+        window.addEventListener('load', () => {
+            document.body.classList.add('loaded');
+        });
+
+        // Reveal on scroll
+        const revealElements = document.querySelectorAll('.reveal');
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        });
+
+        revealElements.forEach(el => revealObserver.observe(el));
+    </script>
+</body>
+</html>
