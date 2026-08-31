@@ -1,7 +1,7 @@
 {
-    "name": "Simora Paper Trader",
+    "name": "Simora",
     "short_name": "Simora",
-    "description": "Practice meme coin trading on real charts with zero risk",
+    "description": "Free memecoin paper trading extension for Axiom, GMGN and Padre.",
     "icons": [
         {
             "src": "/android-chrome-192x192.png",
