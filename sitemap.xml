@@ -6,6 +6,11 @@
     <priority>1.0</priority>
   </url>
   <url>
+    <loc>https://simoralabs.com/memecoin-paper-trading.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
     <loc>https://simoralabs.com/axiom-paper-trading.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
