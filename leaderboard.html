@@ -192,7 +192,7 @@
     const formatDate=value=>new Date(Number(value)).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric',timeZone:'UTC'});
     const formatCompactPeriod=(start,end)=>{const s=new Date(Number(start)),e=new Date(Number(end));const sm=s.toLocaleDateString('en-US',{month:'short',timeZone:'UTC'}).toUpperCase();const sd=s.getDate(),ed=e.getDate(),y=e.getFullYear();return`${sm} ${sd}\u2013${ed}, ${y}`};
     const formatPeriodRange=(start,end)=>`${formatDate(start)} \u2013 ${formatDate(end)}`;
-    const solIcon=(size='w-3 h-3')=>`<img src="./assets/solana-logo.svg" alt="SOL" class="inline-block ${size} mr-1" style="vertical-align:-.08em">`;
+    const solIcon=(size='w-3 h-3')=>`<img src="/assets/solana-logo.svg" alt="SOL" class="inline-block ${size} mr-1" style="vertical-align:-.08em">`;
 
     function normalizeChallenge(raw){
       if(!raw||typeof raw!=='object'||typeof raw.challengeId!=='string')throw new Error('Malformed Challenge metadata');
