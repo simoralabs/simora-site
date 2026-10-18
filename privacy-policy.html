@@ -57,186 +57,114 @@
             </div>
             <div class="glass rounded-xl p-8 md:p-12">
                 <div class="content-section">
-                    <p class="text-sm text-secondary/60 mb-8">Last updated: September 2026</p>
+                    <p class="text-sm text-secondary/60 mb-8">Last updated: October 18, 2026</p>
 
                     <p>Simora is a free memecoin paper trading extension for Axiom, GMGN and Padre. It simulates trades using live market data. No real funds, wallets or blockchain transactions are involved.</p>
 
-                    <p>Most of what Simora does happens inside your own browser. Your paper trading account, positions, history and settings are stored on your device.</p>
-
-                    <p>Simora also includes optional online features &mdash; Simora Social and the Weekly Challenge, including its leaderboards. These features do not work locally: when you choose to use them, certain information is sent to and stored on Simora's backend servers. This policy explains what is kept on your device, what is sent to Simora's servers, how it is used, and who else can see it.</p>
+                    <p>Simora works inside your own browser. Your paper trading account, positions, history and settings are stored on your device, and Simora does not send them to its own servers or to anyone else. This policy explains what is kept on your device, the few requests the extension makes to outside services, and who receives them.</p>
                 </div>
 
                 <div class="content-section">
-                    <h2>Information We Collect</h2>
+                    <h2>Information Stored on Your Device</h2>
 
-                    <h3>Data stored on your device</h3>
-                    <p>This information is created and stored locally by the extension, in your browser's own storage, and stays on your device by default. Simora does not upload your paper trading account, your trading history or your settings.</p>
-                    <p>The exception is the optional online features. If you turn on Simora Social or take part in the Weekly Challenge, specific information about individual trades and about your profile is sent to Simora's servers, exactly as described under &ldquo;Data sent to Simora's servers&rdquo; below. The local records listed here still remain on your device.</p>
+                    <p>The extension creates and stores the following information in your browser. It stays on your device:</p>
                     <ul>
-                        <li><strong>Paper trading account data</strong>: your simulated balance, open positions, and per-token accounting records, kept separately for each supported chain (SOL, BNB, Robinhood).</li>
+                        <li><strong>Paper trading account data</strong>: your simulated balance, open positions and per-token accounting records, kept separately for each supported chain (SOL, BNB, Robinhood).</li>
                         <li><strong>Simulated transactions</strong>: your paper buy and sell history, including amounts, prices and timestamps.</li>
                         <li><strong>Performance data</strong>: calculated profit and loss, realized results and related statistics.</li>
                         <li><strong>Pending limit orders</strong> created inside the simulator.</li>
-                        <li><strong>Settings and preferences</strong>: display options, panel positions and sizes, sounds, slippage and fee settings, chart preferences, and language settings.</li>
+                        <li><strong>Share PnL backgrounds</strong>: an image, GIF or video you choose as a Share PnL card background. It is kept in your browser and is not uploaded anywhere. Cards you copy or download are created on your device.</li>
+                        <li><strong>Settings and preferences</strong>: display options, panel positions and sizes, sounds, slippage and fee settings, chart preferences and language settings.</li>
                         <li><strong>Temporary cache data</strong>: recent market and price information needed to display live values, and cached chart markers.</li>
                     </ul>
+                </div>
 
-                    <h3>Data sent to Simora's servers (Simora Social and Weekly Challenge)</h3>
-                    <p>The following is processed by Simora's backend only if you create a Simora Social profile, sign in, or take part in the Weekly Challenge.</p>
+                <div class="content-section">
+                    <h2>Information Sent Outside Your Device</h2>
+
+                    <p>Simora has no account system and does not run servers that receive your data. The extension only makes the following requests:</p>
                     <ul>
-                        <li><strong>Profile information</strong>: your chosen username, an automatically generated public profile code, and your profile picture if you upload one.</li>
-                        <li><strong>Account credentials</strong>: if you create a password-protected account, the password you choose is sent to our servers when you register, sign in, or secure an existing profile. We store only a salted, iterated hash of it, never the password itself.</li>
-                        <li><strong>Account and session identifiers</strong>: an account identifier assigned by our servers, and session tokens that keep you signed in. Sessions expire automatically.</li>
-                        <li><strong>An installation identifier</strong>: a random identifier generated by your browser when the extension first needs one. It is not a hardware or browser fingerprint and does not identify you personally. Our servers store a keyed hash of it rather than the identifier itself.</li>
-                        <li><strong>Simora Social visibility setting</strong>: whether you have turned Simora Social on.</li>
-                        <li><strong>Profiles you follow</strong>: the public profile codes you add to your Social list.</li>
-                        <li><strong>Shared trade activity</strong>: when Simora Social is on, your completed paper trades are shared through our servers with people who follow you. Each shared trade includes the token name and contract address, the chain, whether it was a buy or sell, the simulated amount and token quantity, the market cap at the time, and the time of the trade.</li>
-                        <li><strong>Weekly Challenge participation</strong>: the challenge you joined, when you joined or left, and your participation status.</li>
-                        <li><strong>Weekly Challenge trades</strong>: each challenge trade is sent to our servers as an operation record containing the token contract address, whether it was a buy or sell, the simulated amount or the fraction sold, the market cap and the base asset price at execution, the maximum fee setting used, the time of execution, and which supported platform (Axiom, GMGN or Padre) it was made on.</li>
-                        <li><strong>Weekly Challenge results</strong>: your challenge balance, realized performance, number of trades, win rate and ranking, which our servers calculate from your submitted trades.</li>
-                        <li><strong>Session ownership information</strong>: information indicating which signed-in session is currently allowed to trade in a challenge, so that the same challenge account cannot be traded from two places at once.</li>
-                        <li><strong>Activity timestamps</strong>: when your profile was created and when it was last active. These are used to keep your account working and to delete inactive accounts automatically, as described under &ldquo;Data Retention&rdquo;.</li>
-                        <li><strong>Network information for abuse prevention</strong>: like any online service, our backend receives your IP address with each request, and Simora's code does not store it. To limit repeated sign-in attempts, a hash derived from your IP address, the username or profile code you entered and a secret server key is kept for a short period, no longer than about a day, and is deleted after a successful sign-in. Registration requests are also rate-limited by Cloudflare using the IP address, without Simora storing it.</li>
+                        <li><strong>Market prices</strong>: requests to Binance, with CoinGecko as a fallback, for the public USD prices of SOL, BNB and ETH. These requests contain no personal or account information.</li>
+                        <li><strong>Token information from the supported platforms</strong>: on Axiom and GMGN, the extension can request public token information (such as name, image and market data) for the token you are viewing from that platform's own servers, using the token's address. These requests go only to the platform you are using, the way the platform's own page makes them, and your browser may attach that platform's own cookies. Simora does not read or store those cookies.</li>
+                        <li><strong>Auto Translate</strong>: if you turn on Auto Translate, the text of the social posts it translates is sent to Google's public translation endpoint. Nothing else is sent, and Simora does not store that text.</li>
+                        <li><strong>Icon font</strong>: the extension loads an icon font from Google Fonts. Like any web request, this lets Google see your IP address; no other information is included.</li>
                     </ul>
-
-                    <h3>Auto Translate</h3>
-                    <p>Simora includes an optional auto-translate feature. When it is enabled, the text it translates is sent to Google's public translation endpoint so it can be translated. That text is not sent to Simora's servers and is not stored by Simora.</p>
                 </div>
 
                 <div class="content-section">
                     <h2>Information We Do Not Collect</h2>
                     <ul>
-                        <li>Simora does not collect or request private keys.</li>
-                        <li>Simora does not collect or request seed phrases or recovery phrases.</li>
+                        <li>Simora does not collect names, email addresses, usernames or any other information that identifies you.</li>
+                        <li>Simora does not collect or request private keys, seed phrases or recovery phrases.</li>
                         <li>Simora does not connect to, control or use your cryptocurrency wallet.</li>
                         <li>Simora does not execute real blockchain transactions and does not move real funds.</li>
                         <li>Simora does not take custody of cryptocurrency or any other asset.</li>
-                        <li>Simora does not send your general browsing history to Simora's servers. The extension only runs on Axiom, GMGN and Padre.</li>
+                        <li>Simora does not collect your browsing history. The extension only runs on Axiom, GMGN and Padre.</li>
+                        <li>Simora does not track your clicks or activity and does not use analytics.</li>
                         <li>Simora does not use your information for advertising or ad targeting.</li>
                     </ul>
                 </div>
 
                 <div class="content-section">
-                    <h2>How We Use Information</h2>
-
-                    <h3>Data on your device</h3>
+                    <h2>How Information Is Used</h2>
                     <ul>
                         <li>Simulate paper trades using live market prices.</li>
                         <li>Calculate profit and loss, and update it in real time.</li>
                         <li>Display your open and closed positions and your trading history.</li>
                         <li>Maintain your performance history across sessions.</li>
                         <li>Remember your settings, preferences and interface layout.</li>
-                    </ul>
-
-                    <h3>Data on Simora's servers</h3>
-                    <ul>
-                        <li>Create and maintain your Simora Social profile.</li>
-                        <li>Sign you in and keep your session valid, and verify that requests come from your account.</li>
-                        <li>Show your profile, and show the profiles you follow.</li>
-                        <li>Deliver your shared trade activity to people who follow you, and show you theirs.</li>
-                        <li>Let you join and take part in the Weekly Challenge.</li>
-                        <li>Keep your challenge balance and progress consistent across the supported platforms you use.</li>
-                        <li>Apply Weekly Challenge rules, such as join windows and challenge end times.</li>
-                        <li>Calculate challenge statistics such as realized performance, number of trades and win rate.</li>
-                        <li>Produce and display the Weekly Challenge leaderboard and your ranking.</li>
-                        <li>Keep completed challenge results available after a challenge ends.</li>
-                        <li>Make sure a challenge account is only traded from one active session at a time, and prevent duplicate or conflicting participation.</li>
+                        <li>Translate social posts when you turn on Auto Translate.</li>
                     </ul>
                 </div>
 
                 <div class="content-section">
-                    <h2>Data Storage</h2>
+                    <h2>Data Storage and Retention</h2>
 
-                    <p><strong>On your device.</strong> Your paper trading account, simulated transactions, performance history, limit orders, settings and cached market data are stored using your browser's local storage and the extension's own storage. This data stays in your browser profile: Simora does not upload these local records and does not synchronize them itself. A small number of preferences, such as panel visibility, language, auto-translate and Quick Buy settings, are saved in the browser's synced extension storage, so if you use your browser's own sync feature, your browser provider may sync those preferences between your devices. Your paper trading account, positions and trading history are not stored there. The exception is the Simora Social and Weekly Challenge information described in this policy, which is sent to our servers when you choose to use those features.</p>
+                    <p>Your paper trading account, simulated transactions, performance history, limit orders, Share PnL backgrounds, settings and cached market data are stored using your browser's storage for the supported platforms (local storage and IndexedDB) and the extension's own storage. Simora does not upload these records and does not synchronize them itself.</p>
 
-                    <p><strong>On Simora's servers.</strong> The Simora Social and Weekly Challenge information described above is stored on Simora's backend. Simora's backend runs on Cloudflare infrastructure, using Cloudflare Workers and Cloudflare's associated storage services. This means Cloudflare processes and stores this information on Simora's behalf.</p>
+                    <p>A small number of preferences, such as panel visibility, language, Auto Translate and Quick Buy settings, are saved in the browser's synced extension storage. If you use your browser's own sync feature, your browser provider may sync those preferences between your devices. Your paper trading account, positions and trading history are not stored there.</p>
 
-                    <p>We apply reasonable technical measures to protect information held on our servers, including authenticated sessions that expire and access controls that tie challenge and profile data to the signed-in account it belongs to. No online service can be guaranteed to be completely secure, and we do not claim that it is.</p>
+                    <p>Data stored on your device stays there until you delete it or clear your browser data. Uninstalling the extension removes the extension's own storage. Your paper trading account and history are kept in your browser's storage for the supported platforms, so they remain on your device after uninstalling until you clear the site data for Axiom, GMGN and Padre.</p>
                 </div>
 
                 <div class="content-section">
-                    <h2>Data Retention</h2>
+                    <h2>Retired Online Features</h2>
 
-                    <p>Data stored on your device stays there until you delete it, clear your browser data, or uninstall the extension.</p>
+                    <p>Earlier versions of Simora included two optional online features, Simora Social and the Weekly Challenge. Both have been retired. Since version 1.1.7, the extension no longer sends any information to Simora's servers, and when it updates it removes the Simora Social and Weekly Challenge data that earlier versions kept in your browser.</p>
 
-                    <p>Simora's backend runs an automatic cleanup once a day:</p>
-                    <ul>
-                        <li>A Simora Social account that has not been used for 3 months is deleted automatically, together with its profile, profile picture, follow relationships, shared trade activity, sessions and Simora Social ranking statistics.</li>
-                        <li>Older shared trades are pruned automatically so that only about your 100 most recent are kept, and all of your shared trade activity is deleted once your most recent shared trade is more than 15 days old.</li>
-                        <li>Expired or signed-out sessions, and the short-lived sign-in rate-limiting records described above, are deleted.</li>
-                    </ul>
+                    <p>If you used these features in an earlier version, the information you chose to share then (such as your username, profile picture, shared trades and Weekly Challenge results) may still be held on Simora's backend, which runs on Cloudflare. Inactive Simora Social accounts are deleted automatically after 3 months. Final Weekly Challenge results, which include usernames, may remain viewable on our website as a record of past challenges.</p>
 
-                    <p>Other server-side information is retained for as long as necessary to provide Simora Social, the Weekly Challenge and the leaderboards, unless deletion is requested or retention is otherwise required for legitimate operational purposes.</p>
-
-                    <p>Completed Weekly Challenge results and leaderboard placements are intentionally retained after a challenge ends, so that past results and rankings remain viewable. These saved results include usernames and are kept even if the account is later deleted as inactive.</p>
+                    <p>To request deletion of this information sooner, contact <a href="mailto:simoralabs@gmail.com" class="text-blue-400 hover:text-blue-300 transition-colors">simoralabs@gmail.com</a> and include your username or public profile code.</p>
                 </div>
 
                 <div class="content-section">
                     <h2>Data Sharing</h2>
-
                     <ul>
                         <li>We do not sell personal data.</li>
                         <li>We do not share personal data for advertising or marketing purposes.</li>
-                        <li>We do not share your Simora Social or Weekly Challenge information with Axiom, GMGN or Padre.</li>
+                        <li>Your paper trading data stays on your device and is not shared with Axiom, GMGN, Padre or anyone else.</li>
                     </ul>
 
-                    <p>Information stored on Simora's servers is processed by the service providers we use to operate that infrastructure. Cloudflare provides the hosting and storage for Simora's backend and processes this information on our behalf so that the service can function.</p>
-
-                    <p>Some information you provide is deliberately shown to other people. This is described in the next section.</p>
-
-                    <p>We may also disclose information if we are required to do so by law, or where necessary to respond to a valid legal request, to protect our rights, or to investigate abuse of the service.</p>
-                </div>
-
-                <div class="content-section">
-                    <h2>Public Information</h2>
-
-                    <p>Some Simora features are designed to show information to other people. Please keep this in mind when choosing a username or profile picture.</p>
-
-                    <p><strong>Weekly Challenge leaderboard.</strong> The Weekly Challenge leaderboard is published on our website and is also available through a public endpoint, so anyone can view it without signing in. For each listed participant it shows the rank, username, public profile code, simulated balance, simulated profit and loss, number of completed trades, win rate and participation status and, while the challenge is running, the profile picture. When a challenge ends, the top 50 results are saved as a permanent record that also includes the starting balance, return percentage and the number of winning and losing trades, but no profile pictures. Participants who left a challenge can still appear in its results with a &ldquo;left&rdquo; status. These are simulated results, not real trading results.</p>
-
-                    <p><strong>Simora Social ranking.</strong> A separate ranking built from Simora Social trade activity is also available through a public endpoint. It only includes profiles that have Simora Social turned on and have completed a minimum number of trades, and it shows the username, profile picture, number of completed trades, simulated trading volume, realized return percentage, win rate and realized profit and loss.</p>
-
-                    <p><strong>Simora Social.</strong> If you turn Simora Social on, your username, profile picture and public profile code can be seen by other Simora users. Anyone who knows your public profile code can follow you without needing your approval, and your completed paper trades are then shared with them. If you turn Simora Social off, your profile can no longer be followed and new trade activity is no longer shared.</p>
-
-                    <p>Everything else associated with your account on Simora's servers &mdash; including your sign-in credentials, session identifiers, installation identifier, activity timestamps, the list of profiles you follow, and your individual challenge operation records &mdash; is not published and is not shown to other users.</p>
-
-                    <p>To operate and moderate the service, Simora administrators can view account records such as the username, public profile code, profile picture, activity timestamps and trade and follower counts, and can hide a profile from the Simora Social ranking.</p>
-                </div>
-
-                <div class="content-section">
-                    <h2>Third-Party Services</h2>
-
-                    <p>Simora works alongside the following supported trading platforms in order to function. Simora reads market information from the page you are on; it does not send your Simora account information to them:</p>
+                    <p>The outside services listed above receive only the requests described in this policy. They operate under their own privacy policies:</p>
                     <ul>
-                        <li>Axiom</li>
-                        <li>GMGN</li>
-                        <li>Padre</li>
+                        <li><strong>Axiom, GMGN and Padre</strong>: the supported trading platforms Simora works on.</li>
+                        <li><strong>Binance and CoinGecko</strong>: public market prices.</li>
+                        <li><strong>Google</strong>: translation for Auto Translate, and the icon font.</li>
                     </ul>
-
-                    <p>Simora also relies on these external services:</p>
-                    <ul>
-                        <li><strong>Cloudflare</strong> &mdash; hosting and storage for Simora's backend, including Simora Social and the Weekly Challenge.</li>
-                        <li><strong>Binance and CoinGecko</strong> &mdash; public market price data used to value simulated positions. These requests ask for public prices and do not include your personal or account information.</li>
-                        <li><strong>Google Translate</strong> &mdash; used only by the optional auto-translate feature, and only for the text being translated.</li>
-                    </ul>
-
-                    <p>These services operate under their own privacy policies and practices. Listing them here describes the technical use Simora makes of them; it does not imply endorsement, and it does not mean they receive your Simora Social or Weekly Challenge data beyond what is described in this policy.</p>
                 </div>
 
                 <div class="content-section">
-                    <h2>Your Choices and Data Deletion</h2>
+                    <h2>Your Choices</h2>
 
-                    <p><strong>Online features are optional.</strong> You can use Simora's paper trading features without creating a Simora Social profile and without joining the Weekly Challenge. You can turn Simora Social off at any time in the extension.</p>
+                    <p><strong>Auto Translate is optional.</strong> It is off until you turn it on, and you can turn it off at any time in the extension popup.</p>
 
-                    <p><strong>Data on your device.</strong> You can remove locally stored Simora data by clearing the extension's storage, clearing your browser data for the supported platforms, or uninstalling the extension.</p>
-
-                    <p><strong>Data on Simora's servers.</strong> Uninstalling the extension does not by itself delete information already stored on Simora's servers. To ask about, or request deletion of, your Simora Social or Weekly Challenge information, contact <a href="mailto:simoralabs@gmail.com" class="text-blue-400 hover:text-blue-300 transition-colors">simoralabs@gmail.com</a>. Please include your username or public profile code so we can identify the profile. We handle these requests manually and will respond as soon as we reasonably can.</p>
+                    <p><strong>Deleting your data.</strong> Use Reset Simulator in the extension to clear your trade history. To remove everything, clear the site data for Axiom, GMGN and Padre in your browser and uninstall the extension.</p>
                 </div>
 
                 <div class="content-section">
                     <h2>Children</h2>
 
-                    <p>Simora is not directed to children and is not intended for use by children. We do not knowingly collect personal information from children. If you believe a child has provided information to Simora through its online features, please contact us at <a href="mailto:simoralabs@gmail.com" class="text-blue-400 hover:text-blue-300 transition-colors">simoralabs@gmail.com</a> and we will take appropriate steps to remove it.</p>
+                    <p>Simora is not directed to children and is not intended for use by children. We do not knowingly collect personal information from children. If you believe a child provided information through one of Simora's retired online features, please contact us at <a href="mailto:simoralabs@gmail.com" class="text-blue-400 hover:text-blue-300 transition-colors">simoralabs@gmail.com</a> and we will remove it.</p>
                 </div>
 
                 <div class="content-section">
