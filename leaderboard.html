@@ -175,17 +175,18 @@
       </div>
     </section>
     <section id="panel-previous" role="tabpanel" class="hidden">
-      <div id="previous-index"><div class="mb-3"><h2 class="text-base font-semibold">Previous Challenges</h2><p class="text-xs text-secondary mt-1">Immutable results finalized by the Challenge server.</p></div><div id="previous-list"></div></div>
+      <div id="previous-index"><div class="mb-3"><h2 class="text-base font-semibold">Previous Challenges</h2><p class="text-xs text-secondary mt-1">Final results of every Weekly Challenge.</p></div><div id="previous-list"></div></div>
       <div id="previous-detail" class="hidden"><button type="button" data-action="back-to-weeks" class="inline-flex items-center gap-2 text-sm text-secondary hover:text-primary mb-4"><i data-lucide="arrow-left" class="w-4 h-4"></i>Previous Weeks</button><div id="previous-detail-heading" class="mb-4"></div><div id="historical-leaderboard"></div></div>
     </section>
   </main>
   <script>
     const LOCAL_PREVIEW=false;
     const LOCAL_PREVIEW_URL='./weekly-challenge-preview.json';
-    const API_BASE='https://simora-social.cokrailcc.workers.dev';
-    // The Weekly Challenge ended with weekly-2026-10-11. The server still opens
-    // empty weeks, so the page shows an ended notice instead of the current week
-    // and lists no week after the last one.
+    // The Weekly Challenge ended with weekly-2026-10-11 and its server is retired.
+    // The page shows an ended notice, and Previous Weeks reads the finalized top
+    // 50 of each week from a static archive (no profile pictures or codes).
+    const ARCHIVE_URL='./challenge-archive.json';
+    let archivePromise=null;
     const CHALLENGE_LAST_START=1791676800000,CHALLENGE_LAST_END=1792281600000;
     const cache={current:null,currentPromise:null,results:null,resultsPromise:null,history:new Map()};
     const views=new Map();
@@ -231,9 +232,13 @@
     }
     async function fetchJson(path){
       if(LOCAL_PREVIEW)return fetchLocalPreview(path);
-      const response=await fetch(`${API_BASE}${path}`,{headers:{Accept:'application/json'}});
-      if(!response.ok)throw new Error(`HTTP ${response.status}`);
-      const payload=await response.json();if(!payload||payload.ok!==true)throw new Error('Invalid API response');return payload;
+      if(!archivePromise)archivePromise=fetch(ARCHIVE_URL,{headers:{Accept:'application/json'}}).then(response=>{if(!response.ok)throw new Error(`HTTP ${response.status}`);return response.json()}).catch(error=>{archivePromise=null;throw error});
+      const archive=await archivePromise;
+      if(path.startsWith('/v1/challenges/results'))return{ok:true,results:archive.results};
+      const match=path.match(/^\/v1\/challenges\/([^/]+)\/leaderboard/);
+      const board=match&&archive.leaderboards?.[decodeURIComponent(match[1])];
+      if(!board||board.ok!==true)throw new Error('Not in the Challenge archive');
+      return board;
     }
     function updateHeader(challenge,fetchedAt){
       document.getElementById('period-text').textContent=formatCompactPeriod(challenge.startsAt,challenge.endsAt);
