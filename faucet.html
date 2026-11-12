@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faucet | Simora</title>
+    <meta name="description" content="Free paper SOL, BNB and ETH for a Simora Hard mode wallet, once a day.">
+    <meta name="robots" content="noindex, follow">
+    <link rel="canonical" href="https://www.simoralabs.com/faucet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" async defer></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    colors: {
+                        bg: '#0B0C0E',
+                        surface: '#141518',
+                        border: '#2A2C32',
+                        primary: '#EDEDEF',
+                        secondary: '#8A8F98',
+                        accent: '#5E6AD2',
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #0B0C0E; color: #EDEDEF; }
+        .glass {
+            background: rgba(26, 27, 30, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .chain input { position: absolute; opacity: 0; pointer-events: none; }
+        .chain:has(input:checked) { border-color: rgba(94, 106, 210, 0.7); background: rgba(94, 106, 210, 0.08); }
+        .chain:has(input:focus-visible) { outline: 2px solid #5E6AD2; outline-offset: 2px; }
+        #address:focus-visible, #claim:focus-visible { outline: 2px solid #5E6AD2; outline-offset: 2px; }
+    </style>
+</head>
+<body class="bg-bg text-primary antialiased">
+
+    <nav class="fixed top-0 w-full z-50 border-b border-white/5 glass">
+        <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+            <a href="./" class="flex items-center gap-3">
+                <img src="./assets/simora-logo.png" alt="Simora" class="w-8 h-8">
+                <span class="text-[18px] font-medium text-[#e5e7eb] uppercase tracking-[0.18em]">Simora</span>
+            </a>
+            <a href="./" class="text-sm text-secondary hover:text-primary transition-colors">← Back to Home</a>
+        </div>
+    </nav>
+
+    <main class="pt-32 pb-24 min-h-screen">
+        <div class="max-w-md mx-auto px-6">
+            <div class="text-center mb-10">
+                <h1 class="text-4xl font-semibold tracking-tight mb-3">Faucet</h1>
+                <p class="text-secondary">Free paper funds for a Simora Hard mode wallet. Each chain once a day.</p>
+            </div>
+
+            <!-- Shown when this page cannot reach Simora. -->
+            <div id="missing" class="glass rounded-xl p-5 mb-4 text-sm text-secondary" hidden>
+                Simora was not found in this browser. Open this page from Simora: the wallet,
+                <span class="text-primary">Receive</span>, <span class="text-primary">Open faucet</span>.
+                No Simora yet?
+                <a class="text-accent hover:underline" href="https://chromewebstore.google.com/detail/chjhmhbpnnohcdafkdjklconpielhcld" target="_blank" rel="noopener noreferrer">Get it from the Chrome Web Store</a>.
+            </div>
+
+            <form id="form" class="glass rounded-xl p-6" novalidate>
+                <label for="address" class="block text-xs text-secondary mb-2">Wallet address</label>
+                <input id="address" type="text" maxlength="11" autocomplete="off" spellcheck="false" placeholder="xxxxxxxxsim"
+                    class="w-full rounded-lg bg-bg border border-border px-3 py-3 font-mono text-[15px] text-white placeholder:text-secondary/50">
+
+                <div class="grid grid-cols-3 gap-2 mt-4" id="chains">
+                    <label class="chain relative cursor-pointer rounded-lg border border-border px-3 py-3">
+                        <input type="checkbox" value="SOL" checked>
+                        <span class="block text-sm font-medium">SOL</span>
+                        <span class="block text-xs text-secondary">1 a day</span>
+                    </label>
+                    <label class="chain relative cursor-pointer rounded-lg border border-border px-3 py-3">
+                        <input type="checkbox" value="BNB" checked>
+                        <span class="block text-sm font-medium">BNB</span>
+                        <span class="block text-xs text-secondary">0.25 a day</span>
+                    </label>
+                    <label class="chain relative cursor-pointer rounded-lg border border-border px-3 py-3">
+                        <input type="checkbox" value="ROBINHOOD" checked>
+                        <span class="block text-sm font-medium">ETH</span>
+                        <span class="block text-xs text-secondary">0.05 a day</span>
+                    </label>
+                </div>
+
+                <div id="human" class="mt-4 min-h-[65px]"></div>
+                <p id="hint" role="alert" class="min-h-[20px] mt-2 text-sm text-red-400"></p>
+
+                <button id="claim" type="submit" class="w-full mt-2 rounded-lg bg-accent hover:bg-[#6b76dc] py-3 text-sm font-semibold text-white transition-colors disabled:opacity-60 disabled:cursor-default">Claim</button>
+
+                <ul id="results" class="mt-5 text-sm divide-y divide-white/5" aria-live="polite"></ul>
+                <p id="delivery" class="mt-3 text-sm text-secondary" aria-live="polite"></p>
+            </form>
+
+            <p class="mt-6 text-xs text-secondary/70 text-center leading-relaxed">
+                Simora checks the address is its own Hard wallet, claims, and adds what is granted by itself.
+                A wallet that already holds enough, counting open positions, is not topped up.
+            </p>
+        </div>
+    </main>
+
+    <footer class="border-t border-white/5 bg-[#0F1012] py-8">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <p class="text-xs text-secondary/60">© 2026 Simora. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // The page never calls the wallet service itself. It asks the Simora
+        // extension in this browser (manifest externally_connectable), which
+        // reads its own wallet and makes the signed claim. So a visit costs the
+        // service nothing; only a Claim is one request.
+        const STORE_ID = 'chjhmhbpnnohcdafkdjklconpielhcld';
+        // Cloudflare Turnstile site key (public). Empty: no bot check yet.
+        const TURNSTILE_SITE_KEY = '';
+        const LABELS = { SOL: 'SOL', BNB: 'BNB', ROBINHOOD: 'ETH' };
+
+        const form = document.getElementById('form');
+        const address = document.getElementById('address');
+        const hint = document.getElementById('hint');
+        const results = document.getElementById('results');
+        const delivery = document.getElementById('delivery');
+        const button = document.getElementById('claim');
+
+        // Opened from Simora: #ext=<extension id>&address=<wallet>. The part
+        // after '#' is never sent to any server.
+        const fromSimora = new URLSearchParams(location.hash.slice(1));
+        const ids = [...new Set([fromSimora.get('ext'), STORE_ID].filter(id => /^[a-p]{32}$/.test(id || '')))];
+        if (/^[1-9A-HJ-NP-Za-km-z]{8}sim$/.test(fromSimora.get('address') || '')) address.value = fromSimora.get('address');
+        if (!TURNSTILE_SITE_KEY) document.getElementById('human').hidden = true;
+        const canTalk = typeof window.chrome?.runtime?.sendMessage === 'function';
+        if (!canTalk) document.getElementById('missing').hidden = false;
+
+        // Asks one Simora; null when that one is not here.
+        const ask = (id, message) => new Promise(resolve => {
+            try {
+                chrome.runtime.sendMessage(id, message, reply => resolve(chrome.runtime.lastError ? null : (reply || null)));
+            } catch (_) {
+                resolve(null);
+            }
+        });
+
+        let token = null;
+        let widget = null;
+        const renderHuman = () => {
+            if (!TURNSTILE_SITE_KEY || !window.turnstile || widget !== null) return;
+            widget = turnstile.render('#human', {
+                sitekey: TURNSTILE_SITE_KEY,
+                theme: 'dark',
+                callback: value => { token = value; hint.textContent = ''; },
+                'expired-callback': () => { token = null; },
+                'error-callback': () => { token = null; }
+            });
+        };
+        // The script loads async; render when it is there.
+        window.addEventListener('load', renderHuman);
+        const resetHuman = () => {
+            token = null;
+            if (widget !== null && window.turnstile) turnstile.reset(widget);
+        };
+
+        const wait = until => {
+            const minutes = Math.max(1, Math.ceil((until - Date.now()) / 60000));
+            return minutes >= 60 ? `${Math.ceil(minutes / 60)} h` : `${minutes} min`;
+        };
+        const explain = (chain, result) => {
+            if (result.granted > 0) return [`+${result.granted} ${LABELS[chain]}`, 'text-emerald-400'];
+            if (result.reason === 'claimed') return [result.nextAt ? `Already claimed. Again in ${wait(result.nextAt)}` : 'Already claimed today', 'text-secondary'];
+            if (result.reason === 'balance_high') return [`Wallet holds ${result.limit} ${LABELS[chain]} or more`, 'text-secondary'];
+            if (result.reason === 'value_unknown') return ['An open position has no recent price. Open Axiom, GMGN or Padre, then claim again', 'text-secondary'];
+            return ['Not granted', 'text-secondary'];
+        };
+
+        form.addEventListener('submit', async event => {
+            event.preventDefault();
+            hint.textContent = '';
+            delivery.textContent = '';
+            results.replaceChildren();
+            const value = address.value.trim();
+            if (!/^[1-9A-HJ-NP-Za-km-z]{8}sim$/.test(value)) { hint.textContent = 'Check the address: it is 11 characters and ends with sim.'; return; }
+            const picked = [...document.querySelectorAll('#chains input:checked')].map(box => box.value);
+            if (!picked.length) { hint.textContent = 'Choose at least one of SOL, BNB or ETH.'; return; }
+            if (!canTalk) { hint.textContent = 'Simora was not found in this browser.'; return; }
+            if (TURNSTILE_SITE_KEY && !token) { hint.textContent = 'Complete the check above first.'; return; }
+
+            button.disabled = true;
+            button.textContent = 'Claiming…';
+            try {
+                const message = { type: 'SIMORA_FAUCET_CLAIM', address: value, chains: picked, turnstile: token || undefined };
+                let answer = null;
+                for (const id of ids) {
+                    answer = await ask(id, message);
+                    if (answer) break;
+                }
+                if (!answer) { hint.textContent = 'Simora was not found in this browser. Open this page from Simora: the wallet, Receive, Open faucet.'; return; }
+                if (!answer.ok) { hint.textContent = answer.error || 'The claim did not go through.'; return; }
+                for (const chain of picked) {
+                    const [text, tone] = explain(chain, answer.results?.[chain] || {});
+                    const row = document.createElement('li');
+                    row.className = 'flex justify-between gap-3 py-2';
+                    const name = document.createElement('span');
+                    name.textContent = LABELS[chain];
+                    const outcome = document.createElement('span');
+                    outcome.className = `text-right ${tone}`;
+                    outcome.textContent = text;
+                    row.append(name, outcome);
+                    results.append(row);
+                }
+                const received = Array.isArray(answer.received) ? answer.received : [];
+                if (received.length) delivery.textContent = `Arrived in Simora: ${received.map(item => `+${item.amount} ${LABELS[item.chain] || item.chain}`).join(', ')}.`;
+                else if (answer.pending) delivery.textContent = 'Granted. Simora adds it the next time the wallet opens.';
+            } finally {
+                // A check token is good for one claim.
+                resetHuman();
+                button.disabled = false;
+                button.textContent = 'Claim';
+            }
+        });
+    </script>
+</body>
+</html>
