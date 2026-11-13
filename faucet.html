@@ -1,118 +1,187 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en" class="h-full">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Faucet | Simora</title>
     <meta name="description" content="Free paper SOL, BNB and ETH for a Simora Hard mode wallet, once a day.">
     <meta name="robots" content="noindex, follow">
+    <meta name="theme-color" content="#0B0C0E">
     <link rel="canonical" href="https://www.simoralabs.com/faucet">
+    <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" async defer></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script>
         tailwind.config = {
             theme: {
                 extend: {
-                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['ui-monospace', 'Cascadia Mono', 'Consolas', 'monospace'],
+                    },
                     colors: {
                         bg: '#0B0C0E',
                         surface: '#141518',
                         border: '#2A2C32',
                         primary: '#EDEDEF',
                         secondary: '#8A8F98',
+                        muted: '#7A8597',
                         accent: '#5E6AD2',
+                        violet: '#8B5CF6',
+                        gain: '#3DDC97',
+                        hard: '#FFB020',
                     },
                 }
             }
         }
     </script>
     <style>
-        body { font-family: 'Inter', sans-serif; background-color: #0B0C0E; color: #EDEDEF; }
-        .glass {
-            background: rgba(26, 27, 30, 0.6);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
+        /* On html only: a body background would paint over the fixed light layers. */
+        html { background-color: #0B0C0E; }
+        body { font-family: 'Inter', sans-serif; color: #EDEDEF; }
+        ::selection { background: rgba(94, 106, 210, 0.35); color: #fff; }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0B0C0E; }
+        ::-webkit-scrollbar-thumb { background: #2A2C32; border-radius: 4px; }
+
+        /* The extension popup's ambient light, on the site's 50px grid. */
+        .ambient {
+            background-image:
+                radial-gradient(ellipse 55% 50% at 32% 0%, rgba(94, 106, 210, 0.22), transparent 70%),
+                radial-gradient(ellipse 40% 40% at 82% 30%, rgba(139, 92, 246, 0.12), transparent 70%),
+                radial-gradient(ellipse 60% 45% at 50% 105%, rgba(65, 190, 205, 0.10), transparent 70%);
         }
+        .grid-lines {
+            background-size: 50px 50px;
+            background-image: linear-gradient(to right, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+            mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, black 20%, transparent 75%);
+            -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, black 20%, transparent 75%);
+        }
+        .nav-glass {
+            background: rgba(20, 21, 24, 0.6);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+        .panel {
+            background: linear-gradient(180deg, rgba(26, 27, 31, 0.92), rgba(18, 19, 22, 0.92));
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            box-shadow: 0 24px 60px -20px rgba(0, 0, 0, 0.7), 0 2px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        #address { caret-color: #8B9AF0; }
+        #address::placeholder { color: #5D6575; }
+        #address:focus { border-color: rgba(94, 106, 210, 0.7); box-shadow: 0 0 0 3px rgba(94, 106, 210, 0.18); outline: none; }
+
         .chain input { position: absolute; opacity: 0; pointer-events: none; }
-        .chain:has(input:checked) { border-color: rgba(94, 106, 210, 0.7); background: rgba(94, 106, 210, 0.08); }
+        .chain { transition: border-color .15s ease, background-color .15s ease; }
+        .chain:hover { border-color: #3D3F46; }
+        .chain:has(input:checked) { border-color: rgba(94, 106, 210, 0.75); background: rgba(94, 106, 210, 0.09); }
+        .chain .tick { opacity: 0; transform: scale(.6); transition: opacity .15s ease, transform .2s cubic-bezier(.16, 1, .3, 1); }
+        .chain:has(input:checked) .tick { opacity: 1; transform: scale(1); }
         .chain:has(input:focus-visible) { outline: 2px solid #5E6AD2; outline-offset: 2px; }
-        #address:focus-visible, #claim:focus-visible { outline: 2px solid #5E6AD2; outline-offset: 2px; }
+
+        #claim { background: linear-gradient(135deg, #5E6AD2 0%, #8B5CF6 100%); }
+        #claim:hover:not(:disabled) { background: linear-gradient(135deg, #6A76DC 0%, #9668F7 100%); }
+        #claim:active:not(:disabled) { transform: translateY(1px); }
+        #claim:focus-visible, a:focus-visible { outline: 2px solid #8B9AF0; outline-offset: 3px; }
+
+        #results li { animation: arrive .45s cubic-bezier(.16, 1, .3, 1) both; }
+        @keyframes arrive { from { opacity: 0; transform: translateY(4px); filter: blur(2px); } }
+        @media (prefers-reduced-motion: reduce) {
+            #results li { animation: none; }
+            .chain .tick { transition: none; }
+        }
     </style>
 </head>
-<body class="bg-bg text-primary antialiased">
+<body class="h-full antialiased flex flex-col min-h-[100dvh]">
 
-    <nav class="fixed top-0 w-full z-50 border-b border-white/5 glass">
-        <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-            <a href="./" class="flex items-center gap-3">
-                <img src="./assets/simora-logo.png" alt="Simora" class="w-8 h-8">
+    <div class="fixed inset-0 -z-10 ambient pointer-events-none" aria-hidden="true"></div>
+    <div class="fixed inset-0 -z-10 grid-lines pointer-events-none" aria-hidden="true"></div>
+
+    <nav class="sticky top-0 z-50 border-b border-white/5 nav-glass shrink-0">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+            <a href="./" class="flex items-center gap-3 hover:opacity-80 transition-opacity">
+                <img src="./assets/simora-logo.png" alt="" class="w-8 h-8">
                 <span class="text-[18px] font-medium text-[#e5e7eb] uppercase tracking-[0.18em]">Simora</span>
             </a>
             <a href="./" class="text-sm text-secondary hover:text-primary transition-colors">← Back to Home</a>
         </div>
     </nav>
 
-    <main class="pt-32 pb-24 min-h-screen">
-        <div class="max-w-md mx-auto px-6">
-            <div class="text-center mb-10">
-                <h1 class="text-4xl font-semibold tracking-tight mb-3">Faucet</h1>
-                <p class="text-secondary">Free paper funds for a Simora Hard mode wallet. Each chain once a day.</p>
+    <main class="flex-1 flex items-center justify-center px-4 sm:px-6 py-5">
+        <div class="w-full max-w-[440px]">
+            <div class="text-center mb-6">
+                <h1 class="text-[40px] leading-none font-semibold tracking-[-0.03em] text-white">Faucet</h1>
+                <p class="mt-3 text-[15px] text-secondary">
+                    Free paper funds for a Simora
+                    <span class="inline-block align-[1px] mx-0.5 px-1.5 py-px rounded border border-hard/50 bg-hard/10 text-hard text-[11px] font-semibold tracking-[0.08em]">HARD</span>
+                    mode wallet.
+                    <span class="block">Each chain once a day.</span>
+                </p>
             </div>
 
             <!-- Shown when this page cannot reach Simora. -->
-            <div id="missing" class="glass rounded-xl p-5 mb-4 text-sm text-secondary" hidden>
+            <div id="missing" class="panel rounded-xl p-4 mb-3 text-sm text-secondary leading-relaxed" hidden>
                 Simora was not found in this browser. Open this page from Simora: the wallet,
                 <span class="text-primary">Receive</span>, <span class="text-primary">Open faucet</span>.
                 No Simora yet?
-                <a class="text-accent hover:underline" href="https://chromewebstore.google.com/detail/chjhmhbpnnohcdafkdjklconpielhcld" target="_blank" rel="noopener noreferrer">Get it from the Chrome Web Store</a>.
+                <a class="text-[#9AA6F5] underline underline-offset-2 decoration-[#9AA6F5]/40 hover:decoration-[#9AA6F5]" href="https://chromewebstore.google.com/detail/chjhmhbpnnohcdafkdjklconpielhcld" target="_blank" rel="noopener noreferrer">Get it from the Chrome Web Store</a>.
             </div>
 
-            <form id="form" class="glass rounded-xl p-6" novalidate>
-                <label for="address" class="block text-xs text-secondary mb-2">Wallet address</label>
+            <form id="form" class="panel rounded-2xl p-5 sm:p-6" novalidate>
+                <label for="address" class="block text-xs font-medium text-muted mb-2">Wallet address</label>
                 <input id="address" type="text" maxlength="11" autocomplete="off" spellcheck="false" placeholder="xxxxxxxxsim"
-                    class="w-full rounded-lg bg-bg border border-border px-3 py-3 font-mono text-[15px] text-white placeholder:text-secondary/50">
+                    class="w-full rounded-xl bg-[#0B0C0E] border border-border px-4 py-3 font-mono text-[17px] font-semibold tracking-[0.04em] text-white transition-[border-color,box-shadow]">
 
-                <div class="grid grid-cols-3 gap-2 mt-4" id="chains">
-                    <label class="chain relative cursor-pointer rounded-lg border border-border px-3 py-3">
-                        <input type="checkbox" value="SOL" checked>
-                        <span class="block text-sm font-medium">SOL</span>
-                        <span class="block text-xs text-secondary">1 a day</span>
-                    </label>
-                    <label class="chain relative cursor-pointer rounded-lg border border-border px-3 py-3">
-                        <input type="checkbox" value="BNB" checked>
-                        <span class="block text-sm font-medium">BNB</span>
-                        <span class="block text-xs text-secondary">0.25 a day</span>
-                    </label>
-                    <label class="chain relative cursor-pointer rounded-lg border border-border px-3 py-3">
-                        <input type="checkbox" value="ROBINHOOD" checked>
-                        <span class="block text-sm font-medium">ETH</span>
-                        <span class="block text-xs text-secondary">0.05 a day</span>
-                    </label>
-                </div>
+                <fieldset class="mt-4">
+                    <legend class="sr-only">Chains to claim</legend>
+                    <div class="grid grid-cols-3 gap-2" id="chains">
+                        <label class="chain relative cursor-pointer rounded-xl border border-border bg-white/[0.02] px-3 pt-3 pb-2.5">
+                            <input type="checkbox" value="SOL" checked>
+                            <svg class="tick absolute top-2.5 right-2.5 w-4 h-4" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="8" fill="#5E6AD2"/><path d="M4.8 8.2l2.1 2.1 4.3-4.4" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            <svg class="w-5 h-5" viewBox="0 0 397.7 311.7" aria-hidden="true"><linearGradient id="sol-g" x1="360" y1="351" x2="141" y2="-69" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#00ffa3"/><stop offset="1" stop-color="#dc1fff"/></linearGradient><path fill="url(#sol-g)" d="M64.6,237.9c2.4-2.4,5.7-3.8,9.2-3.8h317.4c5.8,0,8.7,7,4.6,11.1l-62.7,62.7c-2.4,2.4-5.7,3.8-9.2,3.8H6.5c-5.8,0-8.7-7-4.6-11.1L64.6,237.9z"/><path fill="url(#sol-g)" d="M64.6,3.8C67.1,1.4,70.4,0,73.8,0h317.4c5.8,0,8.7,7,4.6,11.1l-62.7,62.7c-2.4,2.4-5.7,3.8-9.2,3.8H6.5c-5.8,0-8.7-7-4.6-11.1L64.6,3.8z"/><path fill="url(#sol-g)" d="M333.1,120.1c-2.4-2.4-5.7-3.8-9.2-3.8H6.5c-5.8,0-8.7,7-4.6,11.1l62.7,62.7c2.4,2.4,5.7,3.8,9.2,3.8h317.4c5.8,0,8.7-7,4.6-11.1L333.1,120.1z"/></svg>
+                            <span class="block mt-2.5 text-[15px] font-semibold text-white tabular-nums">1 SOL</span>
+                            <span class="block text-xs text-muted">a day</span>
+                        </label>
+                        <label class="chain relative cursor-pointer rounded-xl border border-border bg-white/[0.02] px-3 pt-3 pb-2.5">
+                            <input type="checkbox" value="BNB" checked>
+                            <svg class="tick absolute top-2.5 right-2.5 w-4 h-4" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="8" fill="#5E6AD2"/><path d="M4.8 8.2l2.1 2.1 4.3-4.4" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            <svg class="w-5 h-5" viewBox="4 4 16 16" aria-hidden="true"><path fill="#F0B90B" d="M7.792 6.647L12 4.286l4.209 2.361l-1.543.874L12 6.03L9.34 7.52zm8.417 2.983l-1.543-.874L12 10.247L9.34 8.756l-1.547.874v1.744l2.657 1.492v2.978l1.551.874l1.547-.874v-2.978l2.662-1.492zm0 4.727V12.61l-1.543.874v1.744zm1.101.617l-2.661 1.487v1.749l4.208-2.366v-4.723l-1.547.87zM15.763 8.14l1.543.874v1.744l1.551-.87V8.14l-1.547-.875l-1.547.879zm-5.314 8.957v1.744l1.551.874l1.547-.874V17.1L12 17.97l-1.547-.874zm-2.657-2.743l1.543.874v-1.744l-1.543-.875v1.75zm2.657-6.214L12 9.013l1.547-.874L12 7.264l-1.547.879zm-3.759.874l1.547-.874l-1.543-.875l-1.55.879V9.89l1.546.87zm0 2.978l-1.547-.87v4.723l4.209 2.366v-1.753L6.694 14.97v-2.983z"/></svg>
+                            <span class="block mt-2.5 text-[15px] font-semibold text-white tabular-nums">0.25 BNB</span>
+                            <span class="block text-xs text-muted">a day</span>
+                        </label>
+                        <label class="chain relative cursor-pointer rounded-xl border border-border bg-white/[0.02] px-3 pt-3 pb-2.5">
+                            <input type="checkbox" value="ROBINHOOD" checked>
+                            <svg class="tick absolute top-2.5 right-2.5 w-4 h-4" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="8" fill="#5E6AD2"/><path d="M4.8 8.2l2.1 2.1 4.3-4.4" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            <svg class="w-5 h-5" viewBox="0 0 16 16" aria-hidden="true"><path d="M8.00026 0L3.08691 8.14673L8.00026 11.0495L12.9136 8.14673L8.00026 0ZM8.00026 16L3.08691 9.07813L8.00026 12L12.9136 9.07813L8.00026 16Z" fill="#497493"/><g transform="translate(7.8 7.8) scale(0.3)"><path d="M2.84 24h.53c.096 0 .192-.048.224-.128C7.591 13.696 11.94 8.656 14.67 5.638c.112-.128.064-.225-.096-.225h-4.88a.55.55 0 0 0-.45.225L5.746 9.972c-.514.642-.642 1.236-.642 2.086v4.43c-1.14 3.194-1.862 5.361-2.392 7.32-.032.125.016.192.129.192M20.447.646c-.754-.802-4.157-.834-5.730-.224a3 3 0 0 0-.786.465 41 41 0 0 0-3.323 3.178c-.112.113-.064.225.097.225h5.409c.497 0 .786.289.786.786v6.1c0 .16.128.208.225.064l3.258-4.254c.53-.69.69-.898.835-1.861.192-1.413.08-3.58-.77-4.479m-6.982 16.18 2.231-3.676a.7.7 0 0 0 .064-.29V6.73c0-.16-.112-.225-.224-.097-3.355 3.74-5.971 7.672-8.395 12.407-.06.12.016.225.16.177l5.009-1.54c.565-.174.882-.402 1.155-.852" fill="#CCFF00"/></g></svg>
+                            <span class="block mt-2.5 text-[15px] font-semibold text-white tabular-nums">0.05 ETH</span>
+                            <span class="block text-xs text-muted">a day</span>
+                        </label>
+                    </div>
+                </fieldset>
 
                 <div id="human" class="mt-4 min-h-[65px]"></div>
-                <p id="hint" role="alert" class="min-h-[20px] mt-2 text-sm text-red-400"></p>
+                <p id="hint" role="alert" class="min-h-[20px] mt-2 text-sm text-[#FF6B86]"></p>
 
-                <button id="claim" type="submit" class="w-full mt-2 rounded-lg bg-accent hover:bg-[#6b76dc] py-3 text-sm font-semibold text-white transition-colors disabled:opacity-60 disabled:cursor-default">Claim</button>
+                <button id="claim" type="submit" class="w-full mt-1 rounded-xl py-3.5 text-[15px] font-semibold text-white shadow-[0_8px_24px_-10px_rgba(94,106,210,0.8)] transition-[background,transform,opacity] disabled:opacity-60 disabled:cursor-default">Claim</button>
 
-                <ul id="results" class="mt-5 text-sm divide-y divide-white/5" aria-live="polite"></ul>
-                <p id="delivery" class="mt-3 text-sm text-secondary" aria-live="polite"></p>
+                <ul id="results" class="mt-4 text-sm divide-y divide-white/5 empty:hidden" aria-live="polite"></ul>
+                <p id="delivery" class="mt-2 text-sm text-secondary empty:hidden" aria-live="polite"></p>
             </form>
 
-            <p class="mt-6 text-xs text-secondary/70 text-center leading-relaxed">
+            <p class="mt-5 text-xs text-muted text-center leading-relaxed max-w-[420px] mx-auto">
                 Simora checks the address is its own Hard wallet, claims, and adds what is granted by itself.
                 A wallet that already holds enough, counting open positions, is not topped up.
             </p>
         </div>
     </main>
 
-    <footer class="border-t border-white/5 bg-[#0F1012] py-8">
-        <div class="max-w-7xl mx-auto px-6 text-center">
-            <p class="text-xs text-secondary/60">© 2026 Simora. All rights reserved.</p>
-        </div>
+    <footer class="shrink-0 border-t border-white/5 py-3">
+        <p class="text-center text-xs text-secondary/60">© 2026 Simora. All rights reserved.</p>
     </footer>
 
     <script>
@@ -157,6 +226,7 @@
             widget = turnstile.render('#human', {
                 sitekey: TURNSTILE_SITE_KEY,
                 theme: 'dark',
+                size: 'flexible',
                 callback: value => { token = value; hint.textContent = ''; },
                 'expired-callback': () => { token = null; },
                 'error-callback': () => { token = null; }
@@ -174,7 +244,7 @@
             return minutes >= 60 ? `${Math.ceil(minutes / 60)} h` : `${minutes} min`;
         };
         const explain = (chain, result) => {
-            if (result.granted > 0) return [`+${result.granted} ${LABELS[chain]}`, 'text-emerald-400'];
+            if (result.granted > 0) return [`+${result.granted} ${LABELS[chain]}`, 'text-gain font-medium tabular-nums'];
             if (result.reason === 'claimed') return [result.nextAt ? `Already claimed. Again in ${wait(result.nextAt)}` : 'Already claimed today', 'text-secondary'];
             if (result.reason === 'balance_high') return [`Wallet holds ${result.limit} ${LABELS[chain]} or more`, 'text-secondary'];
             if (result.reason === 'value_unknown') return ['An open position has no recent price. Open Axiom, GMGN or Padre, then claim again', 'text-secondary'];
@@ -207,8 +277,9 @@
                 for (const chain of picked) {
                     const [text, tone] = explain(chain, answer.results?.[chain] || {});
                     const row = document.createElement('li');
-                    row.className = 'flex justify-between gap-3 py-2';
+                    row.className = 'flex justify-between gap-3 py-2.5';
                     const name = document.createElement('span');
+                    name.className = 'text-primary font-medium';
                     name.textContent = LABELS[chain];
                     const outcome = document.createElement('span');
                     outcome.className = `text-right ${tone}`;
