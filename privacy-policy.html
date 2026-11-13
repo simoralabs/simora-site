@@ -57,11 +57,11 @@
             </div>
             <div class="glass rounded-xl p-8 md:p-12">
                 <div class="content-section">
-                    <p class="text-sm text-secondary/60 mb-8">Last updated: October 20, 2026</p>
+                    <p class="text-sm text-secondary/60 mb-8">Last updated: November 13, 2026</p>
 
                     <p>Simora is a free memecoin paper trading extension for Axiom, GMGN and Padre. It simulates trades using live market data. No real funds, wallets or blockchain transactions are involved.</p>
 
-                    <p>Simora works inside your own browser. Your paper trading account, positions, history and settings are stored on your device, and Simora does not send them to its own servers or to anyone else. This policy explains what is kept on your device, the few requests the extension makes to outside services, and who receives them.</p>
+                    <p>Simora works inside your own browser. Your paper trading account, positions, history and settings are stored on your device. In Practice mode, the default, Simora does not send them to its own servers or to anyone else. If you switch to the optional Hard mode, Simora's wallet service receives the limited wallet information described below. It never receives your trades or your trading history. This policy explains what is kept on your device, the requests the extension makes to outside services, and who receives them.</p>
                 </div>
 
                 <div class="content-section">
@@ -74,6 +74,8 @@
                         <li><strong>Performance data</strong>: calculated profit and loss, realized results and related statistics.</li>
                         <li><strong>Pending limit orders</strong> created inside the simulator.</li>
                         <li><strong>Share PnL backgrounds</strong>: an image, GIF or video you choose as a Share PnL card background. It is kept in your browser and is not uploaded anywhere. Cards you copy or download are created on your device.</li>
+                        <li><strong>Hard mode wallet</strong>: if you switch to Hard mode, the extension creates a Simora paper wallet: a wallet address and a signing key. The key never leaves your device. This is not a cryptocurrency wallet and holds no real funds.</li>
+                        <li><strong>Profile</strong>: the name and photo you set in the extension's wallet screen. They stay in your browser and are not uploaded anywhere.</li>
                         <li><strong>Settings and preferences</strong>: display options, panel positions and sizes, sounds, slippage and fee settings, chart preferences and language settings.</li>
                         <li><strong>Temporary cache data</strong>: recent market and price information needed to display live values, and cached chart markers.</li>
                     </ul>
@@ -82,11 +84,13 @@
                 <div class="content-section">
                     <h2>Information Sent Outside Your Device</h2>
 
-                    <p>Simora has no account system and does not run servers that receive your data. The extension only makes the following requests:</p>
+                    <p>Simora has no account system. The extension only makes the following requests:</p>
                     <ul>
                         <li><strong>Market prices</strong>: requests to Binance, with CoinGecko as a fallback, for the public USD prices of SOL, BNB and ETH. These requests contain no personal or account information.</li>
                         <li><strong>Token information from the supported platforms</strong>: on Axiom and GMGN, the extension can request public token information (such as name, image and market data) for the token you are viewing from that platform's own servers, using the token's address. These requests go only to the platform you are using, the way the platform's own page makes them, and your browser may attach that platform's own cookies. Simora does not read or store those cookies.</li>
                         <li><strong>Auto Translate</strong>: if you turn on Auto Translate, the text of the social posts it translates is sent to Google's public translation endpoint. Nothing else is sent, and Simora does not store that text.</li>
+                        <li><strong>Hard mode wallet service</strong>: only if you switch to Hard mode, the extension talks to Simora's wallet service, which is hosted on Cloudflare. Each request is signed by your Simora wallet and contains your wallet address and its public key, plus one of the following: your paper balance on each chain; a paper transfer you send (the recipient's wallet address, the chain and the amount); or a faucet claim (the chains you claim and the paper value of your account, so the faucet can check its limit). While a supported platform page is open, the extension also keeps a connection to the service, so that a paper transfer sent to you arrives at once. Your trades, positions and trading history are not sent.</li>
+                        <li><strong>Faucet page</strong>: when you claim on <a href="https://www.simoralabs.com/faucet" class="text-blue-400 hover:text-blue-300 transition-colors">simoralabs.com/faucet</a>, Cloudflare Turnstile checks that the request comes from a person, and your IP address is used to limit how many claims are made from one network each day. For that limit the service stores the IP address with the day and a count only, without your wallet address, and deletes it after seven days.</li>
                         <li><strong>Icon font</strong>: the extension loads an icon font from Google Fonts. Like any web request, this lets Google see your IP address; no other information is included.</li>
                     </ul>
                 </div>
@@ -114,6 +118,7 @@
                         <li>Maintain your performance history across sessions.</li>
                         <li>Remember your settings, preferences and interface layout.</li>
                         <li>Translate social posts when you turn on Auto Translate.</li>
+                        <li>In Hard mode, deliver paper transfers between Simora wallets and faucet top-ups, and keep the faucet within its daily limits.</li>
                     </ul>
                 </div>
 
@@ -124,13 +129,15 @@
 
                     <p>A small number of preferences, such as panel visibility, language, Auto Translate and Quick Buy settings, are saved in the browser's synced extension storage. If you use your browser's own sync feature, your browser provider may sync those preferences between your devices. Your paper trading account, positions and trading history are not stored there.</p>
 
+                    <p><strong>Hard mode.</strong> Your Hard mode wallet, its key and its account are kept in the extension's own storage. Uninstalling the extension removes them, and the wallet cannot be recovered afterwards. Simora's wallet service keeps your wallet address, its public key, the last paper balances the extension reported, the paper transfers sent to and from your wallet, and your faucet claims, so that transfers and the faucet's limits work. To have these records removed, contact <a href="mailto:simoralabs@gmail.com" class="text-blue-400 hover:text-blue-300 transition-colors">simoralabs@gmail.com</a> and include your wallet address.</p>
+
                     <p>Data stored on your device stays there until you delete it or clear your browser data. Uninstalling the extension removes the extension's own storage. Your paper trading account and history are kept in your browser's storage for the supported platforms, so they remain on your device after uninstalling until you clear the site data for Axiom, GMGN and Padre.</p>
                 </div>
 
                 <div class="content-section">
                     <h2>Retired Online Features</h2>
 
-                    <p>Earlier versions of Simora included two optional online features, Simora Social and the Weekly Challenge. Both have been retired. Since version 1.1.7, the extension no longer sends any information to Simora's servers, and when it updates it removes the Simora Social and Weekly Challenge data that earlier versions kept in your browser.</p>
+                    <p>Earlier versions of Simora included two optional online features, Simora Social and the Weekly Challenge. Both have been retired. Since version 1.1.7, the extension no longer sends any Simora Social or Weekly Challenge information to Simora's servers, and when it updates it removes the Simora Social and Weekly Challenge data that earlier versions kept in your browser.</p>
 
                     <p>On October 20, 2026 the servers behind these features were shut down, and the database that held Simora Social profiles, shared trades and Weekly Challenge data was deleted from them. The final top 50 rankings of past Weekly Challenges (usernames and simulated results, without profile pictures) remain on our website as an archive.</p>
 
@@ -142,7 +149,7 @@
                     <ul>
                         <li>We do not sell personal data.</li>
                         <li>We do not share personal data for advertising or marketing purposes.</li>
-                        <li>Your paper trading data stays on your device and is not shared with Axiom, GMGN, Padre or anyone else.</li>
+                        <li>Your paper trading data stays on your device and is not shared with Axiom, GMGN, Padre or anyone else. In Hard mode, only the wallet information listed above goes to Simora's wallet service.</li>
                     </ul>
 
                     <p>The outside services listed above receive only the requests described in this policy. They operate under their own privacy policies:</p>
@@ -150,11 +157,14 @@
                         <li><strong>Axiom, GMGN and Padre</strong>: the supported trading platforms Simora works on.</li>
                         <li><strong>Binance and CoinGecko</strong>: public market prices.</li>
                         <li><strong>Google</strong>: translation for Auto Translate, and the icon font.</li>
+                        <li><strong>Cloudflare</strong>: hosts Simora's Hard mode wallet service and runs the Turnstile check on the faucet page.</li>
                     </ul>
                 </div>
 
                 <div class="content-section">
                     <h2>Your Choices</h2>
+
+                    <p><strong>Hard mode is optional.</strong> Practice mode is the default and sends nothing to Simora's servers. You can switch modes at any time in the extension popup.</p>
 
                     <p><strong>Auto Translate is optional.</strong> It is off until you turn it on, and you can turn it off at any time in the extension popup.</p>
 
