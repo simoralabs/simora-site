@@ -77,13 +77,15 @@
                     <ul>
                         <li>Multi-platform support for Axiom, GMGN and Padre</li>
                         <li>Real-time paper trading simulation</li>
+                        <li>Practice and Hard modes: in Hard mode one paper wallet for all three platforms, a daily faucet and transfers between traders</li>
+                        <li>Callouts (Experimental, Hard mode): call the coins you hold, follow traders, get alerts and tip them</li>
                         <li>Dynamic PnL Bar</li>
                         <li>Trading Panel</li>
                         <li>Quick Buy controls</li>
                         <li>Portfolio Calendar and performance history</li>
                         <li>TradingView chart markers and entry/exit visualization</li>
+                        <li>Chart Trade Cards and Share PnL cards</li>
                         <li>Auto Translate</li>
-                        <li>Simora Social</li>
                         <li>Local storage for paper trading data and settings</li>
                     </ul>
                 </div>
@@ -106,6 +108,7 @@
                         <li>No private keys required</li>
                         <li>Simulated trades do not execute blockchain transactions</li>
                         <li>Paper trading data and extension settings are primarily stored locally in the browser</li>
+                        <li>Hard mode and Callouts are optional; Callouts is off until you turn it on</li>
                         <li>Simora does not use real funds for simulated trades</li>
                     </ul>
                 </div>
@@ -134,8 +137,9 @@
                     <ul>
                         <li><strong>storage</strong>: Store user preferences and trading data locally</li>
                         <li><strong>activeTab</strong>: Access current tab to inject trading interface</li>
-                        <li><strong>tabs</strong>: Detect when user switches between supported platforms</li>
-                        <li><strong>host_permissions</strong>: Access Axiom, GMGN, Padre, and API endpoints for price data</li>
+                        <li><strong>alarms</strong>: Refresh the SOL, BNB and ETH prices every five minutes</li>
+                        <li><strong>offscreen</strong>: Keep one connection for Hard mode transfers and Callouts for every Axiom, GMGN and Padre tab, instead of one per tab</li>
+                        <li><strong>host_permissions</strong>: Access Axiom, GMGN and Padre; Binance and CoinGecko for prices; Google Translate for Auto Translate; GitHub for an optional Portfolio backup to your own repository, unused unless you set it up</li>
                     </ul>
                 </div>
 
